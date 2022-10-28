@@ -1,0 +1,94 @@
+* {
+  padding: 0;
+  margin: 0;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 1em;
+  max-width: 100vw;
+}
+/* WELCOME------------------------------ */
+.welcome {
+  display: flex;
+}
+
+#user-avatar img {
+  background-color: aqua;
+  height: 70px;
+  width: 70px;
+  border-radius: 50%;
+}
+#user-noti {
+  right: 0;
+  width: 30vw;
+}
+#user-hello {
+  flex-grow: 1;
+  padding: 10px;
+  font-weight: bold;
+}
+img {
+  display: block;
+}
+/* MAIN---------------------------------- */
+.explore {
+  padding: 0 20px;
+  overflow: auto;
+  margin-bottom: 50px;
+}
+
+.intro {
+  font-weight: bold;
+  font-size: 2em;
+}
+.explore-search {
+  width: 100%;
+  margin: 10px 0;
+}
+
+/* EXPLORE---------------------------------- */
+
+.city-container {
+  display: grid;
+  grid-template-columns: 40% auto;
+  background: aqua;
+  border-radius: 20px;
+  margin: 10px 0;
+}
+.city-img img {
+  width: 100%;
+  height: 150px;
+  border-radius: 20px;
+}
+.city-info {
+  padding: 10px;
+}
+.city-name {
+  font-weight: bold;
+}
+
+/* NAV---------------------------------- */
+.nav {
+  position: fixed;
+  bottom: 0;
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  text-align: center;
+}
+.nav-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: gray;
+  height: 50px;
+  width: 25vw;
+}
+.nav-item button {
+  text-decoration: none;
+  color: white;
+}
+.active {
+  color: aqua;
+}
