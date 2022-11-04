@@ -1,6 +1,6 @@
+import React,{ Component } from 'react';
 import "./CityExplore.css";
 import CityContainer from "./CityContainer";
-import { Component } from 'react';
 import { cities } from './cities.js'
  
 class CityExplore extends Component {
