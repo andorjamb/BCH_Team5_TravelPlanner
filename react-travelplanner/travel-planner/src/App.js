@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import React from 'react';
+//import { useEffect } from 'react';
 
 import "./App.css";
 import Welcome from "./Welcome";
@@ -14,6 +15,11 @@ class App extends Component {
     search : '',
     userName: "Homer",
   }
+/* 
+  useEffect(()=>{
+    /* global google 
+// this is for future use with OAuth and React Hooks
+  }, []); */
 
   searchHandler = (e) => {
     this.setState({ search: e.target.value});
@@ -32,7 +38,8 @@ class App extends Component {
         <Intro />
         <SearchBar 
         searchEvent={this.searchHandler}/>
-        <CityExplore />
+        <CityExplore 
+        />
         <NavBar />
      </div>
   );

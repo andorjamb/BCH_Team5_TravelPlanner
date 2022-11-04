@@ -1,5 +1,5 @@
 import "./Welcome.css";
-const Welcome = () => {
+const Welcome = (props) => {
   return (
     <div className="welcome">
       <div id="user-avatar">
@@ -8,7 +8,7 @@ const Welcome = () => {
       <div id="user-hello">
         <p>
           Hello, <br />
-          David
+          {props.userName}
         </p>
       </div>
     </div>
