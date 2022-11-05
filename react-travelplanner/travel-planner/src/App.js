@@ -7,8 +7,14 @@ class App extends Component {
   state = {
     search: "",
     userName: "Homer",
+<<<<<<< HEAD
   };
   /* 
+=======
+    NoOfTrips : 9
+  }
+/* 
+>>>>>>> 42c25e4 (replaced css with bootstrap)
   useEffect(()=>{
     /* global google 
 // this is for future use with OAuth and React Hooks
@@ -21,11 +27,31 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+<<<<<<< HEAD
         <ExploreView></ExploreView>
         <NavBar />
       </div>
     );
   }
+=======
+  <div className="container">
+
+        <Welcome 
+        userName={this.state.userName}
+        trips = {this.state.NoOfTrips}/>
+     
+     
+        <Intro />
+        <SearchBar 
+        searchEvent={this.searchHandler}/>
+        <CityExplore 
+        />
+        <NavBar />
+     </div>
+     </div>
+  );
+}
+>>>>>>> 42c25e4 (replaced css with bootstrap)
 }
 
 export default App;
