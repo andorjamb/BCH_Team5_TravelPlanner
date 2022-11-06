@@ -1,48 +1,31 @@
-import React, { Component } from 'react';
-//import { useEffect } from 'react';
-
+import React, { Component } from "react";
 import "./App.css";
-import Welcome from "./Welcome";
-import Intro from "./Intro";
-import SearchBar from "./SearchBar";
-import CityExplore from "./CityExplore";
-import NavBar from "./NavBar";
-
+import ExploreView from "./views/Explore/ExploreView";
+import NavBar from "./components/NavBar/NavBar";
 
 class App extends Component {
   state = {
-    search : '',
+    search: "",
     userName: "Homer",
-  }
-/* 
+  };
+  /* 
   useEffect(()=>{
     /* global google 
 // this is for future use with OAuth and React Hooks
   }, []); */
 
   searchHandler = (e) => {
-    this.setState({ search: e.target.value});
-  }
+    this.setState({ search: e.target.value });
+  };
 
-
-  render () {  
-
+  render() {
     return (
       <div className="App">
-  
-        <Welcome 
-        userName={this.state.userName}/>
-     
-     
-        <Intro />
-        <SearchBar 
-        searchEvent={this.searchHandler}/>
-        <CityExplore 
-        />
+        <ExploreView></ExploreView>
         <NavBar />
-     </div>
-  );
-}
+      </div>
+    );
+  }
 }
 
 export default App;
