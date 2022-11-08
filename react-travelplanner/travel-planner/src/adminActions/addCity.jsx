@@ -3,7 +3,7 @@ import { useRef } from "react";
 import { firestore } from "../FireBaseInit";
 import { addDoc,collection,getDocs } from "@firebase/firestore";
 import FormCss from './form.module.css'
-const Tasting = () =>{
+const NewCity = () =>{
     const msgRef = useRef(); 
     const description = useRef(); const imageurl = useRef()
     const name = useRef();
@@ -111,4 +111,4 @@ console.log(e);
 
 }
 
-export default Tasting;
+export default NewCity;
