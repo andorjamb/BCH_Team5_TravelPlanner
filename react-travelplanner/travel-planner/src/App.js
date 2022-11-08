@@ -1,7 +1,17 @@
 import React, { Component } from "react";
 import "./App.css";
+<<<<<<< HEAD
 import ExploreView from "./views/Explore/ExploreView";
 import NavBar from "./components/NavBar/NavBar";
+=======
+import Welcome from "./Welcome";
+import Intro from "./Intro";
+import SearchBar from "./SearchBar";
+import CityExplore from "./CityExplore";
+import Main from './Main';
+import Testing from './explore/test';
+
+>>>>>>> 1c6f7fd (database connection successful)
 
 class App extends Component {
   state = {
@@ -26,6 +36,7 @@ class App extends Component {
 
   render() {
     return (
+<<<<<<< HEAD
       <div className="App">
 <<<<<<< HEAD
         <ExploreView></ExploreView>
@@ -35,18 +46,13 @@ class App extends Component {
   }
 =======
   <div className="container">
+=======
+      <div className="App classname='justify-content-center mt-3 mb-3'">
+  <div className="container justify-content-center mt-3 mb-3">
+>>>>>>> 1c6f7fd (database connection successful)
 
-        <Welcome 
-        userName={this.state.userName}
-        trips = {this.state.NoOfTrips}/>
-     
-     
-        <Intro />
-        <SearchBar 
-        searchEvent={this.searchHandler}/>
-        <CityExplore 
-        />
-        <NavBar />
+  <Testing/>
+  
      </div>
      </div>
   );
