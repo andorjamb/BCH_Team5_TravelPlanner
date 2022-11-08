@@ -1,20 +1,14 @@
 import React from "react";
 import "./NavBar.css";
-const NavBar = () => {
+import { Component } from "react";
+
+const NavBar = (props) => {
   return (
     <div className="nav">
-      <div className="nav-item active">
-        <a href="#">Explore</a>
-      </div>
-      <div className="nav-item">
-        <a href="#">Flight</a>
-      </div>
-      <div className="nav-item">
-        <a href="#">Planner</a>
-      </div>
-      <div className="nav-item">
-        <a href="#">Profile</a>
-      </div>
+      <div className="nav-item active">Explore</div>
+      <div className="nav-item">Flight</div>
+      <div className="nav-item">Planner</div>
+      <div className="nav-item">Profile</div>
     </div>
   );
 };

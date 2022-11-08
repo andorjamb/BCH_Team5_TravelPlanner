@@ -17,6 +17,10 @@
   text-decoration: none;
   color: white;
 }
+.nav-item:hover {
+  background-color: yellow;
+  cursor: pointer;
+}
 .active {
   color: aqua;
 }

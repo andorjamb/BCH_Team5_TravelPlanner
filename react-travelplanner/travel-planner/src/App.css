@@ -2,3 +2,30 @@
   text-align: center;
   max-width: 800px;
 }
+
+.nav {
+  position: fixed;
+  bottom: 0;
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  text-align: center;
+}
+.nav-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: gray;
+  height: 50px;
+  width: 25vw;
+}
+.nav-item button {
+  text-decoration: none;
+  color: white;
+}
+.nav-item:hover {
+  background-color: yellow;
+  cursor: pointer;
+}
+.active {
+  color: aqua;
+}
