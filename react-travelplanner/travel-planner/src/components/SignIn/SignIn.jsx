@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { GoogleButton } from 'react-google-button';
 import { UserAuth } from "../Context/Context";
 import { useNavigate } from 'react-router-dom';
+import './Signin.css'
 
 const Signin = () => {
   const { googleSignIn, user } = UserAuth();

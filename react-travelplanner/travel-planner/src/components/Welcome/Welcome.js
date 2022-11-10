@@ -1,9 +1,11 @@
 import React from "react";
 import "./Welcome.css";
-import {UserName} from '../UserName/UserName'
+import { UserName } from '../UserName/UserName';
+
 const Welcome = (props) => {
- 
+
   return (
+
     <div className="welcome">
       
       <div id="user-hello">
@@ -11,7 +13,6 @@ const Welcome = (props) => {
           
           <UserName/>
           
-       
       </div>
     </div>
   );

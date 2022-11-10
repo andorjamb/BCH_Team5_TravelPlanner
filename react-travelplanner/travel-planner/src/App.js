@@ -60,7 +60,7 @@ const App = () => {
       <NavBar />
       <AuthContextProvider>
         <Routes>
-          <Route path='/' element={<ExploreView></ExploreView>}>Home</Route>
+          <Route path='/' element={<ExploreView />}>Home</Route>
           <Route path='/flight' element={<FlightView />}>Flight</Route>
           <Route path='/planner' element={<PlannerView />}>Planner</Route>
           <Route path='/profile/signin' element={<SignIn />}>SignIn</Route>
