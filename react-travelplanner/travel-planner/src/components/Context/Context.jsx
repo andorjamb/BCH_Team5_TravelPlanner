@@ -1,5 +1,5 @@
 import React from "react";
-import { auth } from "../../../FireBaseInit";
+import { auth } from "../../FireBaseInit";
 import { useContext, createContext, useEffect, useState } from 'react';
 import {
   GoogleAuthProvider,

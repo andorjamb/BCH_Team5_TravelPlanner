@@ -1,5 +1,5 @@
 import React from "react";
-import { UserAuth } from "./Context";
+import { UserAuth } from "../Context/Context";
 import { Link } from 'react-router-dom';
 
 
@@ -17,10 +17,11 @@ export const UserName = () => {
   
     return (
         <div>
-           {user?.displayName &&  (
+           {user?.displayName &&  (<div><span>{user?.displayName}</span><br/>
         <button onClick={handleSignOut}>
           Logout
-        </button>)}
+        </button>
+        </div>)}
         {!user?.displayName && (
         <div><span>Welcome Guest</span><br/><Link to='/profile/signin'>Sign in</Link></div>)}
       </div>

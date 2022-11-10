@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Welcome from "../../components/Welcome/Welcome";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import CityExplore from "../../components/CityExplore/CityExplore";
-import Account from "../Profile/Account";
+import Account from "../../components/Account/Account";
 import "./ExploreView.css";
 
 
