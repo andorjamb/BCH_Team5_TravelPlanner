@@ -1,3 +1,10 @@
+@import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined");
+
+:root {
+
+  --black: #0E1D30;
+}
+
 .nav {
   position: fixed;
   bottom: 0;
@@ -5,22 +12,32 @@
   grid-template-columns: repeat(4, auto);
   text-align: center;
 }
+
 .nav-item {
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: gray;
+  text-decoration: none;
   height: 50px;
   width: 25vw;
 }
+
 .nav-item button {
-  text-decoration: none;
   color: white;
 }
+
 .nav-item:hover {
   background-color: yellow;
   cursor: pointer;
 }
+
 .active {
   color: aqua;
+}
+
+.icon {
+  font-family: 'Material Symbols Outlined';
+  font-size: 3rem;
+  color: var(--black);
 }
