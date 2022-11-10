@@ -4,6 +4,7 @@ import SearchBar from "../../components/SearchBar/SearchBar";
 import CityExplore from "../../components/CityExplore/CityExplore";
 import Account from "../../components/Account/Account";
 import "./ExploreView.css";
+import AddCity from "../../adminActions/AddCity.jsx"
 
 
 const ViewMode = {
@@ -11,8 +12,6 @@ const ViewMode = {
   Expand: 2,
   ExpandFull: 3,
 };
-
-
 
 
 class ExploreView extends Component {
@@ -44,14 +43,17 @@ class ExploreView extends Component {
       default: {
         viewShown = (
           <div className="view">
-            <Welcome></Welcome>
-            <div class="intro">
+
+            <Welcome userName={this.state.userName} />
+            <div className="intro">
+            
               Ready for an <br />
               adventure?
             </div>
             <SearchBar searchEvent={this.searchHandler} />
             <></>
             <CityExplore />
+            <AddCity />
           </div>
         );
         break;
