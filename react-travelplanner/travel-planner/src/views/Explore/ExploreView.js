@@ -3,6 +3,7 @@ import Welcome from "../../components/Welcome/Welcome";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import CityExplore from "../../components/CityExplore/CityExplore";
 import "./ExploreView.css";
+import AddCity from "../../adminActions/AddCity.jsx"
 
 const ViewMode = {
   List: 1,
@@ -37,13 +38,14 @@ class ExploreView extends Component {
         viewShown = (
           <div className="view">
             <Welcome userName={this.state.userName} />
-            <div class="intro">
+            <div className="intro">
               Ready for an <br />
               adventure?
             </div>
             <SearchBar searchEvent={this.searchHandler} />
             <></>
             <CityExplore />
+            <AddCity />
           </div>
         );
         break;
