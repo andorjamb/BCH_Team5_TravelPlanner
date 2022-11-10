@@ -1,4 +1,4 @@
-import React, {Component } from "react";
+import React, { Component } from "react";
 import "./App.css";
 import ExploreView from "./views/Explore/ExploreView";
 
@@ -9,25 +9,15 @@ import PlannerView from "./views/Planner/PlannerView";
 import ProfileView from "./views/Profile/ProfileView";
 import Account from "./components/Account/Account";
 import SignIn from "./components/SignIn/SignIn";
-// import {UserAuth} from './views/Profile/Context/Context'
+import { AuthContextProvider } from "./components/Context/Context"
+import { Route, Routes } from 'react-router-dom';
 
-
-class App extends Component {
+/* class App extends Component {
   state = {
     search: "",
-    userName: "Homer",
+    userName: "",
     view: "explore",
   };
-  /* 
-  useEffect(()=>{
-    /* global google 
-// this is for future use with OAuth and React Hooks
-  }, []); */
-
- import {AuthContextProvider} from "./views/Profile/Context/Context"
-
-
-
 
   render() {
     const viewRender = () => {
@@ -51,12 +41,11 @@ class App extends Component {
     return (
       <div className="App">
         {viewRender()}
-        <NavBar changeViewHandler={changeViewHandler}/>
+        <NavBar changeViewHandler={changeViewHandler} />
       </div>
     );
-  }
+  } */
 
-import { Route, Routes } from 'react-router-dom';
 
 // const {user} = UserAuth();
 
@@ -70,16 +59,16 @@ const App = () => {
 
       <NavBar />
       <AuthContextProvider>
-      <Routes>
-        <Route path='/' element={<ExploreView></ExploreView>}>Home</Route>
-        <Route path='/flight' element={<FlightView />}>Flight</Route>
-        <Route path='/planner' element={<PlannerView />}>Planner</Route>       
-        <Route path='/profile/signin' element={<SignIn />}>SignIn</Route>
-        <Route path='/profile' element={<ProfileView />}></Route>
-        <Route path='/profile/account' element={<Account />}></Route>
+        <Routes>
+          <Route path='/' element={<ExploreView></ExploreView>}>Home</Route>
+          <Route path='/flight' element={<FlightView />}>Flight</Route>
+          <Route path='/planner' element={<PlannerView />}>Planner</Route>
+          <Route path='/profile/signin' element={<SignIn />}>SignIn</Route>
+          <Route path='/profile' element={<ProfileView />}></Route>
+          <Route path='/profile/account' element={<Account />}></Route>
 
-      </Routes>
-          </AuthContextProvider>
+        </Routes>
+      </AuthContextProvider>
 
     </div>
   )
