@@ -3,7 +3,6 @@ import "./App.css";
 import ExploreView from "./views/Explore/ExploreView";
 
 import NavBar from "./components/NavBar/NavBar";
-import AddCity from "./adminActions/addCity"
 
 import FlightView from "./views/Flight/FlightView";
 import PlannerView from "./views/Planner/PlannerView";
@@ -13,7 +12,7 @@ class App extends Component {
   state = {
     search: "",
     userName: "Homer",
-    view: "flight",
+    view: "explore",
   };
   /* 
   useEffect(()=>{
@@ -46,46 +45,8 @@ class App extends Component {
     };
     return (
       <div className="App">
-        <ExploreView></ExploreView>
-        <AddCity/>
-       
-        <NavBar />
-        
         {viewRender()}
-        <div className="nav">
-          <div
-            onClick={() => {
-              changeViewHandler("explore");
-            }}
-            className="nav-item active"
-          >
-            Explore
-          </div>
-          <div
-            onClick={() => {
-              changeViewHandler("flight");
-            }}
-            className="nav-item"
-          >
-            Flight
-          </div>
-          <div
-            onClick={() => {
-              changeViewHandler("planner");
-            }}
-            className="nav-item"
-          >
-            Planner
-          </div>
-          <div
-            onClick={() => {
-              changeViewHandler("profile");
-            }}
-            className="nav-item"
-          >
-            Profile
-          </div>
-        </div>
+        <NavBar changeViewHandler={changeViewHandler}/>
       </div>
     );
   }
