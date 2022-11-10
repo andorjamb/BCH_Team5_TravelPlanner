@@ -1,10 +1,13 @@
 import React, { Component } from "react";
 import "./App.css";
 import ExploreView from "./views/Explore/ExploreView";
+
+import NavBar from "./components/NavBar/NavBar";
+import AddCity from "./adminActions/addCity"
+
 import FlightView from "./views/Flight/FlightView";
 import PlannerView from "./views/Planner/PlannerView";
 import ProfileView from "./views/Profile/ProfileView";
-
 
 class App extends Component {
   state = {
@@ -43,6 +46,11 @@ class App extends Component {
     };
     return (
       <div className="App">
+        <ExploreView></ExploreView>
+        <AddCity/>
+       
+        <NavBar />
+        
         {viewRender()}
         <div className="nav">
           <div
