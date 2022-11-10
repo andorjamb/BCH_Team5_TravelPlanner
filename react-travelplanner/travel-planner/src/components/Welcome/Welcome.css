@@ -1,6 +1,8 @@
 .welcome {
   display: flex;
   padding: 10px 20px;
+  background-color: var(--darkblue);
+  justify-content: center;
 }
 
 #user-avatar img {
@@ -9,15 +11,18 @@
   width: 50px;
   border-radius: 50%;
 }
+
 #user-noti {
   right: 0;
   width: 30vw;
 }
+
 #user-hello {
   flex-grow: 1;
   padding: 10px;
   font-weight: bold;
 }
+
 img {
   display: block;
 }
