@@ -3,6 +3,12 @@
   text-decoration: none;
 }
 
+h1 {
+ 
+  font-size: 40px;
+  color: var(--yellow);
+}
+
 .explore-view {
   text-align: center;
   max-width: 800px;
@@ -17,4 +23,7 @@ main {
 .intro {
   font-weight: bold;
   font-size: 2em;
+  color: var(--yellow);
+ background-color: var(--darkblue);
+ padding: 1em;
 }

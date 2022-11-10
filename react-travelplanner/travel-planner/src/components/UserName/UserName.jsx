@@ -1,4 +1,4 @@
-import React from "react";
+/* import React from "react";
 import { UserAuth } from "../Context/Context";
 import { Link } from 'react-router-dom';
 
@@ -29,8 +29,10 @@ export const UserName = () => {
         </div>)}
         {!user?.displayName && (
         <div><span>Welcome Guest</span><br/><Link to='/profile/signin'>Sign in</Link></div>)}
+         <div><i class="fa-solid fa-bell"></i></div>
       </div>
+     
     );
   };
-  
+   */
 //   export default UserName;

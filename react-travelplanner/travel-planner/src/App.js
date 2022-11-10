@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import "./App.css";
 import ExploreView from "./views/Explore/ExploreView";
 
@@ -12,46 +12,9 @@ import SignIn from "./components/SignIn/SignIn";
 import { AuthContextProvider } from "./components/Context/Context"
 import { Route, Routes } from 'react-router-dom';
 
-/* class App extends Component {
-  state = {
-    search: "",
-    userName: "",
-    view: "explore",
-  };
-
-  render() {
-    const viewRender = () => {
-      switch (this.state.view) {
-        case "explore":
-          return <ExploreView></ExploreView>;
-        case "flight":
-          return <FlightView></FlightView>;
-        case "planner":
-          return <PlannerView></PlannerView>;
-        case "profile":
-          return <ProfileView></ProfileView>;
-        default:
-          return <ExploreView></ExploreView>;
-      }
-    };
-    const changeViewHandler = (value) => {
-      this.setState({ view: value });
-      console.log("view changed to ", value);
-    };
-    return (
-      <div className="App">
-        {viewRender()}
-        <NavBar changeViewHandler={changeViewHandler} />
-      </div>
-    );
-  } */
-
 
 // const {user} = UserAuth();
 
-const searchHandler = (e) => {
-  this.setState({ search: e.target.value });
-};
 
 const App = () => {
   return (
