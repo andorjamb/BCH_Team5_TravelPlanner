@@ -11,8 +11,49 @@ import Account from "./views/Profile/Account";
 import SignIn from "./views/Profile/SignIn";
 // import {UserAuth} from './views/Profile/Context/Context'
 
+
+class App extends Component {
+  state = {
+    search: "",
+    userName: "Homer",
+    view: "explore",
+  };
+  /* 
+  useEffect(()=>{
+    /* global google 
+// this is for future use with OAuth and React Hooks
+  }, []); */
+
  import {AuthContextProvider} from "./views/Profile/Context/Context"
 
+
+
+  render() {
+    const viewRender = () => {
+      switch (this.state.view) {
+        case "explore":
+          return <ExploreView></ExploreView>;
+        case "flight":
+          return <FlightView></FlightView>;
+        case "planner":
+          return <PlannerView></PlannerView>;
+        case "profile":
+          return <ProfileView></ProfileView>;
+        default:
+          return <ExploreView></ExploreView>;
+      }
+    };
+    const changeViewHandler = (value) => {
+      this.setState({ view: value });
+      console.log("view changed to ", value);
+    };
+    return (
+      <div className="App">
+        {viewRender()}
+        <NavBar changeViewHandler={changeViewHandler}/>
+      </div>
+    );
+  }
 
 import { Route, Routes } from 'react-router-dom';
 
@@ -42,6 +83,7 @@ const App = () => {
 
     </div>
   )
+
 }
 
 export default App;

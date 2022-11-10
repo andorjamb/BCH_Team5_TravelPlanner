@@ -12,6 +12,7 @@ class CityExplore extends Component {
     const cityArray = this.state.cities.map((city) => {
       return (
         <CityContainer
+          key={city.name}
           cityName={city.name.charAt(0).toUpperCase() + city.name.substring(1)}
           description={city.description}
           rating={city.rating}
