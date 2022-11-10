@@ -10,12 +10,11 @@ const NavBar = (props) => {
   return (
     <div className="nav">
 
-      <Link to='/'><div className="nav-item active">Explore</div></Link>
-      <Link to='/flight'><div className="nav-item"><span class="icon">airplanemode_active<span class="material-symbols-outlined">
-
-      </span></span>Flight</div></Link>
-      <Link to='/planner'><div className="nav-item">Planner</div></Link>
-      <Link to='/profile/signin'><div className="nav-item"><span class="icon">person</span> Profile </div></Link>
+      <Link className='nav-item active' to='/'><span class="icon">explore</span>Explore</Link>
+      <Link className="nav-item" to='/flight'><span class="icon">airplanemode_active<span>
+      </span></span>Flight</Link>
+      <Link className="nav-item" to='/planner'><span class="icon">location_on</span>Planner</Link>
+      <Link className="nav-item" to='/profile/signin'><span class="icon">person</span> Profile</Link>
 
     </div>
   );

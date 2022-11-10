@@ -23,9 +23,9 @@
   width: 25vw;
 }
 
-.nav-item button {
+/* .nav-item button {
   color: white;
-}
+} */
 
 .nav-item:hover {
   background-color: yellow;
