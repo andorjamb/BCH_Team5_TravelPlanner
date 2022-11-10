@@ -1,5 +1,5 @@
 import React from "react";
-import { UserAuth } from "./Context/Context";
+import { UserAuth } from "../Context/Context";
 
 const Account = () => {
     const { logOut, user } = UserAuth();

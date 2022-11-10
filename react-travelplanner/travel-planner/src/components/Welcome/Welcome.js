@@ -1,6 +1,6 @@
 import React from "react";
 import "./Welcome.css";
-import {UserName} from '../../views/Profile/Context/UserName'
+import {UserName} from '../UserName/UserName'
 const Welcome = (props) => {
  
   return (

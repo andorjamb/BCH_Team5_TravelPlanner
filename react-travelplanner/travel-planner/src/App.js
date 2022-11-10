@@ -7,8 +7,8 @@ import NavBar from "./components/NavBar/NavBar";
 import FlightView from "./views/Flight/FlightView";
 import PlannerView from "./views/Planner/PlannerView";
 import ProfileView from "./views/Profile/ProfileView";
-import Account from "./views/Profile/Account";
-import SignIn from "./views/Profile/SignIn";
+import Account from "./components/Account/Account";
+import SignIn from "./components/SignIn/SignIn";
 // import {UserAuth} from './views/Profile/Context/Context'
 
 
@@ -25,6 +25,7 @@ class App extends Component {
   }, []); */
 
  import {AuthContextProvider} from "./views/Profile/Context/Context"
+
 
 
 
@@ -72,11 +73,10 @@ const App = () => {
       <Routes>
         <Route path='/' element={<ExploreView></ExploreView>}>Home</Route>
         <Route path='/flight' element={<FlightView />}>Flight</Route>
-        <Route path='/planner' element={<PlannerView />}>Planner</Route>
-       
-          <Route path='/profile/signin' element={<SignIn />}>SignIn</Route>
-          <Route path='/profile' element={<ProfileView />}></Route>
-          <Route path='/profile/account' element={<Account />}></Route>
+        <Route path='/planner' element={<PlannerView />}>Planner</Route>       
+        <Route path='/profile/signin' element={<SignIn />}>SignIn</Route>
+        <Route path='/profile' element={<ProfileView />}></Route>
+        <Route path='/profile/account' element={<Account />}></Route>
 
       </Routes>
           </AuthContextProvider>
