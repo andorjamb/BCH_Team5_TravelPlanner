@@ -1,6 +1,7 @@
 .nav {
   position: fixed;
   bottom: 0;
+  left: 0;
   display: grid;
   grid-template-columns: repeat(4, auto);
   align-items: center;
