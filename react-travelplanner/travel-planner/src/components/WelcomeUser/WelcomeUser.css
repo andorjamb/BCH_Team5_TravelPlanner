@@ -1,0 +1,31 @@
+.welcome {
+  display: flex;
+  padding: 10px 40px 10px 10px;
+  justify-content: space-between;
+  background-color: rgb(245, 245, 245);
+}
+
+#user-avatar img {
+  background-color: aqua;
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+}
+
+.user-noti {
+  font-size: 3em;
+}
+
+.user-hello {
+  font-weight: bold;
+  font-size: 1.5em;
+}
+
+.user-hello a {
+  text-decoration: none;
+  color: var(--yellow);
+}
+
+/* img {
+  display: block;
+} */

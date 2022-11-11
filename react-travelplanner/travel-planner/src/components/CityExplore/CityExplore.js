@@ -8,10 +8,14 @@ class CityExplore extends Component {
     cities: cities,
   };
 
+//  componentDidMount() //fetch from api, insert into object (wait for data from db first)
+
+
   render() {
     const cityArray = this.state.cities.map((city) => {
       return (
         <CityContainer
+          key={city.name}
           cityName={city.name.charAt(0).toUpperCase() + city.name.substring(1)}
           description={city.description}
           rating={city.rating}
@@ -20,10 +24,10 @@ class CityExplore extends Component {
     });
 
     return (
-      <div>
+      <>
         <h2>Top Places</h2>
         <div className="city-explore">{cityArray}</div>
-      </div>
+      </>
     );
   }
 }

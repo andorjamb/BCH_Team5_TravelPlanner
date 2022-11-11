@@ -1,7 +1,8 @@
-import React from "react";
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import { NavLink } from 'react-router-dom';
 import "./NavBar.css";
-// import { Component } from "react";
+
+
 // import UserAuth from '../../views/Profile/Context/Context'
 
 
@@ -10,12 +11,12 @@ const NavBar = (props) => {
 
   return (
     <div className="nav">
-      
-      <div className="nav-item active"><Link to='/'>Explore</Link></div>
-      <div className="nav-item"><Link to='/flight'>Flight</Link> </div>
-      <div className="nav-item"><Link to='/planner'>Planner</Link> </div>
-      
-      <div className="nav-item"> <Link to='/profile/signin'>Profile</Link> </div> 
+
+      <NavLink className="nav-item" to='/' ><i className="fa-solid fa-compass"></i>Explore</NavLink>
+      <NavLink className="nav-item" to='/flight'><i className="fa-solid fa-plane"></i>Flight</NavLink>
+      <NavLink className="nav-item" to='/planner'><i className="fa-solid fa-location-dot"></i>Planner</NavLink>
+      <NavLink className="nav-item" to='/profile/signin'><i className="fa-solid fa-user"></i>Profile</NavLink>
+
     </div>
   );
 };

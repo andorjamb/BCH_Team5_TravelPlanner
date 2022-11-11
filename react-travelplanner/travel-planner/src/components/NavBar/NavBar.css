@@ -1,26 +1,29 @@
 .nav {
   position: fixed;
   bottom: 0;
+  left: 0;
   display: grid;
   grid-template-columns: repeat(4, auto);
-  text-align: center;
+  align-items: center;
 }
+
 .nav-item {
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  align-items: center;
   background-color: gray;
-  height: 50px;
-  width: 25vw;
-}
-.nav-item button {
   text-decoration: none;
-  color: white;
+  height: 85px;
+  width: 25vw;
+  color: var(--black);
+  font-size: 1.3rem;
 }
+
 .nav-item:hover {
   background-color: yellow;
   cursor: pointer;
 }
-.active {
+
+.nav-item.active {
   color: aqua;
 }

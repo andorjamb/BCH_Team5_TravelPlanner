@@ -1,9 +1,10 @@
 import React, { Component } from "react";
-import Welcome from "../../components/Welcome/Welcome";
+import WelcomeUser from "../../components/WelcomeUser/WelcomeUser";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import CityExplore from "../../components/CityExplore/CityExplore";
-import Account from "../Profile/Account";
+import Account from "../../components/Account/Account";
 import "./ExploreView.css";
+import AddCity from "../../adminActions/AddCity.jsx"
 
 
 const ViewMode = {
@@ -13,13 +14,10 @@ const ViewMode = {
 };
 
 
-
-
 class ExploreView extends Component {
 
   state = {
     search: "",
-    userName: "Homer",
     viewMode: ViewMode.List,
    user:'Username'
   };
@@ -34,24 +32,27 @@ class ExploreView extends Component {
     let viewShown = null;
     switch (viewMode) {
       case ViewMode.Expand: {
-        viewShown = <div className="view">ViewMoide.Excpand</div>;
+        viewShown = <div className="view">ViewMode.Expand</div>;
         break;
       }
       case ViewMode.ExpandFull: {
-        viewShown = <div className="view">ViewMoide.ExcpandFull</div>;
+        viewShown = <div className="view">ViewMode.ExpandFull</div>;
         break;
       }
       default: {
         viewShown = (
           <div className="view">
-            <Welcome></Welcome>
-            <div class="intro">
+
+            <WelcomeUser userName={this.state.userName} />
+            <div className="intro">
+            
               Ready for an <br />
               adventure?
             </div>
             <SearchBar searchEvent={this.searchHandler} />
-            <></>
+       
             <CityExplore />
+            <AddCity />
           </div>
         );
         break;
