@@ -24,10 +24,10 @@ const SignIn = () => {
   }, [user]);
 
   return (
-    <div>
+    <div className="signin">
       <h1 >Sign in</h1>
       <p>Please sign in to view your profile:</p>
-      <div>
+      <div className="googleButtonContainer">
         <GoogleButton onClick={handleGoogleSignIn} />
       </div>
     </div>
