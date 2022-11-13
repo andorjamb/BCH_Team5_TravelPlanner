@@ -22,7 +22,7 @@ export const AuthContextProvider = ({ children }) => {
   };
 
   const logOut = () => {
-      signOut(auth)
+    signOut(auth)
   }
 
   useEffect(() => {

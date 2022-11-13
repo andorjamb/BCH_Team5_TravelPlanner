@@ -6,6 +6,15 @@ import "./WelcomeUser.css";
 const WelcomeUser = () => {
   const { logOut, user } = UserAuth();
   console.log(user?.photoURL);
+
+  function setName(str) {
+    if (user) {
+      let indexFirstSpace = /\s/.exec(str).index;
+      return str.slice(0, indexFirstSpace);
+    }
+
+  }
+
   const handleSignOut = async () => {
     try {
       await logOut();
@@ -25,7 +34,7 @@ const WelcomeUser = () => {
 
       <div className="user-hello">
         Hello, <br />
-        {user?.displayName && (<div><span>{user?.displayName}</span><br />
+        {user?.displayName && (<div><span>{setName(user?.displayName)}</span><br />
           <button onClick={handleSignOut}>Logout</button></div>)}
         {!user?.displayName && (<div><span>Welcome Guest</span><br /><Link to='/profile/signin'>Sign in</Link></div>)}
       </div>

@@ -11,6 +11,7 @@ const SignIn = () => {
   const handleGoogleSignIn = async () => {
     try {
       await googleSignIn();
+   
     } catch (error) {
       console.log(error);
     }
