@@ -11,14 +11,14 @@ const SignIn = () => {
   const handleGoogleSignIn = async () => {
     try {
       await googleSignIn();
-   
+
     } catch (error) {
       console.log(error);
     }
   };
 
   useEffect(() => {
-    if (user != null) {
+    if (user) {
       navigate('/profile/account');
     }
   }, [user]);
@@ -26,7 +26,8 @@ const SignIn = () => {
   return (
     <div>
       <h1 >Sign in</h1>
-      <div >
+      <p>Please sign in to view your profile:</p>
+      <div>
         <GoogleButton onClick={handleGoogleSignIn} />
       </div>
     </div>

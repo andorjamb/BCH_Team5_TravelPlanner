@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { UserAuth } from "../Context/Context";
 import RecentTrips from "../../views/RecentTrips/RecentTrips";
 import NextTripList from "../../views/NextTripList/NextTripList";
 import "./Account.css";
-import { useState } from "react";
+import { useNavigate } from 'react-router-dom';
+
 
 let myplan = [
   {
@@ -81,6 +82,7 @@ let myplan = [
 const Account = () => {
   const [trips, settrips] = useState({});
   const { logOut, user } = UserAuth();
+  const navigate = useNavigate();
 
   const handleSignOut = async () => {
     try {
@@ -92,14 +94,23 @@ const Account = () => {
 
   const arrtrips = [];
 
-  if (!user) {
-    return <>Loading</>;
+  useEffect(() => {
+    if (user == null) {
+      navigate('/');
+    }
+  });
+
+  function setName() {
+    if (user) {
+      let indexFirstSpace = /\s/.exec(user.displayName).index;
+      return (user.displayName).slice(0, indexFirstSpace);
+    }
   }
 
-  function setName(str) {
-    let indexFirstSpace = /\s/.exec(str).index;
-    return str.slice(0, indexFirstSpace);
-  }
+
+  /*  if (!user) {
+     return <>Loading</>;
+   } */
 
   const render = myplan.map((item) => (
     <div key={item[user?.uid] + Math.random()}>
@@ -120,22 +131,23 @@ const Account = () => {
   return (
     <div className="accountContainer">
 
-      <h2>Welcome, {setName(user?.displayName)}</h2>
-
+      <h2>Welcome, {user?.displayName}</h2>
 
       <div className="signoutButton">
         <button onClick={handleSignOut}>Logout</button>
       </div>
 
-
       <div className="profPictureContainer">
-        <img className="profileImage" id="" src={user?.photoURL || 'https://avatars.dicebear.com/v2/avataaars/da67f910f7ac4a0dbeaec3213b5f3d99.svg'} alt="" />
+        <img className="profileImage" id="" src={user?.photoURL ||
+          'https://avatars.dicebear.com/v2/avataaars/da67f910f7ac4a0dbeaec3213b5f3d99.svg'} alt="" />
       </div>
-      <div className="tripdetaailsSection">
+
+      <div className="tripDetailsSection">
         <div className="completedTrips">
-          {render}</div>
+          {render}
+        </div>
         <div className="nextTrips">
-          <div><h3>What Next</h3></div>
+          <div><h3>What Next?</h3></div>
           <h4>Explore more</h4>
           <div className="nextTriplist">
             <NextTripList name={'happy trips'} />

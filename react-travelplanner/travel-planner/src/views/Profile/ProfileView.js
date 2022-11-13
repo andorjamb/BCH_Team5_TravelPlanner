@@ -10,7 +10,7 @@ class ProfileView extends Component {
         <h1>This is ProfileView</h1>
         <Account />
       </div>
-      )
+    )
   }
 }
 
