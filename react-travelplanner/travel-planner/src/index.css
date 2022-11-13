@@ -14,6 +14,9 @@
   --bcred: #60103a;
   --bcpink: #f7e1d3;
   --font: "Poppins", "Courier New", Courier, monospace;
+  max-width: 800px;
+  margin: auto;
+  background-color: rgb(245, 245, 245);
 }
 
 
@@ -24,6 +27,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  padding-bottom: 85px;
 }
 
 code {

@@ -2,9 +2,9 @@ import React, { useEffect } from 'react';
 import { GoogleButton } from 'react-google-button';
 import { UserAuth } from "../Context/Context";
 import { useNavigate } from 'react-router-dom';
-import './Signin.css'
+import './SignIn.css'
 
-const Signin = () => {
+const SignIn = () => {
   const { googleSignIn, user } = UserAuth();
   const navigate = useNavigate();
 
@@ -32,4 +32,4 @@ const Signin = () => {
   );
 };
 
-export default Signin;
+export default SignIn;
