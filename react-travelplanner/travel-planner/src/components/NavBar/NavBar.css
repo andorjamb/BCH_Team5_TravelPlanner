@@ -1,8 +1,7 @@
-
-
 .nav {
   position: fixed;
   bottom: 0;
+  left: 0;
   display: grid;
   grid-template-columns: repeat(4, auto);
   align-items: center;
@@ -20,15 +19,11 @@
   font-size: 1.3rem;
 }
 
-/* .nav-item button {
-  color: white;
-} */
-
 .nav-item:hover {
   background-color: yellow;
   cursor: pointer;
 }
 
-.active {
+.nav-item.active {
   color: aqua;
 }

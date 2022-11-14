@@ -1,16 +1,19 @@
 # BCH_Team5_TravelPlanner
-## Travel planner
+## Travel planner MVP: Travel Planning for major cities in Finland
+
+### Features:
+
+* City previews, with information about major touristic attractions to help you build your itinerary
+* Widget using Weather API to provide up-to-date forecast information for your trip
+* API-powered Flight booking service 
+* Personal profile/account page for signed-in users (Google OAuth via firebase service) in which users can keep track of their past and upcoming trips
 
 
-### APi Required
+### Planned features for future implementation:
 
-Weather, at all stops and destination, get weather information from source and destination stop to help guide you in dresscode and such stuff, protect you from heat or cold that may lead to flue or heat stroke
-
-Destination requirement  // eg .taxi, medical, visa, security, minimum expenses per day, etc. help manage your finances and protect you from entry denial after a long journey travel
-
-Means of transport, fetch from HSL (within finlalnd), if international go ahead and fetch from flights and trains, compare several ways of travel, and get time frame from source to destination, and also how the journy would be.
-
-Currency conversion rate. help in managing your finance
+* Destination requirements, eg vaccinations, Covid19 requirements, visa, security advice
+* Localised transport assistance, eg in as provided by HSL in greater Helsinki area; links to taxi services
+* Currency conversion 
 
 
 ### Additional Npm 

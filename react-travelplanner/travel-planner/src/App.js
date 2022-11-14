@@ -1,9 +1,7 @@
 import React from "react";
 import "./App.css";
 import ExploreView from "./views/Explore/ExploreView";
-
 import NavBar from "./components/NavBar/NavBar";
-
 import FlightView from "./views/Flight/FlightView";
 import PlannerView from "./views/Planner/PlannerView";
 import ProfileView from "./views/Profile/ProfileView";
@@ -18,7 +16,7 @@ import { Route, Routes } from 'react-router-dom';
 
 const App = () => {
   return (
-    <div>
+    <div className="App">
 
       <NavBar />
       <AuthContextProvider>
@@ -29,7 +27,6 @@ const App = () => {
           <Route path='/profile/signin' element={<SignIn />}>SignIn</Route>
           <Route path='/profile' element={<ProfileView />}></Route>
           <Route path='/profile/account' element={<Account />}></Route>
-
         </Routes>
       </AuthContextProvider>
 
