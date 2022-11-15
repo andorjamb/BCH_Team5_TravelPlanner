@@ -25,7 +25,7 @@ h2 {
 }
 
 .profileImage {
-    width: 256px;
+    width: 150px;
     border-radius: 50%;
     overflow: hidden;
     object-fit: contain;

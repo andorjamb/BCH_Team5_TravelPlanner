@@ -1,0 +1,7 @@
+.weather {
+    background-color: var(--orange);
+    border-radius: 30px;
+    height: 100px;
+    width: 600px;
+
+}
