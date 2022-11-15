@@ -9,6 +9,7 @@ import Account from "./components/Account/Account";
 import SignIn from "./components/SignIn/SignIn";
 import { AuthContextProvider } from "./components/Context/Context"
 import { Route, Routes } from 'react-router-dom';
+import Experiments from './views/Experiments/Experiments';
 
 
 // const {user} = UserAuth();
@@ -27,6 +28,7 @@ const App = () => {
           <Route path='/profile/signin' element={<SignIn />}>SignIn</Route>
           <Route path='/profile' element={<ProfileView />}></Route>
           <Route path='/profile/account' element={<Account />}></Route>
+          <Route path='/experiments' element={<Experiments />}></Route>
         </Routes>
       </AuthContextProvider>
 

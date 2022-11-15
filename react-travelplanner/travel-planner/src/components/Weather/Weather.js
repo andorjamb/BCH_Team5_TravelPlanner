@@ -1,38 +1,37 @@
-//import 'cities' from '../../data/cities';
-/* const weatherEndpoint = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${city}/next5days?key=${APIKey}` */
+
 import React from 'react';
+import './Weather.css'
 import {
     collection,
     get,
     getDocs,
     doc,
-    db,
+    getFirestore,
 } from "@firebase/firestore";
 const APIKey = process.env.REACT_APP_WEATHER_API_KEY;
+/*
 
-const citiesSnapshot = db.collection('cities').get();
-citiesSnapshot.forEach((doc) => { console.log(doc.id) });
+const db = getFirestore();
 
-async function requests() {
-    citiesSnapshot.map((city) => {
-        fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${city}/next5days?key=${APIKey}`)
-    })
-}
+const citiesSnapshot = db.collection('cities').get;
+citiesSnapshot.forEach((doc) => { console.log(doc.id) });*/
+/**`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${city}/next5days?key=${APIKey}` */
 
-const responses = await requests();
 
-const data = responses.json();
+const city = 'helsinki';
+fetch('https://en.wikipedia.org/w/api.php?action=query&prop=extracts&exchars=400&explaintext&titles=Helsinki&format=json')
+    .then((response) => response.json())
+    .then((data) => console.log(data));
+
 
 const Weather = () => {
 
 
     return (
         <div className="weather">
-            {data}
+            <p>some writing here</p>
         </div>
     );
 };
 
-
-
-export default Weather;
+export default Weather; 
