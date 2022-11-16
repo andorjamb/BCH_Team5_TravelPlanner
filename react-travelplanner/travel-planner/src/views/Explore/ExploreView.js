@@ -5,7 +5,7 @@ import CityExplore from "../../components/CityExplore/CityExplore";
 import Account from "../../components/Account/Account";
 import "./ExploreView.css";
 import AddCity from "../../adminActions/AddCity.jsx"
-//import Weather from '../../components/Weather/Weather';
+
 
 const ViewMode = {
   List: 1,
@@ -53,6 +53,7 @@ class ExploreView extends Component {
 
             <CityExplore />
             <AddCity />
+            <AddCityTripPlaces/>
           </div>
         );
         break;
