@@ -1,104 +1,100 @@
-import React from "react";
-import { useRef } from "react";
-import { firestore } from "../FireBaseInit";
-import { addDoc, collection, getDocs } from "@firebase/firestore";
-import { getFirestore, doc, setDoc } from "firebase/firestore";
+import React, { useRef, useEffect } from "react";
+//import { firestore } from "../FireBaseInit";
+import { getDocs, doc, setDoc  } from "firebase/firestore";
 import { db } from "../FireBaseInit";
 import FormCss from './form.module.css'
 
-const AddCityTripPlaces = () => {
-  const TourPlaceName = useRef();
-  const description = useRef(); const imageurl = useRef()
-  const cityName = useRef();
-  const ratings = useRef(); const googleid = useRef();
-  const ref = collection(firestore, 'sights')
-  // console.log(ref);
+const AddCityTripPlaces = ()=>{
 
-  const getCities = async () => {
+class Sight  { 
+  constructor(googleId,cityName,sightName,imgUrl, rating){
+  this.googleId = googleId;
+  this.cityName =cityName;
+  this.sightName = sightName;
+this.imgUrl =imgUrl;
+this.rating =rating;
+  }
+}
+
+//const ref = db.collection('sights');
+//const setNew =(city, sight)=> {ref.doc(city).set(sight)};
+
+/* const getSights = async () => {
     const data = await getDocs(ref);
-    console.log(data);
+    return data; 
+  }; */
 
-  };
 
-  getCities();
-  const filechange = (e) => {
-    console.log(cityName.current.value);
-  }
-  const handleSend = async (e) => {
+const googleId = useRef();
+const cityName= useRef();
+const sightName= useRef();
+const imgUrl = useRef();
+const rating = useRef();
+
+
+const handleSend = async (e) => {
     e.preventDefault();
-    console.log(cityName.current.value);
-
-    let TourPlaces = {
-      cityname:cityName,
-        name: TourPlaceName,
-        googleid: "0959pokj",
-        imageUrl: "pathvvd",
-        description: description,
-        rating: ratings
-};
-    try {
-      console.log(TourPlaces);
-      addDoc(ref, TourPlaces);
-    }
-    catch (e) {
-      console.log(e);
-    }
+    let newSight = new Sight(googleId.current.value, cityName.current.value, sightName.current.value,
+     imgUrl.current.value, rating.current.value);
+   const sightRef = doc(db, 'sights', {googleId});
+setDoc(sightRef, {newSight}, { merge: true });
 
   }
 
-  return (<div>
+  return (
 
-
-
-    <form id="cityForm" onSubmit={handleSend} >
-      <div className={FormCss.cityContainer}>
-        <h2>Welcome to city management section</h2>
-        <div>
+    <form className={FormCss.cityContainer} id="sightsForm" onSubmit={handleSend} >
+        <h2>Welcome to citysights management section</h2>
           <p>
-            Hi <span className={FormCss.wavehand}>👋</span>.  Let start adding cities to our APP
+            Hi <span className={FormCss.wavehand}>👋</span>.  Let start adding citysights to our APP
           </p>
-        </div>
         <div className={FormCss.inputdetails}>
           <div className={FormCss.valueinputside}>
             <div className={FormCss.userbox}>
-              <select name="cityName" id="" ref={cityName}>
+              <select name="cityName" id="cityName" ref={cityName}>
                 <option value="">helsinki</option>
                 <option value="">turku</option>
                 <option value="">tampere</option>
                 <option value="">oulu</option>
+                <option value="">porvoo</option>
+                <option value="">pori</option>
               </select>
-              <label>City name:</label>
+              <label for="cityName">City name:</label>
             </div>
             <div className={FormCss.userbox}>
-              <input type="text" name="" placeholder="eg. White church" ref={TourPlaceName} required />
-              <label>Tour Place:</label>
+              <input type="text" name="sightName" id="sightName" placeholder="eg. White church" ref={sightName} required />
+              <label for="sightName">City Sight:</label>
             </div>
             <div className={FormCss.userbox}>
-              <input type="number" name="" placeholder="eg. 4" ref={ratings} required />
-              <label>Ratings:</label>
+              <input type="number" name="rating" id="rating" placeholder="eg. 4" ref={rating} required />
+              <label for="rating">Rating:</label>
             </div>
             <div className={FormCss.userbox}>
               <input
                 type="text"
-                name="" ref={googleid}
+                name="googleId" 
+                id="googleId"
+                ref={googleId}
                 placeholder="eg. 09p445_4"
                 required
               />
-              <label>Google id:</label>
+              <label for="googleId">Google id:</label>
             </div>
             <div className={FormCss.userbox}>
               <input
                 type="text"
-                name=""
+                name="imgUrl"
+                id="imgUrl"
+                ref="imgUrl"
                 placeholder="eg. http//...."
                 required
               />
-              <label>Weather url:</label>
+              <label for="imgUrl">Image url:</label>
             </div>
           </div>
         </div>
-        <label htmlFor="myfile">Select a file:</label>
-        <input type="file" id="myimage" name="myimage" ref={imageurl} onChange={(e) => filechange(e)}></input>
+     {/*    <label htmlFor="myfile">Select a file:</label>
+        <input type="file" id="myimage" name="myimage" ref={imageurl} onChange={(e) => filechange(e)}></input> */}
         <div className="text_area">
           <div className="sendbtn">
             <button type="submit" className={FormCss.send}>
@@ -108,13 +104,11 @@ const AddCityTripPlaces = () => {
               <span></span>
               Save ...
             </button>
-          </div>
         </div>
 
       </div>
     </form>
-
-  </div>)
+)
 
 }
 

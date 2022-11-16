@@ -1,6 +1,6 @@
 import React from "react";
 import { useRef } from "react";
-import { firestore } from "../FireBaseInit";
+import { db} from "../FireBaseInit";
 import { addDoc, collection, getDocs } from "@firebase/firestore";
 import FormCss from './form.module.css'
 
@@ -9,7 +9,7 @@ const NewCity = () => {
   const description = useRef(); const imageurl = useRef()
   const cityName = useRef();
   const ratings = useRef(); const googleid = useRef();
-  const ref = collection(firestore, 'cities')
+  const ref = collection(db, 'cities')
   // console.log(ref);
 
   const getCities = async () => {
