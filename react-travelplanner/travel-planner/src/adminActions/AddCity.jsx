@@ -3,10 +3,11 @@ import { useRef } from "react";
 import { firestore } from "../FireBaseInit";
 import { addDoc, collection, getDocs } from "@firebase/firestore";
 import FormCss from './form.module.css'
+
 const NewCity = () => {
   const msgRef = useRef();
   const description = useRef(); const imageurl = useRef()
-  const name = useRef();
+  const cityName = useRef();
   const ratings = useRef(); const googleid = useRef();
   const ref = collection(firestore, 'cities')
   // console.log(ref);
@@ -23,20 +24,20 @@ const NewCity = () => {
   }
   const handleSend = async (e) => {
     e.preventDefault();
-    console.log(msgRef.current.value);
+    console.log(cityName.current.value);
 
     let data = {
       cityName:
       {
-        description: description.current.value,
         imageurl: imageurl.current.value,
         name: msgRef.current.value,
         ratings: ratings.current.value,
+        timeadded:new Date(Date.now()),
       }
     };
     try {
-      console.log(data);
-      addDoc(ref, data);
+      await addDoc(ref, data);
+      console.log(ref.id)
     }
     catch (e) {
       console.log(e);
@@ -74,25 +75,11 @@ const NewCity = () => {
               />
               <label>Google id:</label>
             </div>
-            <div className={FormCss.userbox}>
-              <input
-                type="text"
-                name=""
-                placeholder="eg. http//...."
-                required
-              />
-              <label>Weather url:</label>
-            </div>
           </div>
         </div>
         <label htmlFor="myfile">Select a file:</label>
         <input type="file" id="myimage" name="myimage" ref={imageurl} onChange={(e) => filechange(e)}></input>
         <div className="text_area">
-          <textarea
-            cols="30"
-            rows="10"
-            placeholder="Description ....." ref={description}
-          ></textarea>
           <div className="sendbtn">
             <button type="submit" className={FormCss.send}>
               <span></span>

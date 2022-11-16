@@ -7,57 +7,48 @@ import { db } from "../FireBaseInit";
 import FormCss from './form.module.css'
 
 const AddCityTripPlaces = () => {
-
   const TourPlaceName = useRef();
   const description = useRef(); const imageurl = useRef()
-  const name = useRef();
+  const cityName = useRef();
   const ratings = useRef(); const googleid = useRef();
-
-  const ref = collection(firestore, 'cities')
+  const ref = collection(firestore, 'sights')
   // console.log(ref);
 
-  const getdata = async () => {
+  const getCities = async () => {
     const data = await getDocs(ref);
     console.log(data);
 
   };
 
-  // getdata();
+  getCities();
   const filechange = (e) => {
+    console.log(cityName.current.value);
+  }
+  const handleSend = async (e) => {
+    e.preventDefault();
+    console.log(cityName.current.value);
 
-    console.log(TourPlaceName.current.value);
+    let TourPlaces = {
+      cityname:cityName,
+        name: TourPlaceName,
+        googleid: "0959pokj",
+        imageUrl: "pathvvd",
+        description: description,
+        rating: ratings
+};
+    try {
+      console.log(TourPlaces);
+      addDoc(ref, TourPlaces);
+    }
+    catch (e) {
+      console.log(e);
+    }
+
   }
 
-  const handleSend = async (e) => {
-
-    const docRef = doc(db, "cities", "M5ApaJ4zT2ahT1C6DIj4");
-    e.preventDefault();
-    console.log(TourPlaceName.current.value);
-
-    let TuorPlaces = {
-            name: "city1dataname3",
-            googleid: "0959pokj",
-            imageUrl: "pathvvd",
-            description: "TuorPlaces",
-            rating: 3
-    };
-    setDoc(docRef, TuorPlaces)
-.then(docRef => {
-    console.log("Entire Document has been updated successfully");
-})
-.catch(error => {
-    console.log(error);
-})
-  //   try {
-  //     // console.log(data);
-  //     // addDoc(ref, data);
-  //   }
-  //   catch (e) {
-  //     console.log(e);
-  //   }
-
-   }
   return (<div>
+
+
 
     <form id="cityForm" onSubmit={handleSend} >
       <div className={FormCss.cityContainer}>
@@ -70,8 +61,11 @@ const AddCityTripPlaces = () => {
         <div className={FormCss.inputdetails}>
           <div className={FormCss.valueinputside}>
             <div className={FormCss.userbox}>
-              <select name="" id="">
+              <select name="cityName" id="" ref={cityName}>
                 <option value="">helsinki</option>
+                <option value="">turku</option>
+                <option value="">tampere</option>
+                <option value="">oulu</option>
               </select>
               <label>City name:</label>
             </div>
@@ -106,18 +100,13 @@ const AddCityTripPlaces = () => {
         <label htmlFor="myfile">Select a file:</label>
         <input type="file" id="myimage" name="myimage" ref={imageurl} onChange={(e) => filechange(e)}></input>
         <div className="text_area">
-          <textarea
-            cols="30"
-            rows="10"
-            placeholder="Description ....." ref={description}
-          ></textarea>
           <div className="sendbtn">
             <button type="submit" className={FormCss.send}>
               <span></span>
               <span></span>
               <span></span>
               <span></span>
-              Save
+              Save ...
             </button>
           </div>
         </div>
