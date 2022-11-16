@@ -53,7 +53,7 @@ class ExploreView extends Component {
 
             <CityExplore />
             <AddCity />
-            <AddCityTripPlaces/>
+            {/* <AddCityTripPlaces/> */}
           </div>
         );
         break;
