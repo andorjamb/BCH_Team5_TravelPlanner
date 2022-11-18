@@ -26,6 +26,15 @@
   color: var(--yellow);
 }
 
+button.logout {
+  background-color: var(--orange);
+  color: white;
+  width: 180px;
+  border-radius: 30px;
+  border: none;
+  font-weight: 500;
+}
+
 /* img {
   display: block;
 } */

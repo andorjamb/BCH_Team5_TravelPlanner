@@ -12,9 +12,9 @@ class Experiments extends Component {
     fetchData() {
         let response = fetch('http://localhost:8080')
             .then((res) => res.json())
-            .then((data) => JSON.stringify(data));
+        //  .then((data) => JSON.stringify(data));
         console.log(response);
-        return response;
+        this.setState({ response: "blabla" });
 
     }
 

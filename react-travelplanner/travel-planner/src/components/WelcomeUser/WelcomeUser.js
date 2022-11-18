@@ -33,9 +33,8 @@ const WelcomeUser = () => {
       </div>
 
       <div className="user-hello">
-        Hello, <br />
-        {user?.displayName && (<div><span>{setName(user?.displayName)}</span><br />
-          <button onClick={handleSignOut}>Logout</button></div>)}
+        Hello, {user?.displayName && (<div><span>{setName(user?.displayName)}</span><br />
+          <button className="logout" onClick={handleSignOut}>Logout</button></div>)}
         {!user?.displayName && (<div><span>Welcome Guest</span><br /><Link to='/profile/signin'>Sign in</Link></div>)}
       </div>
 
