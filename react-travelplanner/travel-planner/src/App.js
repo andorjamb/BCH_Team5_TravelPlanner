@@ -10,6 +10,7 @@ import SignIn from "./components/SignIn/SignIn";
 import { AuthContextProvider } from "./components/Context/Context"
 import { Route, Routes } from 'react-router-dom';
 import Experiments from './views/Experiments/Experiments';
+import SecureAccess from "./adminActions/SecureAccess";
 
 
 // const {user} = UserAuth();
@@ -27,7 +28,10 @@ const App = () => {
           <Route path='/planner' element={<PlannerView />}>Planner</Route>
           <Route path='/profile/signin' element={<SignIn />}>SignIn</Route>
           <Route path='/profile' element={<ProfileView />}></Route>
-          <Route path='/profile/account' element={<Account />}></Route>
+           {/* require sidned in user  */}
+          <Route path='/profile/account' element={<SecureAccess>
+          <Account /></SecureAccess>}></Route>
+          
           <Route path='/experiments' element={<Experiments />}></Route>
         </Routes>
       </AuthContextProvider>
