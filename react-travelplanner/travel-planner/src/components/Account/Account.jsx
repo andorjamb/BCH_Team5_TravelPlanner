@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { trips } from '../../data/trips'
 
 const Account = () => {
+  
   const myTrips = trips;
   //const [myTrips, setMyTrips] = useState({ mytrips });
   const { logOut, user } = UserAuth();
@@ -41,12 +42,18 @@ const Account = () => {
    } */
 
   const render = myTrips.map((item) => (
-    <div key={item[user?.uid] + Math.random()}>
-      <h3>total trips {item[user?.uid]?.trips.length}</h3>
+    
+    <div key={item[user?.uid] + Math.random() }>
+   <h3>
+   {item[user?.uid]?.trips.length}
+...........
+
+    </h3>
+      
+     
       {item[user?.uid]?.trips.slice(0, 4).map((plan) => (
         <RecentTrips
           key={plan.name}
-          trip={plan}
           name={plan.name}
           date={plan.date}
           imageUrl={plan.imageUrl}
@@ -72,12 +79,14 @@ const Account = () => {
 
       <div className="tripDetailsSection">
         <div className="completedTrips">
+          <h3>Total trips</h3>
           {render}
         </div>
         <div className="nextTrips">
           <div><h3>What Next?</h3></div>
           <h4>Explore more</h4>
           <div className="nextTriplist">
+            <h3>total trips </h3>
             <NextTripList name={'happy trips'} />
           </div>
         </div>
