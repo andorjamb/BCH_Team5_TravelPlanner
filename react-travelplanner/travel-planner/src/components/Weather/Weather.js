@@ -1,14 +1,14 @@
 
 
 import { db } from "../../FireBaseInit";
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './Weather.css'
 import {
     collection,
     get,
     getDoc,
     doc
-} from "@firebase/firestore";
+} from "firebase/firestore";
 const APIKey = process.env.REACT_APP_WEATHER_API_KEY;
 
 /* const city = 'helsinki';
@@ -19,19 +19,26 @@ fetch('https://en.wikipedia.org/w/api.php?action=query&prop=extracts&exchars=400
 
 const Weather = (props) => {
 
-
-    const sightRef = doc(db, 'sights', 'ChIJ-1ZkcY4LkkYRsDmSuVO1AAo');
+    const sightRef = doc(db, 'sights', 'ChIJ-1ZkcY4LkkYRsDmSuVO1AAo');//Suomenlinna id
     const docSnap = getDoc(sightRef);
-
+    useEffect(() => {
+        //
+    }, [])
     return (
-        <>
+        <><h3>Testing</h3>
             <div className="weather">
-                <h3>Testing</h3>
-                <p>{docSnap[0]}</p>
-                <p>Fetched Data: {props.response}</p>
 
-                <button onClick={props.clickHandler}>Get Data</button>
-            </div></>
+                <p>{docSnap[0]}</p>
+
+
+
+            </div>
+            <button onClick={props.clickHandler}>Get Data from server</button>
+            <button onClick={props.clickHandler2}>Get data from Firebase</button>
+            <p>Data fetched from express backend: {props.response}</p>
+            <p>Data fetched from firestore backend: {props.response2}</p>
+
+        </>
 
     );
 };
