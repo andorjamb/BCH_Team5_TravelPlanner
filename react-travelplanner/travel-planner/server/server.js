@@ -6,14 +6,14 @@ const APIKey = process.env.REACT_APP_WEATHER_API_KEY;
 const port = process.env.PORT || 8080;
 const host = process.env.HOST || 'localhost';
 
-//const city = 'helsinki';
+const city = { cityName: 'helsinki' };
 
 const expressServer = express();
 expressServer.use(cors());
 
 expressServer.get('/', (req, res) => {
 
-    res.send("Hi");
+    res.send(city);
 }
 );
 

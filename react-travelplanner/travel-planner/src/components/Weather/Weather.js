@@ -15,10 +15,10 @@ const APIKey = process.env.REACT_APP_WEATHER_API_KEY;
 fetch('https://en.wikipedia.org/w/api.php?action=query&prop=extracts&exchars=400&explaintext&titles=Helsinki&format=json')
     .then((response) => response.json())
     .then((data) => console.log(data)); */
+//let response;
 
-
-const Weather = () => {
-
+const Weather = (props) => {
+  
 
     const sightRef = doc(db, 'sights', 'ChIJ-1ZkcY4LkkYRsDmSuVO1AAo');
     const docSnap = getDoc(sightRef);
@@ -27,6 +27,9 @@ const Weather = () => {
         <div className="weather">
             <h3>Testing</h3>
             <p>{docSnap[0]}</p>
+            <p>{props.response}</p>
+
+            <button onClick={props.clickHandler}>Get Data</button>
         </div>
     );
 };
