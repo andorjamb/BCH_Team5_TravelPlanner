@@ -2,7 +2,7 @@ import  React from 'react';
 import "./CityContainer.css";
 const CityContainer = (props) => {
   return (
-    <div className="city-container">
+    <div className="city-container" onClick={props.planCityTrip}>
       <div className="city-img">
         <img
           src={`https://source.unsplash.com/500x400/?${props.cityName}`}

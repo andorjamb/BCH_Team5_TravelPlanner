@@ -7,6 +7,9 @@
 
 :root {
   --yellow: #fac300;
+  --orange: #EA8713;
+  --green: #77A34A;
+  --turquoise: #4AA398;
   --black: #0e1d30;
   --lightblue: #30507e;
   --darkblue: #003272;
@@ -16,7 +19,7 @@
   --font: "Poppins", "Courier New", Courier, monospace;
   max-width: 800px;
   margin: auto;
-  background-color: rgb(245, 245, 245);
+  background-color: rgb(217, 217, 217);
 }
 
 

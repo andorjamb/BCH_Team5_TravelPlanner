@@ -5,6 +5,7 @@ import CityExplore from "../../components/CityExplore/CityExplore";
 import Account from "../../components/Account/Account";
 import "./ExploreView.css";
 import AddCity from "../../adminActions/AddCity.jsx"
+import AddCityTripPlaces from "../../adminActions/AddCityTripPlaces";
 
 
 const ViewMode = {
@@ -21,13 +22,13 @@ class ExploreView extends Component {
     viewMode: ViewMode.List,
     user:'Username'
   };
- 
+
   searchHandler = (e) => {
     this.setState({ search: e.target.value });
   };
 
   render() {
-   
+
     const viewMode = this.state.viewMode;
     let viewShown = null;
     switch (viewMode) {
@@ -45,21 +46,25 @@ class ExploreView extends Component {
 
             <WelcomeUser userName={this.state.userName} />
             <div className="intro">
-            
+
               Ready for an <br />
               adventure?
             </div>
             <SearchBar searchEvent={this.searchHandler} />
-       
+
             <CityExplore />
             <AddCity />
+           {/* <AddCityTripPlaces/> */}
           </div>
         );
         break;
       }
     }
 
-    return <div className="explore-view">{viewShown}</div>;
+    return <div className="explore-view">
+      {viewShown}
+
+    </div>;
   }
 }
 
