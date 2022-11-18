@@ -20,7 +20,7 @@ class ExploreView extends Component {
   state = {
     search: "",
     viewMode: ViewMode.List,
-    user: 'Username'
+    user:'Username'
   };
 
   searchHandler = (e) => {
