@@ -1,7 +1,7 @@
 export const trips = [
     {
-        id: "rU8A3axQNTNlFAvnHhsG6en5qVJ3",
-        userTrips: [
+        rU8A3axQNTNlFAvnHhsG6en5qVJ3:{
+            trips: [
             {
                 name: "jesse",
                 date: "12/12/2022",
@@ -26,13 +26,13 @@ export const trips = [
                 imageUrl: "path",
                 rating: 5,
             },
-        ],
+        ]
+    }
     },
     {
+    adPz97i9O6N4WOxE467OFMhKwgC3:{
 
-
-        id: "adPz97i9O6N4WOxE467OFMhKwgC3",
-        userTrips: [
+        trips: [
             {
                 name: "anna trip1",
                 date: "12/12/2022",
@@ -56,11 +56,13 @@ export const trips = [
                 date: "12/12/2022",
                 imageUrl: "path",
                 rating: 4,
-            }]
+            }
+        ]
+        }
     },
     {
-        id: "rU8A3axQNTNlFAvnHhsG6en5qVJ5",
-        userTrips: [{
+        rU8A3axQNTNlFAvnHhsG6en5qVJ5:{
+        trips: [{
             name: "names",
             date: "12/12/2022",
             imageUrl: "path",
@@ -72,6 +74,7 @@ export const trips = [
             imageUrl: "path",
             rating: 4,
         }]
+    }
     },
 
 ];
