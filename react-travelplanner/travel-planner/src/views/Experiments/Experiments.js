@@ -3,15 +3,11 @@ import WelcomeUser from "../../components/WelcomeUser/WelcomeUser";
 import Weather from '../../components/Weather/Weather';
 import {
     collection,
-    get,
     getDoc,
+    getDocs,
     doc
 } from "firebase/firestore";
 import { db } from "../../FireBaseInit";
-
-const sightRef = doc(db, 'sights', 'ChIJ-1ZkcY4LkkYRsDmSuVO1AAo');//Suomenlinna
-const docSnap = getDoc(sightRef);
-console.log(docSnap)
 
 
 class Experiments extends Component {
@@ -22,7 +18,7 @@ class Experiments extends Component {
         buttonValue: false,
     }
 
-    fetchServerData = () => {
+    fetchServerData = () => { //start server first
         fetch('http://localhost:8080')
             .then((res) => res.json())
             .then((data) => console.log(data));
@@ -33,10 +29,12 @@ class Experiments extends Component {
         this.setState((state) => state.buttonValue !== this.state.buttonValue)
     }
 
-    fetchFirebaseData() {
+    async fetchFirebaseData() {
         const sightRef = doc(db, 'sights', 'ChIJ-1ZkcY4LkkYRsDmSuVO1AAo');//Suomenlinna id
-        const docSnap = getDoc(sightRef);
-        console.log(docSnap)
+        const docSnap = await getDoc(sightRef);
+        console.log(sightRef);
+        console.log(doc);
+        if (docSnap) { console.log(docSnap.data()) }
     }
 
     componentDidMount() {
@@ -52,8 +50,13 @@ class Experiments extends Component {
     componentDidUpdate(currentState, exState) {
         if (this.state.buttonValue !== exState.buttonValue) {
             console.log('button value updated');
+            const sightRef = doc(db, 'sights', 'ChIJ-1ZkcY4LkkYRsDmSuVO1AAo');//Suomenlinna id
             const docSnap = getDoc(sightRef);
             console.log(docSnap)//why is it fetching userinfo instead of firestore data?
+            const querySnapshot = async () => { await getDocs(collection(db, "cities")) };
+            querySnapshot.forEach((doc) => {
+                console.log(doc.id, doc.data());
+            });
         }
     }
 
