@@ -33,7 +33,7 @@ class Experiments extends Component {
         const sightRef = doc(db, 'sights', 'ChIJ-1ZkcY4LkkYRsDmSuVO1AAo');//Suomenlinna id
         const docSnap = await getDoc(sightRef);
         console.log(sightRef);
-        console.log(doc);
+ //       console.log(doc);
         if (docSnap) { console.log(docSnap.data()) }
     }
 
