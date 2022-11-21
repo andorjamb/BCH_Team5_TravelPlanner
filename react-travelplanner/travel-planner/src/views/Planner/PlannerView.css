@@ -6,7 +6,11 @@
 
 .planner-view {
   text-align: center;
-  
+}
+
+h1, h2 {
+  color: black;
+  padding: 10px 0;
 }
 
 .cover-img {
@@ -20,13 +24,67 @@
 
 .plan-title {
   display: flex;
-  justify-content: center;
-  position: fixed;
-  background-color: red;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  position: absolute;
   width: 720px;
   height: 200px;
   top: 100px;
   margin: 0 40px;
-  background-color: gray;
+  background-color: lightgray;
   border-radius: 30px;
+  padding: 0 40px;
+}
+
+.plan-info {
+  width: 60%;
+  text-align: left;
+}
+.plan-info div {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.edit-button {
+  width: 10%;
+  cursor: pointer;
+}
+
+.plan-content {
+  margin: 90px 40px 0 40px;
+  text-align: left;
+  padding: 20px;
+}
+
+.saved-places-wrapper {
+  display: grid;
+  grid-template-columns: auto auto;
+}
+
+.plan-note {
+  width: 100%;
+  resize: none;
+  border-radius: 10px;
+  padding: 5px;
+}
+.plan-button {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;  padding-top: 10px;
+
+}
+.plan-button button{
+  width: 30%;
+  border-radius: 20px;
+  font-size: 24px;
+  padding: 5px;
+  color: white;
+}
+.save {
+  background-color: green;
+}
+.delete {
+  background-color: red;
 }
