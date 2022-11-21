@@ -1,12 +1,12 @@
 import React from "react";
 import { useRef } from "react";
 import { db} from "../FireBaseInit";
-import { addDoc, collection, getDocs } from "@firebase/firestore";
+import { addDoc, collection, getDocs ,doc} from "@firebase/firestore";
 import FormCss from './form.module.css'
 
 const NewCity = () => {
   const msgRef = useRef();
-  const description = useRef(); const imageurl = useRef()
+   const imageurl = useRef();
   const cityName = useRef();
   const ratings = useRef(); const googleid = useRef();
   const ref = collection(db, 'cities')
@@ -44,6 +44,30 @@ const NewCity = () => {
     }
 
   }
+const fetchcities = async () =>{
+
+
+
+        try {
+            
+            let allCities = await getDocs(ref);
+            console.log(allCities)
+
+        } catch (err) {
+            console.log(err)
+        }
+
+  
+  // const docRef = doc(db, "cities", "SF");
+  // const docSnap = await getDocs(docRef);
+  
+  // if (docSnap.exists()) {
+  //   console.log("Document data:", docSnap.data());
+  // } else {
+  //   // doc.data() will be undefined in this case
+  //   console.log("No such document!");
+  // }
+}
   return (<div>
 
     <form id="cityForm" onSubmit={handleSend} >
@@ -93,7 +117,7 @@ const NewCity = () => {
 
       </div>
     </form>
-
+<button onClick={fetchcities}>get cities</button>
   </div>)
 
 }
