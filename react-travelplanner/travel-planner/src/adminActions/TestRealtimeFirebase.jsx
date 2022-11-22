@@ -62,7 +62,7 @@ const TestRealtimeFirebase = () => {
         const data = {
             transactionID: uuidv4(),
             userId: owner,
-            tripname: ['trip1','trip2','trip3'],
+            tripname: ['trip1', 'trip2', 'trip3'],
             tripdate: new Date(Date.now()),
             datacreated: serverTimestamp(),
             dateupdated: serverTimestamp(),
@@ -82,7 +82,7 @@ const TestRealtimeFirebase = () => {
     //DELETE FUNCTION
     const deleteData = async (e) => {
         e.preventDefault();
-        let newitem = items.filter((item) =>item.tripname ==='overight');
+        let newitem = items.filter((item) => item.transactionID === '09277ef2-b779-4b51-b59d-0aa235be469d');
         try {
             const dataRef = doc(ref, newitem[0].transactionID);
             await deleteDoc(dataRef, dataRef);
@@ -94,16 +94,16 @@ const TestRealtimeFirebase = () => {
     // EDIT FUNCTION
     const editData = async (e) => {
         e.preventDefault();
-        let newitem = items.filter((item) =>item.transactionID ==='eec883cb-65cd-4ac6-a7ed-990e6c4c2299"');
+        let newitem = items.filter((item) => item.transactionID === 'eec883cb-65cd-4ac6-a7ed-990e6c4c2299');
 
         const updatedData = {
-            sightname: ['suomihighland','underground','linanmaki'],
+            sightname: ['suomihighland', 'underground', 'linanmaki', 'messukeskus'],
             lastUpdate: serverTimestamp(),
-            tripdate:serverTimestamp(),
+            tripdate: serverTimestamp(),
         };
 
         try {
-            const datalRef = doc(ref,newitem[0].transactionID);
+            const datalRef = doc(ref, newitem[0].transactionID);
             updateDoc(datalRef, updatedData);
         } catch (error) {
             console.error(error);
@@ -111,26 +111,26 @@ const TestRealtimeFirebase = () => {
 
     }
 
-    const sendEmail = async (email, Message,Subjects,Priority) =>{
+    const sendEmail = async (email, Message, Subjects, Priority) => {
         const apiKey = 'YOUR_API_KEY';
         const apiURL = 'https://emailvalidation.abstractapi.com/v1/?api_key=' + '827c28c7689445c8aac96356dadd7981'
-            try {
-                const response = await fetch(apiURL + '&email=' + email);
-                const data = await response.json();
-                const isValidSMTP = data.is_smtp_valid.value;
-      
-                if (isValidSMTP) {
-                    // use the email address in the mailto link
+        try {
+            const response = await fetch(apiURL + '&email=' + email);
+            const data = await response.json();
+            const isValidSMTP = data.is_smtp_valid.value;
 
-                    // <a href="mailto:`{email}`?subject={subject}&body={body}">Click to Send an Email</a>
-                } else {
-                    // show the user an error
-                }
-            } catch (error) {
-                throw error;
+            if (isValidSMTP) {
+                // use the email address in the mailto link
+
+                // <a href="mailto:`{email}`?subject={subject}&body={body}">Click to Send an Email</a>
+            } else {
+                // show the user an error
             }
+        } catch (error) {
+            throw error;
         }
-    
+    }
+
     return (<div>
 
         <form id="cityForm" onSubmit={addTrips} >

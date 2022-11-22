@@ -1,5 +1,6 @@
 {
   "devDependencies": {
+    "firebase-admin": "^11.3.0",
     "react-router-dom": "^6.4.3"
   },
   "dependencies": {
