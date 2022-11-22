@@ -1,11 +1,11 @@
 import React from "react";
 import { useRef } from "react";
 import { db} from "../FireBaseInit";
-import { addDoc, collection, getDocs ,doc} from "@firebase/firestore";
+import { addDoc,setDoc, collection, getDocs ,doc} from "@firebase/firestore";
 import FormCss from './form.module.css'
 
 const NewCity = () => {
-  const msgRef = useRef();
+  // const msgRef = useRef();
    const imageurl = useRef();
   const cityName = useRef();
   const ratings = useRef(); const googleid = useRef();
@@ -20,23 +20,23 @@ const NewCity = () => {
 
   getCities();
   const filechange = (e) => {
-    console.log(msgRef.current.value);
+    console.log(cityName.current.value);
   }
   const handleSend = async (e) => {
     e.preventDefault();
     console.log(cityName.current.value);
 
     let data = {
-      cityName:
+      [cityName.current.value]:
       {
         imageurl: imageurl.current.value,
-        name: msgRef.current.value,
+        name: cityName.current.value,
         ratings: ratings.current.value,
         timeadded:new Date(Date.now()),
       }
     };
     try {
-      await addDoc(ref, data);
+      await addDoc(ref, data,'12345rU8A3axQNTNlFAvnHhsG6en5qVJ3');
       console.log(ref.id)
     }
     catch (e) {
@@ -81,7 +81,7 @@ const fetchcities = async () =>{
         <div className={FormCss.inputdetails}>
           <div className={FormCss.valueinputside}>
             <div className={FormCss.userbox}>
-              <input type="text" name="" placeholder="eg. Helsinki" ref={msgRef} required />
+              <input type="text" name="" placeholder="eg. Helsinki" ref={cityName} required />
               <label>City name:</label>
             </div>
             <div className={FormCss.userbox}>

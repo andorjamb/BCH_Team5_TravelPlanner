@@ -5,6 +5,7 @@ import CityExplore from "../../components/CityExplore/CityExplore";
 import Account from "../../components/Account/Account";
 import "./ExploreView.css";
 import AddCity from "../../adminActions/AddCity.jsx"
+import TestRealtimeFirebase from "../../adminActions/TestRealtimeFirebase";
 //import AddCityTripPlaces from "../../adminActions/AddCityTripPlaces";
 
 
@@ -53,7 +54,7 @@ class ExploreView extends Component {
             <SearchBar searchEvent={this.searchHandler} />
 
             <CityExplore />
-            <AddCity />
+            <TestRealtimeFirebase/>
            {/* <AddCityTripPlaces/> */}
           </div>
         );
