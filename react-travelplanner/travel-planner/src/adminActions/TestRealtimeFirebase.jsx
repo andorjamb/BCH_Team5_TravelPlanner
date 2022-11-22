@@ -62,7 +62,7 @@ const TestRealtimeFirebase = () => {
         const data = {
             transactionID: uuidv4(),
             userId: owner,
-            tripname: tripName.current.value,
+            tripname: ['trip1','trip2','trip3'],
             tripdate: new Date(Date.now()),
             datacreated: serverTimestamp(),
             dateupdated: serverTimestamp(),
@@ -94,10 +94,12 @@ const TestRealtimeFirebase = () => {
     // EDIT FUNCTION
     const editData = async (e) => {
         e.preventDefault();
-        let newitem = items.filter((item) =>item.tripname ==='sec');
+        let newitem = items.filter((item) =>item.transactionID ==='eec883cb-65cd-4ac6-a7ed-990e6c4c2299"');
+
         const updatedData = {
-            sightname: 'suomihighland',
+            sightname: ['suomihighland','underground','linanmaki'],
             lastUpdate: serverTimestamp(),
+            tripdate:serverTimestamp(),
         };
 
         try {
