@@ -62,11 +62,11 @@ const TestRealtimeFirebase = () => {
         const data = {
             transactionID: uuidv4(),
             userId: owner,
-            tripname: ['trip1', 'trip2', 'trip3'],
+            tripname: sightName.current.value,
             tripdate: new Date(Date.now()),
             datacreated: serverTimestamp(),
             dateupdated: serverTimestamp(),
-            sightname: sightName.current.value,
+            sightname:['trip1', 'trip2', 'trip3'] ,
         }
 
         try {

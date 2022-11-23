@@ -78,6 +78,7 @@ const Account = () => {
   
 function newdata(){
 newarray = items.filter((item) => item.userId === owner)
+return newarray.length;
 }
  
 
@@ -91,9 +92,10 @@ newarray = items.filter((item) => item.userId === owner)
   const CurrentUserTrips = () =>{ 
     return(
     items.filter((item) => item.userId === owner).map((mytrip) => (
-   <div key={mytrip.transactionID}>
+   <div key={Math.random()}>
 
       <RecentTrips
+      TotalTrip ={mytrip.length}
       key={mytrip.transactionID}
       name={mytrip.tripname}     
       date = {mytrip.tripdate.nanoseconds} 
@@ -130,7 +132,7 @@ newarray = items.filter((item) => item.userId === owner)
          
 
          {loading ? <h3>Loading Content.... </h3> 
-         : <div> <h3>You have  {items.length} Trips</h3>
+         : <div> <h3>You have  {newdata()} Trips</h3>
          <div>
 
           {CurrentUserTrips()}
