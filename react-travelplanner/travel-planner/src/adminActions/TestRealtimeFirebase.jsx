@@ -3,7 +3,7 @@ import { useRef, useEffect, useState } from "react";
 import { db } from "../FireBaseInit";
 import {
     addDoc,
-    serverTimestamp, collection, getDocs, onSnapshot, where, setLoading,
+    serverTimestamp, collection, getDocs, onSnapshot, where, 
     doc, query, orderBy, limit, deleteDoc, setDoc, updateDoc
 } from "@firebase/firestore";
 import FormCss from './form.module.css';
@@ -112,8 +112,8 @@ const TestRealtimeFirebase = () => {
     }
 
     const sendEmail = async (email, Message, Subjects, Priority) => {
-        const apiKey = 'YOUR_API_KEY';
-        const apiURL = 'https://emailvalidation.abstractapi.com/v1/?api_key=' + '827c28c7689445c8aac96356dadd7981'
+        const apiKey = '827c28c7689445c8aac96356dadd7981';
+        const apiURL = 'https://emailvalidation.abstractapi.com/v1/?api_key=' + apiKey
         try {
             const response = await fetch(apiURL + '&email=' + email);
             const data = await response.json();

@@ -6,12 +6,13 @@ const RecentTrips = (props) => {
   return (
     <div className="recentTripContainer">
       <div className="tripImage"> 
-        <img  src={`${props.imageUrl}.svg`} alt={props.imageUrl} />
+        <img  src={`${props.name}.svg`} alt={props.imageUrl} />
       </div>
       <div className="tripdetails">
         <h3 className="tripname">{props.name}</h3>
+        <p>{props.sights}</p>
         <p>visited : {props.date}</p>
-        <div><img src={`${props.rating}.svg`} alt={props.rating} /></div>
+        <div><img src={`4.svg`} alt={props.rating} /></div>
       </div>
       
  
