@@ -26,3 +26,7 @@
     color: #60103A;
     text-align: center;
 }
+.sightLists{
+    font-style: italic;
+    list-style-type: decimal-leading-zero;
+}

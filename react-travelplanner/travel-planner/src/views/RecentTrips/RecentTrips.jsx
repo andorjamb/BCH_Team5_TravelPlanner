@@ -11,6 +11,7 @@ const RecentTrips = (props) => {
       <div className="tripdetails">
         <h3 className="tripname">{props.name}</h3>
         <p>{props.sights}</p>
+        <div className="sightLists">{props.sightLists}</div>
         <p>visited : {props.date}</p>
         <div><img src={`4.svg`} alt={props.rating} /></div>
       </div>

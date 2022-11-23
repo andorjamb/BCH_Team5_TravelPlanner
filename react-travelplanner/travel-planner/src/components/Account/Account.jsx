@@ -91,17 +91,23 @@ newarray = items.filter((item) => item.userId === owner)
   const CurrentUserTrips = () =>{ 
     return(
     items.filter((item) => item.userId === owner).map((mytrip) => (
-      <div>
+   <div key={mytrip.transactionID}>
 
       <RecentTrips
       key={mytrip.transactionID}
       name={mytrip.tripname}     
       date = {mytrip.tripdate.nanoseconds} 
-      sights ={mytrip.sightname} >
-   
+      sights ={mytrip.sightname.length} 
+      sightLists={mytrip.sightname?.map((sight) => {return <ol key={Math.random()}><li key={sight}>{sight}</li></ol> })} >
+        {console.log(mytrip.sightname)}
     </RecentTrips>
-    {/* {mytrip.sightname.map((sight) => {return <span key={sight}>{sight}</span> })}  */}
-      </div>
+    <div key={mytrip.sightname}>    
+
+          
+    
+    </div>
+   </div>
+    
      ) ))
   }
 
