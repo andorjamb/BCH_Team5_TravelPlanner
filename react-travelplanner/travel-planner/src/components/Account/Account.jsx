@@ -13,6 +13,7 @@ import NextTripList from "../../views/NextTripList/NextTripList";
 import {db} from '../../FireBaseInit';
 import "./Account.css";
 import WelcomeUser from "../WelcomeUser/WelcomeUser";
+import UpcomingTrips from "../../components/UpcomingTrips/UpcomingTrips";
 
 let  newarray = [];
 const userTripsArray = [];
@@ -38,13 +39,11 @@ const Account = () => {
     }
   };
 
- 
   useEffect(() => {
  
     if (user == null) {
       navigate('/');
     }
-
    
       const q = query(
           ref,
@@ -58,8 +57,7 @@ const Account = () => {
       setLoading(true);
       // const unsub = onSnapshot(q, (querySnapshot) => {     to be used when query is present
       const unsub = onSnapshot(ref, (querySnapshot) => {
-
-          querySnapshot.forEach((doc) => {
+        querySnapshot.forEach((doc) => {
               userTripsArray.push(doc.data());
           });
           setTrips(userTripsArray);
