@@ -1,11 +1,39 @@
-.welcome {
-  display: flex;
-  padding: 10px 40px 10px 10px;
-  justify-content: space-between;
+* {
+  margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+
+.welcome-user {
   background-color: rgb(245, 245, 245);
 }
 
-#user-avatar img {
+cover-img{
+  width: 100%;
+  height: 200px;
+  background-image: url("https://source.unsplash.com/500x400/?me");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+
+}
+.user-info { 
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    position: absolute;
+    width: 65vw;
+    height: 200px;
+    top: 100px;
+    margin: 0 40px;
+    background-color: lightgray;
+    border-radius: 30px;
+    padding: 0 40px;
+  }
+  
+
+img#user-avatar  {
   background-color: aqua;
   height: 100px;
   width: 100px;
@@ -15,6 +43,7 @@
 .user-noti {
   font-size: 3em;
 }
+
 
 .user-hello {
   font-weight: bold;

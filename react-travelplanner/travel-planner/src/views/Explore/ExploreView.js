@@ -44,12 +44,9 @@ class ExploreView extends Component {
       default: {
         viewShown = (
           <div className="view">
-
             <WelcomeUser userName={this.state.userName} />
-            <div className="intro">
-
-              Ready for an <br />
-              adventure?
+            <div className="explore-intro">
+              <p>Ready for an adventure?</p>
             </div>
             <SearchBar searchEvent={this.searchHandler} />
 

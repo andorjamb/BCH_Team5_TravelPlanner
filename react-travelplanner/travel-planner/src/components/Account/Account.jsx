@@ -1,19 +1,21 @@
 import React, { useState, useEffect } from "react";
 import { UserAuth } from "../Context/Context";
-import RecentTrips from "../../views/RecentTrips/RecentTrips";
-import NextTripList from "../../views/NextTripList/NextTripList";
-import "./Account.css";
 import { useNavigate } from 'react-router-dom';
-import { trips } from '../../data/trips';
+//import { trips } from '../../data/trips';
 import {
   addDoc,
   serverTimestamp, collection, getDocs, onSnapshot, where, setLoading,
   doc, query, orderBy, limit, deleteDoc, setDoc, updateDoc
 } from "@firebase/firestore";
+
+import RecentTrips from "../../views/RecentTrips/RecentTrips";
+import NextTripList from "../../views/NextTripList/NextTripList";
 import {db} from '../../FireBaseInit';
+import "./Account.css";
+import WelcomeUser from "../WelcomeUser/WelcomeUser";
 
 let  newarray = [];
-const items = [];
+const userTripsArray = [];
 let yourTrips = [];
 const Account = () => {
   const { logOut, user } = UserAuth();
@@ -24,12 +26,11 @@ const Account = () => {
   const [userTrips,setUserTrips] = useState([]);
   const [loading, setLoading] = useState(false);
   
-  const myTrips = trips;
+  //const myTrips = trips;
   //const [myTrips, setMyTrips] = useState({ mytrips });
   const navigate = useNavigate();
 
   const handleSignOut = async () => {
-
     try {
       await logOut();
     } catch (error) {
@@ -38,7 +39,6 @@ const Account = () => {
   };
 
  
-
   useEffect(() => {
  
     if (user == null) {
@@ -60,13 +60,12 @@ const Account = () => {
       const unsub = onSnapshot(ref, (querySnapshot) => {
 
           querySnapshot.forEach((doc) => {
-              items.push(doc.data());
+              userTripsArray.push(doc.data());
           });
-          setTrips(items);
+          setTrips(userTripsArray);
           setLoading(false);
-          console.log(items,Trips)
+          console.log(userTripsArray,Trips)
           setUserTrips(yourTrips);
-         
          
       });
       return () => {
@@ -77,12 +76,12 @@ const Account = () => {
     }, []);
   
 function newdata(){
-newarray = items.filter((item) => item.userId === owner)
+newarray = userTripsArray.filter((item) => item.userId === owner)
 return newarray.length;
 }
  
 
-  function setName() {
+function setName() {
     if (user) {
       let indexFirstSpace = /\s/.exec(user.displayName).index;
       return (user.displayName).slice(0, indexFirstSpace);
@@ -91,11 +90,11 @@ return newarray.length;
 
   const CurrentUserTrips = () =>{ 
     return(
-    items.filter((item) => item.userId === owner).map((mytrip) => (
+   userTripsArray.filter((item) => item.userId === owner).map((mytrip) => (
    <div key={Math.random()}>
 
-      <RecentTrips
-      TotalTrip ={mytrip.length}
+    <RecentTrips
+      TotalTrips ={mytrip.length}
       key={mytrip.transactionID}
       name={mytrip.tripname}     
       date = {mytrip.tripdate.nanoseconds} 
@@ -104,9 +103,6 @@ return newarray.length;
         {console.log(mytrip.sightname)}
     </RecentTrips>
     <div key={mytrip.sightname}>    
-
-          
-    
     </div>
    </div>
     
@@ -116,7 +112,7 @@ return newarray.length;
   return (
     <div className="accountContainer">
 
-      <h2>Welcome, {user?.displayName}</h2>
+     {/* <h2>Welcome, {user?.displayName}</h2>
 
       <div className="signoutButton">
         <button onClick={handleSignOut}>Logout</button>
@@ -125,17 +121,18 @@ return newarray.length;
       <div className="profPictureContainer">
         <img className="profileImage" id="" src={user?.photoURL ||
           'https://avatars.dicebear.com/v2/avataaars/da67f910f7ac4a0dbeaec3213b5f3d99.svg'} alt="" />
-      </div>
+        </div> */}
+        <WelcomeUser />
 
       <div className="tripDetailsSection">
         <div className="completedTrips">
          
-
-         {loading ? <h3>Loading Content.... </h3> 
+         {loading ? <h3 className="loading">Loading Content.... </h3> 
          : <div> <h3>You have  {newdata()} Trips</h3>
          <div>
-
+{/*////////////////////////////////////////*/}
           {CurrentUserTrips()}
+{/*///////////////////////////////////////////*/}         
           </div>
          </div>
          }

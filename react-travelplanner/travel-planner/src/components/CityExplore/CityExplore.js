@@ -17,7 +17,7 @@ class CityExplore extends Component {
   localStorage.setItem('city',JSON.stringify(city));
 }
   
-  
+/*   
   componentDidMount(){
 
     let url = 'http://localhost:8080/cities/descriptions/helsinki';
@@ -26,7 +26,7 @@ class CityExplore extends Component {
     .then((response) => {
       console.log(response)});
   }
-
+ */
   render() {
     const cityArray = this.state.cities.map((city) => {
       return (<CityContainer
