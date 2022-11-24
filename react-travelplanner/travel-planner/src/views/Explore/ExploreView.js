@@ -26,7 +26,12 @@ class ExploreView extends Component {
 
   searchHandler = (e) => {
     this.setState({ search: e.target.value });
+    
   };
+
+  componentDidUpdate(){
+    
+  }
 
   render() {
 

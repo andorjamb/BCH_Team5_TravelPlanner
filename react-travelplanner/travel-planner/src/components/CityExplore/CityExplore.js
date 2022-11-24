@@ -1,12 +1,34 @@
-import React, { Component } from "react";
+import React, { Component, createElement } from "react";
 import "./CityExplore.css";
 import CityContainer from "../CityContainer/CityContainer";
 import {cities} from "../../data/cities.js";
+import { db } from '../../FireBaseInit';
+import {
+  addDoc,
+  serverTimestamp, collection, getDocs, onSnapshot, where, setLoading,
+  doc, query, orderBy, limit, deleteDoc, setDoc, updateDoc
+} from "@firebase/firestore";
+
+let cityName;
+
+const urls = [`https://en.wikipedia.org/w/api.php?action=query&prop=extracts&exchars=400&explaintext&titles=${cityName}`, ``]
+
 
 class CityExplore extends Component {
   state = {
     cities: cities,
   }
+
+ratingStars = (r)=>{
+  let grade= '';
+  let i = 0;
+  while (i<r){
+    grade = grade + 'grade';
+    i++;
+  }
+  return(grade)
+
+   } 
 
  handleplanCityTrip = (cityname)=>{
   console.log(cityname);
@@ -34,7 +56,7 @@ class CityExplore extends Component {
           key={city.name}
           cityName={city.name.charAt(0).toUpperCase() + city.name.substring(1)}
           description={city.description}
-          rating={city.rating}
+          rating={this.ratingStars(city.rating)}
 
         />
       );
