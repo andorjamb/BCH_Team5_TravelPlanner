@@ -11,12 +11,12 @@
     height: 100px;
 }
 
-.saved-places img {
+.upcoming-trips img {
     width: 50%;
     height: 100%;
     border-radius: 20px 0 0 20px;
 }
-.saved-places-name {
+.trip-name {
     width: 70%;
 }
 .add {

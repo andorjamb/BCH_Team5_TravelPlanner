@@ -34,12 +34,12 @@ class PlannerView extends Component {
           <div className="plan-info">
             <h1>Trip 1</h1>
             <div>
-              <span class="material-symbols-outlined">calendar_month</span>{" "}
+              <span className="material-symbols-outlined">calendar_month</span>{" "}
               <input type="date" placeholder="add dates"></input>
             </div>
           </div>
           <div className="edit-button">
-            <span class="material-symbols-outlined">edit_square</span>
+            <span className="material-symbols-outlined">edit_square</span>
           </div>
         </div>
         <div className="plan-content">

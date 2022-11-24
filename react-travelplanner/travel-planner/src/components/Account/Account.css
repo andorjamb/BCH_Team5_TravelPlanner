@@ -1,14 +1,15 @@
-.accountContainer {
+.account-container {
     display: flex;
     max-width: 800px;
-    margin: 0 auto;
     flex-direction: column;
     border: 2px black;
+    min-height: 1000px;
 
 }
 
 h3 {
-    color: #AA1316;
+    color: var(--red);
+    text-align: center;
 }
 
 h2 {
@@ -16,7 +17,7 @@ h2 {
     text-transform: capitalize;
 }
 
-.profPictureContainer {
+/* .profPictureContainer {
     width: 90%;
     border-bottom: solid 3px #FAC300;
     box-shadow: inset 0 0 5px 5px 5Px olive;
@@ -30,26 +31,40 @@ h2 {
     overflow: hidden;
     object-fit: contain;
 
+} */
+
+.trip-details {
+    margin-top: 1rem;
+    display: grid;
+    grid-template-areas: 
+    "a a"
+    "a a"
+    "b c"
+    "b c" ;
+    grid-gap: 1rem;
+    padding-top: 100px;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 2fr 1fr;
 }
 
-.tripDetailsSection {
-    display: flex;
-    flex-direction: row;
+.planned-trips-container {
+    grid-area: a;
+    min-height: 300px;
 }
 
-.completedTrips {
-    width: 60%;
+.recent-trips {
+   grid-area: b;
 }
 
-.nextTrips {
+.next-trips {
+    grid-area: c;
+   padding: 1rem;
+   width: 80%; 
+   height: 300px;
+    border-radius: 30px;
+    background-color: lightgray;
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
-
-.signoutButton>button {
-    padding: 0.5rem;
-    width: 150px;
-    border-radius: 8px;
-    margin-bottom: 0.5rem;
-}
+ 

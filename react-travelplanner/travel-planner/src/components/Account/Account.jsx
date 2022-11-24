@@ -10,21 +10,24 @@ import {
 
 import RecentTrips from "../../views/RecentTrips/RecentTrips";
 import NextTripList from "../../views/NextTripList/NextTripList";
+import UpcomingTrips from "../../components/UpcomingTrips/UpcomingTrips";
+import WelcomeUser from "../WelcomeUser/WelcomeUser";
 import {db} from '../../FireBaseInit';
 import "./Account.css";
-import WelcomeUser from "../WelcomeUser/WelcomeUser";
-import UpcomingTrips from "../../components/UpcomingTrips/UpcomingTrips";
 
 let  newarray = [];
 const userTripsArray = [];
 let yourTrips = [];
+
 const Account = () => {
   const { logOut, user } = UserAuth();
   const owner = user ? user.uid : 'unknown';
   const ref = collection(db,'myplan')
 
-  const [Trips,setTrips] = useState([]);
-  const [userTrips,setUserTrips] = useState([]);
+console.log(user.uid);
+
+  const [Trips, setTrips] = useState([]);
+  const [userTrips, setUserTrips] = useState([]);
   const [loading, setLoading] = useState(false);
   
   //const myTrips = trips;
@@ -56,29 +59,49 @@ const Account = () => {
 
       setLoading(true);
       // const unsub = onSnapshot(q, (querySnapshot) => {     to be used when query is present
-      const unsub = onSnapshot(ref, (querySnapshot) => {
+      /* const unsub = onSnapshot(ref, (querySnapshot) => {
         querySnapshot.forEach((doc) => {
               userTripsArray.push(doc.data());
           });
           setTrips(userTripsArray);
           setLoading(false);
-          console.log(userTripsArray,Trips)
+          console.log(userTripsArray, Trips)
           setUserTrips(yourTrips);
          
-      });
-      return () => {
-        newdata();
-          unsub();
+      }); */
+//let ref2 =getAllUserTrips();
+/* const unsub = onSnapshot(ref2, (querySnapshot) => {
+  querySnapshot.forEach((doc) => {
+        userTripsArray.push(doc.data());
+    });
+    setTrips(userTripsArray);
+    setLoading(false);
+    console.log(userTripsArray, Trips)
+    setUserTrips(yourTrips);
+   
+}); */
+
+return () => {
+        //plannedTripCount();
+         // unsub();
       };
       // eslint-disable-next-line
     }, []);
-  
-function newdata(){
+
+ /*    function getAllUserTrips(){
+     const allUserTrips = ref.doc(owner).collection('trips').get();
+     console.log(allUserTrips);
+    }
+
+     */
+    const plannedTripArray = userTripsArray.filter((trip)=>trip.departDate <= Date.now())
+
+
+/* function plannedTripCount(){
 newarray = userTripsArray.filter((item) => item.userId === owner)
 return newarray.length;
-}
+} */
  
-
 function setName() {
     if (user) {
       let indexFirstSpace = /\s/.exec(user.displayName).index;
@@ -86,11 +109,21 @@ function setName() {
     }
   }
 
-  const CurrentUserTrips = () =>{ 
+ function getThisCityArray() {}
+
+  const PlannedTrips = ()=>userTripsArray.filter((trip)=>trip.departDate <= Date.now())
+  .map((trip)=> {return (
+    <UpcomingTrips 
+    tripName = {trip.name}
+    tripImg= {`https://source.unsplash.com/500x400/?${trip.sights[0]}`}
+    tripCities={getThisCityArray()} 
+    /> )
+    })
+    
+/*   const CurrentUserTrips = () =>{ 
     return(
    userTripsArray.filter((item) => item.userId === owner).map((mytrip) => (
    <div key={Math.random()}>
-
     <RecentTrips
       TotalTrips ={mytrip.length}
       key={mytrip.transactionID}
@@ -103,12 +136,11 @@ function setName() {
     <div key={mytrip.sightname}>    
     </div>
    </div>
-    
-     ) ))
-  }
+  ) 
+  )
+  )}  */
 
-  return (
-    <div className="accountContainer">
+  return (<div className="account-container">
 
      {/* <h2>Welcome, {user?.displayName}</h2>
 
@@ -122,30 +154,34 @@ function setName() {
         </div> */}
         <WelcomeUser />
 
-      <div className="tripDetailsSection">
-        <div className="completedTrips">
-         
-         {loading ? <h3 className="loading">Loading Content.... </h3> 
-         : <div> <h3>You have  {newdata()} Trips</h3>
+      <section className="trip-details">
+
+         {loading ? <h3 className="loading">Loading Content... </h3> 
+         : 
+         <div className="planned-trip-container"> <h3>You have { plannedTripArray.length} Trips planned</h3>
          <div>
 {/*////////////////////////////////////////*/}
-          {CurrentUserTrips()}
+         {/* {CurrentUserTrips()}   */}
+          {PlannedTrips}
 {/*///////////////////////////////////////////*/}         
           </div>
          </div>
          }
           
-          
-        </div>
-        <div className="nextTrips">
-          <div><h3>What Next?</h3></div>
-          <h4>Explore more</h4>
+        <div className="next-trips">
+        <h3>What's Next?</h3>
+          <h4>Explore more:</h4>
           <div className="nextTriplist">
-            <h3>total trips </h3>
             <NextTripList name={'happy trips'} />
           </div>
         </div>
-      </div>
+<div className="recent-trips">
+<h3>Your recent trips:</h3>
+
+</div>
+
+
+      </section>
     </div>
   );
 };

@@ -6,7 +6,7 @@ const UpcomingTrips = (props) => {
         <div className="upcoming-trips">
             <h3 className="trip-name">{props.tripName}</h3>
             <img src={props.tripImg} alt="tripImage" />
-            <p>{props.tripInfo}</p>
+            <p>Cities on this trip: {props.tripCities}</p>
         </div>
     );
 };
