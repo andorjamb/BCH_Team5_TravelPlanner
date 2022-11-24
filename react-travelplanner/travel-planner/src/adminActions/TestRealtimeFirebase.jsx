@@ -3,7 +3,7 @@ import { useRef, useEffect, useState } from "react";
 import { db } from "../FireBaseInit";
 import {
     addDoc,
-    serverTimestamp, collection, getDocs, onSnapshot, where, 
+    serverTimestamp, collection, getDocs, onSnapshot, where,
     doc, query, orderBy, limit, deleteDoc, setDoc, updateDoc
 } from "@firebase/firestore";
 import FormCss from './form.module.css';
@@ -66,7 +66,7 @@ const TestRealtimeFirebase = () => {
             tripdate: new Date(Date.now()),
             datacreated: serverTimestamp(),
             dateupdated: serverTimestamp(),
-            sightname:['trip1', 'trip2', 'trip3'] ,
+            sightname: ['trip1', 'trip2', 'trip3'],
         }
 
         try {
@@ -184,7 +184,7 @@ const TestRealtimeFirebase = () => {
             <div className="trips" key={trip.transactionID}>
                 <h2>{trip.tripname}</h2>
                 <p>{trip.sightname}</p>
-                <p>{trip.tripdate.nanoseconds}</p>
+                {/*  <p>{trip.tripdate.nanoseconds}</p> */}
                 <p>{trip.tripName}</p>
 
             </div>

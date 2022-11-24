@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { UserAuth } from "../Context/Context";
 import { useNavigate } from 'react-router-dom';
-//import { trips } from '../../data/trips';
 import {
   addDoc,
   serverTimestamp, collection, getDocs, onSnapshot, where, setLoading,
@@ -12,26 +11,23 @@ import RecentTrips from "../../views/RecentTrips/RecentTrips";
 import NextTripList from "../../views/NextTripList/NextTripList";
 import UpcomingTrips from "../../components/UpcomingTrips/UpcomingTrips";
 import WelcomeUser from "../WelcomeUser/WelcomeUser";
-import {db} from '../../FireBaseInit';
+import { db } from '../../FireBaseInit';
 import "./Account.css";
 
-let  newarray = [];
 const userTripsArray = [];
-let yourTrips = [];
 
 const Account = () => {
   const { logOut, user } = UserAuth();
   const owner = user ? user.uid : 'unknown';
-  const ref = collection(db,'myplan')
+  const ref = collection(db, 'myplan')
 
-console.log(user.uid);
+  console.log(user.uid);
 
-  const [Trips, setTrips] = useState([]);
+
   const [userTrips, setUserTrips] = useState([]);
   const [loading, setLoading] = useState(false);
-  
-  //const myTrips = trips;
-  //const [myTrips, setMyTrips] = useState({ mytrips });
+
+
   const navigate = useNavigate();
 
   const handleSignOut = async () => {
@@ -43,106 +39,92 @@ console.log(user.uid);
   };
 
   useEffect(() => {
- 
+
     if (user == null) {
       navigate('/');
     }
-   
-      const q = query(
-          ref,
-          //  where('owner', '==', currentUserId),
-          where('title', '==', 'School1') // does not need index
-          //  where('score', '<=', 100) // needs index  https://firebase.google.com/docs/firestore/query-data/indexing?authuser=1&hl=en
-          // orderBy('score', 'asc'), // be aware of limitations: https://firebase.google.com/docs/firestore/query-data/order-limit-data#limitations
-          // limit(1)
-      );
 
-      setLoading(true);
-      // const unsub = onSnapshot(q, (querySnapshot) => {     to be used when query is present
-      /* const unsub = onSnapshot(ref, (querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-              userTripsArray.push(doc.data());
-          });
-          setTrips(userTripsArray);
-          setLoading(false);
-          console.log(userTripsArray, Trips)
-          setUserTrips(yourTrips);
-         
-      }); */
-//let ref2 =getAllUserTrips();
-/* const unsub = onSnapshot(ref2, (querySnapshot) => {
-  querySnapshot.forEach((doc) => {
+    const q = query(
+      ref,
+      //  where('owner', '==', currentUserId),
+      where('title', '==', 'School1') // does not need index
+      //  where('score', '<=', 100) // needs index  https://firebase.google.com/docs/firestore/query-data/indexing?authuser=1&hl=en
+      // orderBy('score', 'asc'), // be aware of limitations: https://firebase.google.com/docs/firestore/query-data/order-limit-data#limitations
+      // limit(1)
+    );
+
+    setLoading(true);
+    // const unsub = onSnapshot(q, (querySnapshot) => {     to be used when query is present
+    const unsub = onSnapshot(ref, (querySnapshot) => {
+      querySnapshot.forEach((doc) => {
         userTripsArray.push(doc.data());
+      });
+      setUserTrips(userTrips);
+      setLoading(false);
+      console.log(userTrips);
+
+
     });
-    setTrips(userTripsArray);
-    setLoading(false);
-    console.log(userTripsArray, Trips)
-    setUserTrips(yourTrips);
-   
-}); */
-
-return () => {
-        //plannedTripCount();
-         // unsub();
-      };
-      // eslint-disable-next-line
-    }, []);
-
- /*    function getAllUserTrips(){
-     const allUserTrips = ref.doc(owner).collection('trips').get();
-     console.log(allUserTrips);
-    }
-
-     */
-    const plannedTripArray = userTripsArray.filter((trip)=>trip.departDate <= Date.now())
 
 
-/* function plannedTripCount(){
-newarray = userTripsArray.filter((item) => item.userId === owner)
-return newarray.length;
-} */
+    return () => {
+
+      unsub();
+    };
+    // eslint-disable-next-line
+  }, []);
+
+  /*    function getAllUserTrips(){
+      const allUserTrips = ref.doc(owner).collection('trips').get();
+      console.log(allUserTrips);
+     }
  
-function setName() {
-    if (user) {
-      let indexFirstSpace = /\s/.exec(user.displayName).index;
-      return (user.displayName).slice(0, indexFirstSpace);
-    }
-  }
+      */
+  const plannedTripArray = userTripsArray.filter((trip) => trip.departDate <= Date.now())
 
- function getThisCityArray() {}
 
-  const PlannedTrips = ()=>userTripsArray.filter((trip)=>trip.departDate <= Date.now())
-  .map((trip)=> {return (
-    <UpcomingTrips 
-    tripName = {trip.name}
-    tripImg= {`https://source.unsplash.com/500x400/?${trip.sights[0]}`}
-    tripCities={getThisCityArray()} 
-    /> )
+  /* function plannedTripCount(){
+  newarray = userTripsArray.filter((item) => item.userId === owner)
+  return newarray.length;
+  } */
+
+
+
+  function getThisCityArray() { }
+
+  const PlannedTrips = () => userTripsArray.filter((trip) => trip.departDate <= Date.now())
+    .map((trip) => {
+      return (
+        <UpcomingTrips
+          tripName={trip.name}
+          tripImg={`https://source.unsplash.com/500x400/?${trip.sights[0]}`}
+          tripCities={getThisCityArray()}
+        />)
     })
-    
-/*   const CurrentUserTrips = () =>{ 
-    return(
-   userTripsArray.filter((item) => item.userId === owner).map((mytrip) => (
-   <div key={Math.random()}>
-    <RecentTrips
-      TotalTrips ={mytrip.length}
-      key={mytrip.transactionID}
-      name={mytrip.tripname}     
-      date = {mytrip.tripdate.nanoseconds} 
-      sights ={mytrip.sightname.length} 
-      sightLists={mytrip.sightname?.map((sight) => {return <ol key={Math.random()}><li key={sight}>{sight}</li></ol> })} >
-        {console.log(mytrip.sightname)}
-    </RecentTrips>
-    <div key={mytrip.sightname}>    
-    </div>
-   </div>
-  ) 
-  )
-  )}  */
+
+  /*   const CurrentUserTrips = () =>{ 
+      return(
+     userTripsArray.filter((item) => item.userId === owner).map((mytrip) => (
+     <div key={Math.random()}>
+      <RecentTrips
+        TotalTrips ={mytrip.length}
+        key={mytrip.transactionID}
+        name={mytrip.tripname}     
+        date = {mytrip.tripdate.nanoseconds} 
+        sights ={mytrip.sightname.length} 
+        sightLists={mytrip.sightname?.map((sight) => {return <ol key={Math.random()}><li key={sight}>{sight}</li></ol> })} >
+          {console.log(mytrip.sightname)}
+      </RecentTrips>
+      <div key={mytrip.sightname}>    
+      </div>
+     </div>
+    ) 
+    )
+    )}  */
 
   return (<div className="account-container">
 
-     {/* <h2>Welcome, {user?.displayName}</h2>
+    {/* <h2>Welcome, {user?.displayName}</h2>
 
       <div className="signoutButton">
         <button onClick={handleSignOut}>Logout</button>
@@ -152,37 +134,37 @@ function setName() {
         <img className="profileImage" id="" src={user?.photoURL ||
           'https://avatars.dicebear.com/v2/avataaars/da67f910f7ac4a0dbeaec3213b5f3d99.svg'} alt="" />
         </div> */}
-        <WelcomeUser />
+    <WelcomeUser />
 
-      <section className="trip-details">
+    <section className="trip-details">
 
-         {loading ? <h3 className="loading">Loading Content... </h3> 
-         : 
-         <div className="planned-trip-container"> <h3>You have { plannedTripArray.length} Trips planned</h3>
-         <div>
-{/*////////////////////////////////////////*/}
-         {/* {CurrentUserTrips()}   */}
-          {PlannedTrips}
-{/*///////////////////////////////////////////*/}         
-          </div>
-         </div>
-         }
-          
-        <div className="next-trips">
-        <h3>What's Next?</h3>
-          <h4>Explore more:</h4>
-          <div className="nextTriplist">
-            <NextTripList name={'happy trips'} />
+      {loading ? <h3 className="loading">Loading Content... </h3>
+        :
+        <div className="planned-trip-container"> <h3>You have {plannedTripArray.length} Trips planned</h3>
+          <div>
+            {/*////////////////////////////////////////*/}
+            {/* {CurrentUserTrips()}   */}
+            {PlannedTrips}
+            {/*///////////////////////////////////////////*/}
           </div>
         </div>
-<div className="recent-trips">
-<h3>Your recent trips:</h3>
+      }
 
-</div>
+      <div className="next-trips">
+        <h3>What's Next?</h3>
+        <h4>Explore more:</h4>
+        <div className="nextTriplist">
+          <NextTripList name={'happy trips'} />
+        </div>
+      </div>
+      <div className="recent-trips">
+        <h3>Your recent trips:</h3>
+
+      </div>
 
 
-      </section>
-    </div>
+    </section>
+  </div>
   );
 };
 
