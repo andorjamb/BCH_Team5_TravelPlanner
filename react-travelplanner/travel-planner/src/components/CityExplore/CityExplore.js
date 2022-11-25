@@ -86,7 +86,6 @@ class CityExplore extends Component {
       cityData: this.cityData,
     });
 
-    console.log(this.state.cityData);
     this.setState({ currentRand: makeNewRand() });
     this.randArray();
     // this.randomCities();
@@ -94,7 +93,6 @@ class CityExplore extends Component {
   };
 
   searchHandler = (e) => {
-    console.log(e.target.value );
     this.setState({ searchValue: e.target.value });
     
   };
@@ -106,9 +104,6 @@ class CityExplore extends Component {
      console.log(response)}); }*/
 
   render() {
-    console.log(this.state.cityData.filter(city => 
-      city.cityName?.trim().toUpperCase().includes('HELSINKI')
-      ))
    const cityArray =this.state.cityData.filter(city => 
     city.cityName?.trim().toUpperCase().includes(this.state.searchValue.trim().toUpperCase())
     ).map((city) => {
@@ -127,7 +122,7 @@ class CityExplore extends Component {
       <>
       <SearchBar searchEvent={this.searchHandler} />
         <h2>Top Places</h2>
-        <div className="city-explore">{cityArray}</div>
+        <div className="city-explore">{cityArray.length > 0 ? cityArray : <h2>Your search did return any City, Please try again</h2>}</div>
       </>
     );
   }
