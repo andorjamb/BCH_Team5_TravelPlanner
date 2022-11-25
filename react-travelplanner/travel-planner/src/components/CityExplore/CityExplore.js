@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import SearchBar from "../SearchBar/SearchBar";
 import "./CityExplore.css";
 import CityContainer from "../CityContainer/CityContainer";
 //import { cities } from "../../data/cities.js";
@@ -26,7 +27,8 @@ class CityExplore extends Component {
     currentRand: undefined,
     newRand: undefined,
     displayCities: [],
-    cityData: []
+    cityData: [],
+    searchValue:'',
   }
 
   cityData = [];
@@ -91,6 +93,12 @@ class CityExplore extends Component {
 
   };
 
+  searchHandler = (e) => {
+    console.log(e.target.value );
+    this.setState({ searchValue: e.target.value });
+    
+  };
+
   /*  let url = 'http://localhost:8080/cities/descriptions/helsinki';
    let opts = {'mode': 'no-cors'}
    fetch(url, opts)
@@ -98,19 +106,26 @@ class CityExplore extends Component {
      console.log(response)}); }*/
 
   render() {
-    const cityArray = this.state.cityData.map((city) => {
-      return (<CityContainer
-        // planCityTrip={() => this.handleplanCityTrip(city.cityName)}
-        key={city.cityName}
-        cityName={city.cityName.charAt(0).toUpperCase() + city.cityName.substring(1)}
-        description={city.description}
-        rating={this.ratingStars(city.rating)}
-      />
-      );
-    });
+    console.log(this.state.cityData.filter(city => 
+      city.cityName?.trim().toUpperCase().includes('HELSINKI')
+      ))
+   const cityArray =this.state.cityData.filter(city => 
+    city.cityName?.trim().toUpperCase().includes(this.state.searchValue.trim().toUpperCase())
+    ).map((city) => {
+    return (<CityContainer
+      // planCityTrip={() => this.handleplanCityTrip(city.cityName)}
+      key={city.cityName}
+      cityName={city.cityName.charAt(0).toUpperCase() + city.cityName.substring(1)}
+      description={city.description}
+      rating={this.ratingStars(city.rating)}
+      searchresult ='Search result'
+    />
+    );
+  });
 
     return (
       <>
+      <SearchBar searchEvent={this.searchHandler} />
         <h2>Top Places</h2>
         <div className="city-explore">{cityArray}</div>
       </>

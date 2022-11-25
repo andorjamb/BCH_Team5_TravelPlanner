@@ -12,6 +12,7 @@ const CityContainer = (props) => {
         />
       </div>
       <div className="city-info">
+        <p>{props.searchresult}</p>
         <h3 className="city-name">{props.cityName}</h3>
         <p>{props.sights}</p>
         <p id="rating">{props.rating}</p>
