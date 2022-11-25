@@ -2,13 +2,12 @@
     display: flex;
     max-width: 800px;
     flex-direction: column;
-    border: 2px black;
     min-height: 1000px;
-
+    display: grid;
 }
 
 h3 {
-    color: var(--red);
+    color: #60103A;
     text-align: center;
 }
 
@@ -17,54 +16,45 @@ h2 {
     text-transform: capitalize;
 }
 
-/* .profPictureContainer {
-    width: 90%;
-    border-bottom: solid 3px #FAC300;
-    box-shadow: inset 0 0 5px 5px 5Px olive;
-    padding: 2rem;
-    margin-bottom: 1rem;
+.title {
+    width: 100vw;
+    height: 60px;
+    padding-top: 50px;
 }
 
-.profileImage {
-    width: 150px;
-    border-radius: 50%;
-    overflow: hidden;
-    object-fit: contain;
-
-} */
-
-.trip-details {
+.trips-container {
     margin-top: 1rem;
     display: grid;
-    grid-template-areas: 
-    "a a"
-    "a a"
-    "b c"
-    "b c" ;
+    grid-template-areas:
+        "a c "
+        "a c"
+        "b b"
+        "b b";
     grid-gap: 1rem;
     padding-top: 100px;
     grid-template-rows: 1fr 1fr 1fr 1fr;
     grid-template-columns: 2fr 1fr;
 }
 
-.planned-trips-container {
+
+.next-trips {
     grid-area: a;
     min-height: 300px;
 }
 
 .recent-trips {
-   grid-area: b;
+    grid-area: b;
 }
 
-.next-trips {
+.explore-trips {
     grid-area: c;
-   padding: 1rem;
-   width: 80%; 
-   height: 300px;
+    margin-top: 35px;
+    padding: 0.5rem;
+    width: 80%;
+    height: 300px;
     border-radius: 30px;
     background-color: lightgray;
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
- 

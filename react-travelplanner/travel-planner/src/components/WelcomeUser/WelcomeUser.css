@@ -1,7 +1,7 @@
 * {
   margin: 0;
-padding: 0;
-box-sizing: border-box;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 .welcome-user {
@@ -9,9 +9,10 @@ box-sizing: border-box;
   display: flex;
   flex-direction: column;
   align-items: center;
+
 }
 
-cover-img{
+cover-img {
   width: 100%;
   height: 200px;
   background-image: url("https://source.unsplash.com/500x400/?me");
@@ -20,22 +21,24 @@ cover-img{
   background-position: center;
 
 }
-.user-info { 
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    position: absolute;
-    width: 75%;
-    height: 200px;
-    top: 100px;
-    margin: 0 15px 0 15px;
-    background-color: lightgray;
-    border-radius: 30px;
-    padding: 0 40px;
-  }
-  
 
-img#user-avatar  {
+.user-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: absolute;
+  width: 75%;
+  max-width: 700px;
+  height: 200px;
+  top: 100px;
+  margin: 0 20px 0 20px;
+  background-color: lightgray;
+  border-radius: 30px;
+  padding: 0 40px;
+}
+
+
+img#user-avatar {
   background-color: aqua;
   height: 100px;
   width: 100px;
