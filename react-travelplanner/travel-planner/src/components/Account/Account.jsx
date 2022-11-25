@@ -102,8 +102,9 @@ const Account = () => {
             key={mytrip.transactionID}
             name={mytrip.tripname}
             // date={mytrip.tripdate.nanoseconds}
-            sights={mytrip.sightname.length}
-            sightLists={mytrip.sightname?.map((sight) => { return <ol key={Math.random()}><li key={sight}>{sight}</li></ol> })} >
+            sightsList={mytrip.sightname?.map((sight) => {
+              return <li key={sight}>{sight}</li>
+            })} >
             {console.log(mytrip.sightname)}
           </RecentTrips>
           <div key={mytrip.sightname}>
@@ -118,37 +119,25 @@ const Account = () => {
 
   return (
     <div className="account-container">
-
-      {/* <h2>Welcome, {user?.displayName}</h2>
-
-      <div className="signoutButton">
-        <button onClick={handleSignOut}>Logout</button>
-      </div>
-
-      <div className="profPictureContainer">
-        <img className="profileImage" id="" src={user?.photoURL ||
-          'https://avatars.dicebear.com/v2/avataaars/da67f910f7ac4a0dbeaec3213b5f3d99.svg'} alt="" />
-      </div> */}
       <WelcomeUser />
-      <section className="trip-details">
-        <div className="completedTrips">
+      <div className="title"><h3>Your Account</h3></div>
+      <section className="trips-container">
 
+        <div className="next-trips">
 
-          {loading ? <h3>Loading Content.... </h3>
-            : <div> <h3>You have  {newdata()} Trips</h3>
+          {loading ? <h4>Loading Content.... </h4>
+            : <div> <h3>You have  {newdata()} Trips Planned</h3>
               <div>
-
                 {CurrentUserTrips()}
               </div>
             </div>
           }
 
-
         </div>
-        <div className="nextTrips">
+        <div className="explore-trips">
           <div><h3>What Next?</h3></div>
           <h4>Explore more</h4>
-          <div className="nextTriplist">
+          <div className="next-trip-list">
             <h3>total trips </h3>
             <NextTripList name={'happy trips'} />
           </div>

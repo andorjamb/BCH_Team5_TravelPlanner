@@ -1,0 +1,40 @@
+.trip {
+  display: flex;
+  flex-direction: row;
+  background-color: lightgrey;
+  width: 100%;
+  height: 120px;
+  border-radius: 20px;
+  margin-bottom: 10px;
+}
+.trip-title {
+  flex: 50%;
+  justify-content: flex-start;
+  display: flex;
+  gap: 10px;
+  padding: 12px;
+}
+.trip-index {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  background-image: url("./locationIcon.png");
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 50px;
+  height: 50px;
+  font-size: 25px;
+  color: white;
+}
+
+.trip-img {
+  right: 0;
+  flex: 50%;
+}
+.trip-img img {
+  height: 100%;
+  width: 100%;
+  border-radius: 0 20px 20px 0;
+  object-fit: cover;
+}
