@@ -53,6 +53,7 @@ const Account = () => {
       // limit(1)
     );
 
+<<<<<<< HEAD
     setLoading(true);
     // const unsub = onSnapshot(q, (querySnapshot) => {     to be used when query is present
     const unsub = onSnapshot(ref, (querySnapshot) => {
@@ -78,6 +79,34 @@ const Account = () => {
       const allUserTrips = ref.doc(owner).collection('trips').get();
       console.log(allUserTrips);
      }
+=======
+      setLoading(true);
+      // const unsub = onSnapshot(q, (querySnapshot) => {     to be used when query is present
+      const unsub = onSnapshot(ref, (querySnapshot) => {
+
+          querySnapshot.forEach((doc) => {
+              items.push(doc.data());
+          });
+          setTrips(items);
+          setLoading(false);
+          // console.log(items,Trips)
+          setUserTrips(yourTrips);
+         
+         
+      });
+      return () => {
+        newdata();
+          unsub();
+      };
+      // eslint-disable-next-line
+    }, []);
+  
+function newdata(){
+  newarray =[];
+newarray = items.filter((item) => item.userId === owner)
+return newarray.length;
+}
+>>>>>>> c889b3d (removed console log)
  
       */
   const plannedTripArray = userTripsArray.filter((trip) => trip.departDate <= Date.now())
@@ -107,6 +136,7 @@ const Account = () => {
      userTripsArray.filter((item) => item.userId === owner).map((mytrip) => (
      <div key={Math.random()}>
       <RecentTrips
+<<<<<<< HEAD
         TotalTrips ={mytrip.length}
         key={mytrip.transactionID}
         name={mytrip.tripname}     
@@ -121,6 +151,17 @@ const Account = () => {
     ) 
     )
     )}  */
+=======
+      TotalTrip ={mytrip.length}
+      key={mytrip.transactionID}
+      name={mytrip.tripname}     
+      date = {mytrip.tripdate.nanoseconds} 
+      sights ={mytrip.sightname.length} 
+      sightLists={mytrip.sightname?.map((sight) => {return <ol key={Math.random()}><li key={sight}>{sight}</li></ol> })} >
+        {/* {console.log(mytrip.sightname)} */}
+    </RecentTrips>
+    <div key={mytrip.sightname}>    
+>>>>>>> c889b3d (removed console log)
 
   return (<div className="account-container">
 
