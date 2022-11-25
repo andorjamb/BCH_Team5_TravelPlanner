@@ -67,7 +67,8 @@ const Account = () => {
       });
       setTrips(items);
       setLoading(false);
-      console.log(items, Trips)
+      console.log(items, items.tripdate?.nanoseconds)
+
       setUserTrips(yourTrips);
 
 
@@ -78,6 +79,13 @@ const Account = () => {
     };
     // eslint-disable-next-line
   }, []);
+
+
+  const convertDate = (date) => {
+    // whatever formatting you want to do can be done here
+    var d = date.toString()
+    return d.substr(0, 21);
+}
 
   function newdata() {
     newarray = items.filter((item) => item.userId === owner)
@@ -96,15 +104,16 @@ const Account = () => {
     return (
       items.filter((item) => item.userId === owner).map((mytrip) => (
         <div key={Math.random()}>
-
+          
+ {console.log(new Date(mytrip.tripdate.seconds * 1000 + mytrip.tripdate.nanoseconds/1000000))}
           <RecentTrips
+
             TotalTrip={mytrip.length}
             key={mytrip.transactionID}
             name={mytrip.tripname}
-            // date={mytrip.tripdate.nanoseconds}
-            sightsList={mytrip.sightname?.map((sight) => {
-              return <li key={sight}>{sight}</li>
-            })} >
+            date={ `${new Date(mytrip.tripdate?.seconds * 1000 + mytrip.tripdate?.nanoseconds/1000000)}`}
+            sights={mytrip.sightname.length}
+            sightLists={mytrip.sightname?.map((sight) => { return <ol key={Math.random()}><li key={sight}>{sight}</li></ol> })} >
             {console.log(mytrip.sightname)}
           </RecentTrips>
           <div key={mytrip.sightname}>
