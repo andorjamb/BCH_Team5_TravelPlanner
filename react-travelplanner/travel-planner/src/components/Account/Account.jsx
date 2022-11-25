@@ -111,7 +111,7 @@ const Account = () => {
             TotalTrip={mytrip.length}
             key={mytrip.transactionID}
             name={mytrip.tripname}
-            // date={mytrip.tripdate.nanoseconds}
+            date={ `${new Date(mytrip.tripdate?.seconds * 1000 + mytrip.tripdate?.nanoseconds/1000000)}`}
             sights={mytrip.sightname.length}
             sightLists={mytrip.sightname?.map((sight) => { return <ol key={Math.random()}><li key={sight}>{sight}</li></ol> })} >
             {console.log(mytrip.sightname)}
