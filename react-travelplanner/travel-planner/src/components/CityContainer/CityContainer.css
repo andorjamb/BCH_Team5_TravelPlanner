@@ -1,11 +1,20 @@
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons+Outlined");
+
+
 .city-container {
   display: grid;
   grid-template-columns: 50% auto;
   grid-template-areas: "city-img city-info";
-  background: var(--darkblue);
+  background: lightgray;
   border-radius: 20px;
   margin: 10px 0;
-  color: #fac300;
+ color: var(--black);
+}
+.city-container h3 {
+  text-transform: uppercase;
+  padding-top: 2rem;
+  color: var(--black);
+
 }
 .city-img img {
   width: 100%;
@@ -20,4 +29,10 @@
 }
 .city-name {
   font-weight: bold;
+}
+
+#rating{
+  font-family: 'Material Icons Outlined';
+ color: #fac300;
+ font-size: 3rem;
 }

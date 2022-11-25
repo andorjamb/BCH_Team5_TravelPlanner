@@ -1,5 +1,7 @@
 import  React from 'react';
 import "./CityContainer.css";
+
+
 const CityContainer = (props) => {
   return (
     <div className="city-container" onClick={props.planCityTrip}>
@@ -10,9 +12,9 @@ const CityContainer = (props) => {
         />
       </div>
       <div className="city-info">
-        <p className="city-name">{props.cityName}</p>
-        <p>{props.description}</p>
-        <p className="rating">{props.rating}</p>
+        <h3 className="city-name">{props.cityName}</h3>
+        <p>{props.sights}</p>
+        <p id="rating">{props.rating}</p>
       </div>
     </div>
   );

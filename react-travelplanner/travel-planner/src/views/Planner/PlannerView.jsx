@@ -125,6 +125,7 @@ class PlannerView extends Component {
     return (
       <div className="planner-view">
         <div className="cover-img"></div>
+
         <form onSubmit={this.submitHandler}>
           <div className="plan-title">
             <div className="plan-info">
@@ -145,12 +146,15 @@ class PlannerView extends Component {
                   onChange={(e) => this.onChangeHandler(e, "tripDate")}
                 ></input>
               </div>
+
             </div>
            
           </div>
+
           <div className="plan-content">
             <h1>Places to visit</h1>
             <SearchBar searchHandler={this.searchHandler} />
+
 
             <h2>Search results</h2>
             <div className="saved-places-wrapper">{renderSightList}</div>

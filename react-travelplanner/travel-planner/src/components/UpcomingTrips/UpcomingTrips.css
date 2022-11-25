@@ -1,0 +1,25 @@
+.upcoming-trips {
+    background-color: lightgray;
+    display: flex;
+    flex-direction: row;
+    border-radius: 20px;
+    gap: 20px;
+    align-items: center;
+    justify-content: space-between;
+    margin: 5px;
+    color: black;
+    height: 100px;
+}
+
+.upcoming-trips img {
+    width: 50%;
+    height: 100%;
+    border-radius: 20px 0 0 20px;
+}
+.trip-name {
+    width: 70%;
+}
+.add {
+    padding-right: 15px;
+    cursor: pointer;
+}

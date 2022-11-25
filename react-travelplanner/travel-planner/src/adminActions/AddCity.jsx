@@ -1,12 +1,12 @@
 import React from "react";
 import { useRef } from "react";
 import { db} from "../FireBaseInit";
-import { addDoc, collection, getDocs } from "@firebase/firestore";
+import { addDoc,setDoc, collection, getDocs ,doc} from "@firebase/firestore";
 import FormCss from './form.module.css'
 
 const NewCity = () => {
-  const msgRef = useRef();
-  const description = useRef(); const imageurl = useRef()
+  // const msgRef = useRef();
+   const imageurl = useRef();
   const cityName = useRef();
   const ratings = useRef(); const googleid = useRef();
   const ref = collection(db, 'cities')
@@ -20,23 +20,23 @@ const NewCity = () => {
 
   getCities();
   const filechange = (e) => {
-    console.log(msgRef.current.value);
+    console.log(cityName.current.value);
   }
   const handleSend = async (e) => {
     e.preventDefault();
     console.log(cityName.current.value);
 
     let data = {
-      cityName:
+      [cityName.current.value]:
       {
         imageurl: imageurl.current.value,
-        name: msgRef.current.value,
+        name: cityName.current.value,
         ratings: ratings.current.value,
         timeadded:new Date(Date.now()),
       }
     };
     try {
-      await addDoc(ref, data);
+      await addDoc(ref, data,'12345rU8A3axQNTNlFAvnHhsG6en5qVJ3');
       console.log(ref.id)
     }
     catch (e) {
@@ -44,6 +44,30 @@ const NewCity = () => {
     }
 
   }
+const fetchcities = async () =>{
+
+
+
+        try {
+            
+            let allCities = await getDocs(ref);
+            console.log(allCities)
+
+        } catch (err) {
+            console.log(err)
+        }
+
+  
+  // const docRef = doc(db, "cities", "SF");
+  // const docSnap = await getDocs(docRef);
+  
+  // if (docSnap.exists()) {
+  //   console.log("Document data:", docSnap.data());
+  // } else {
+  //   // doc.data() will be undefined in this case
+  //   console.log("No such document!");
+  // }
+}
   return (<div>
 
     <form id="cityForm" onSubmit={handleSend} >
@@ -57,7 +81,7 @@ const NewCity = () => {
         <div className={FormCss.inputdetails}>
           <div className={FormCss.valueinputside}>
             <div className={FormCss.userbox}>
-              <input type="text" name="" placeholder="eg. Helsinki" ref={msgRef} required />
+              <input type="text" name="" placeholder="eg. Helsinki" ref={cityName} required />
               <label>City name:</label>
             </div>
             <div className={FormCss.userbox}>
@@ -93,7 +117,7 @@ const NewCity = () => {
 
       </div>
     </form>
-
+<button onClick={fetchcities}>get cities</button>
   </div>)
 
 }

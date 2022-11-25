@@ -1,11 +1,44 @@
-.welcome {
-  display: flex;
-  padding: 10px 40px 10px 10px;
-  justify-content: space-between;
-  background-color: rgb(245, 245, 245);
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-#user-avatar img {
+.welcome-user {
+  background-color: rgb(245, 245, 245);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+
+cover-img {
+  width: 100%;
+  height: 200px;
+  background-image: url("https://source.unsplash.com/500x400/?me");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: absolute;
+  width: 75%;
+  max-width: 700px;
+  height: 200px;
+  top: 100px;
+  margin: 0 20px 0 20px;
+  background-color: lightgray;
+  border-radius: 30px;
+  padding: 0 40px;
+}
+
+
+img#user-avatar {
   background-color: aqua;
   height: 100px;
   width: 100px;
@@ -16,6 +49,7 @@
   font-size: 3em;
 }
 
+
 .user-hello {
   font-weight: bold;
   font-size: 1.5em;
@@ -24,6 +58,15 @@
 .user-hello a {
   text-decoration: none;
   color: var(--yellow);
+}
+
+button.logout {
+  background-color: var(--orange);
+  color: white;
+  width: 180px;
+  border-radius: 30px;
+  border: none;
+  font-weight: 500;
 }
 
 /* img {

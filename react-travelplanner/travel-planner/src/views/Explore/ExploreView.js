@@ -5,7 +5,8 @@ import CityExplore from "../../components/CityExplore/CityExplore";
 import Account from "../../components/Account/Account";
 import "./ExploreView.css";
 import AddCity from "../../adminActions/AddCity.jsx"
-import AddCityTripPlaces from "../../adminActions/AddCityTripPlaces";
+import TestRealtimeFirebase from "../../adminActions/TestRealtimeFirebase";
+//import AddCityTripPlaces from "../../adminActions/AddCityTripPlaces";
 
 
 const ViewMode = {
@@ -25,7 +26,12 @@ class ExploreView extends Component {
 
   searchHandler = (e) => {
     this.setState({ search: e.target.value });
+    
   };
+
+  componentDidUpdate(){
+    
+  }
 
   render() {
 
@@ -43,17 +49,14 @@ class ExploreView extends Component {
       default: {
         viewShown = (
           <div className="view">
-
             <WelcomeUser userName={this.state.userName} />
-            <div className="intro">
-
-              Ready for an <br />
-              adventure?
+            <div className="explore-intro">
+              <p>Ready for an adventure?</p>
             </div>
             <SearchBar searchEvent={this.searchHandler} />
 
             <CityExplore />
-            <AddCity />
+            <TestRealtimeFirebase/>
            {/* <AddCityTripPlaces/> */}
           </div>
         );

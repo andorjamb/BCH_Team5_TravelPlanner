@@ -16,10 +16,21 @@
 * Currency conversion 
 
 
-### Additional Npm 
+### Development Notes: 
+
+#### Additional NPM dependencies
 
 <ul>
 <li>npm install --save react-google-button : for the google button</li>
 <li>npm install react-router-dom : Allow navigation between Web pages in our app</li>
 <li>npm install firebase : load firebase database package</li>
 </ul>
+
+#### Running the Application
+
+* API fetches are dependent on the backend express server. Start it first by navigating to the server folder and running: 
+```npm server```
+The server should be available on localhost:8080.
+Then from the application root, start the client:
+```npm start```
+

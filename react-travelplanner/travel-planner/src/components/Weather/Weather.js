@@ -1,37 +1,50 @@
 
-import React from 'react';
+import React, { Component } from 'react';
 import './Weather.css'
-import {
+/* import {
     collection,
     get,
     getDocs,
-    doc,
-    getFirestore,
-} from "@firebase/firestore";
-const APIKey = process.env.REACT_APP_WEATHER_API_KEY;
-/*
+    doc
+} from "firebase/firestore";
+import { db } from '../../FireBaseInit'
+const APIKey = process.env.REACT_APP_WEATHER_API_KEY; */
 
-const db = getFirestore();
-
-const citiesSnapshot = db.collection('cities').get;
-citiesSnapshot.forEach((doc) => { console.log(doc.id) });*/
-/**`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${city}/next5days?key=${APIKey}` */
-
-
-const city = 'helsinki';
-fetch('https://en.wikipedia.org/w/api.php?action=query&prop=extracts&exchars=400&explaintext&titles=Helsinki&format=json')
+//const city = 'helsinki';
+/* fetch('https://en.wikipedia.org/w/api.php?action=query&prop=extracts&exchars=400&explaintext&titles=Helsinki&format=json')
     .then((response) => response.json())
-    .then((data) => console.log(data));
+    .then((data) => console.log(data)); */
 
 
-const Weather = () => {
+class Weather extends Component {
+    state = {
+        weather: '',
+        isLoading: true,
+        cityName: ''
+    }
+    componentDidMount = async () => {
+        /*    const citiesSnapshot = await getDocs(collection(db, "cities"));
+           citiesSnapshot.forEach((doc) => { console.log(doc.id) }); */
 
+        fetch(`http://localhost:8080/weather/{this.state.cityName}`)
+            .then((response) => response.json())
+            .then((data) => { this.setState({ weather: data }); console.log(data) })
+            .catch(error => console.log(error));
+    }
 
-    return (
-        <div className="weather">
-            <p>some writing here</p>
-        </div>
-    );
-};
+    render() {
 
-export default Weather; 
+        if (this.state.isLoading === true) {
+            return (
+                <p>Loading....</p>
+            )
+        }
+        return (
+            <div className="weather">
+                <div>{this.state.cityName} {this.state.weather}</div>
+            </div>
+        )
+    }
+
+}
+export default Weather;  

@@ -6,7 +6,7 @@ export const cities = [
     img: "/assets/city-helsinki.jpeg",
     description: "ohh what a lovely city",
     citySites: "Suomenlinna",
-    rating: 5,
+    rating: 3,
   },
   {
     name: "turku",
@@ -20,6 +20,6 @@ export const cities = [
     img: "/assets/city-helsinki.jpeg",
     description: "ohh what a lovely city",
     citySites: "Suomenlinna",
-    rating: 5,
+    rating: 2,
   },
 ];

@@ -30,3 +30,23 @@
 .active {
   color: aqua;
 }
+.trips{
+  color:white;
+  background: green;
+}
+
+.loading { 
+  font-size: 2.5 rem;
+  color: var(--darkblue);
+  text-align: center;
+  padding: 2rem;
+
+}
+
+.cover-img {
+  width: 100%;
+  height: 200px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
