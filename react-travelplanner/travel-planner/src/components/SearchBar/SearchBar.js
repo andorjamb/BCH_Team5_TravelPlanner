@@ -9,7 +9,7 @@ const SearchBar = (props) => {
         placeholder="Search"
         aria-label="Search"
         aria-describedby="search-addon"
-        onChange={props.searchHandler}
+        onChange={props.searchEvent}
       />
       <button type="button" className="btn btn-outline-primary">
         search

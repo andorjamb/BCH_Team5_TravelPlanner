@@ -24,10 +24,7 @@ class ExploreView extends Component {
     user:'Username'
   };
 
-  searchHandler = (e) => {
-    this.setState({ search: e.target.value });
-    
-  };
+
 
   componentDidUpdate(){
     
@@ -53,10 +50,10 @@ class ExploreView extends Component {
             <div className="explore-intro">
               <p>Ready for an adventure?</p>
             </div>
-            <SearchBar searchEvent={this.searchHandler} />
+            
 
             <CityExplore />
-            <TestRealtimeFirebase/>
+            {/* <TestRealtimeFirebase/> */}
            {/* <AddCityTripPlaces/> */}
           </div>
         );
