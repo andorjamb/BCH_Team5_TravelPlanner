@@ -103,18 +103,20 @@ class PlannerView extends Component {
   };
 
   render() {
+
     // search by both sight name and city name
     const sightFilter = this.state.sights.filter((sight) => {
       return (
-        sight.sightName
-          .toLowerCase()
-          .includes(this.state.search.toLowerCase()) ||
-        sight.cityName.toLowerCase().includes(this.state.search.toLowerCase())
-      );
-    });
+
+        sight.sightName?.toLowerCase().includes(this.state.search.toLowerCase()) ||
+        sight.cityName?.toLowerCase().includes(this.state.search.toLowerCase())
+      )
+    }
+    );
+
 
     const renderSightList = sightFilter.map((sight) => (
-      <SavedPlaces
+      < SavedPlaces
         key={sight.sightName}
         sightName={sight.sightName}
         cityName={sight.cityName}
@@ -148,7 +150,7 @@ class PlannerView extends Component {
               </div>
 
             </div>
-           
+
           </div>
 
           <div className="plan-content">

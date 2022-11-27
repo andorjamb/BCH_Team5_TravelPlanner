@@ -7,6 +7,7 @@ import PlannerView from "./views/Planner/PlannerView";
 import ProfileView from "./views/Profile/ProfileView";
 import Account from "./components/Account/Account";
 import SignIn from "./components/SignIn/SignIn";
+import NotFound from "./views/NotFound/NotFound"
 import { AuthContextProvider } from "./components/Context/Context"
 import { Route, Routes } from 'react-router-dom';
 import Experiments from './views/Experiments/Experiments';
@@ -28,11 +29,12 @@ const App = () => {
           <Route path='/planner' element={<PlannerView />}>Planner</Route>
           <Route path='/profile/signin' element={<SignIn />}>SignIn</Route>
           <Route path='/profile' element={<ProfileView />}></Route>
-           {/* require sidned in user  */}
+          {/* require sidned in user  */}
           <Route path='/profile/account' element={<SecureAccess>
-          <Account /></SecureAccess>}></Route>
-          
+            <Account /></SecureAccess>}></Route>
+
           <Route path='/experiments' element={<Experiments />}></Route>
+          <Route path='*' element={<NotFound />}></Route>
         </Routes>
       </AuthContextProvider>
 

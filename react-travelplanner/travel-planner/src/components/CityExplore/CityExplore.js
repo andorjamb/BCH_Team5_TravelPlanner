@@ -14,48 +14,33 @@ import { async } from "@firebase/util";
 const citiesRef = collection(db, "cities");
 //const sightsRef = collection(db, "sights");
 
-function makeNewRand() { return (Math.floor(Math.random() * 10)) };
-let randNumbers = [];
-
-
+function makeNewRand(factor) { return (Math.floor(Math.random() * factor)) };
 
 /**///////////////////////////////////////////////// */
 
 class CityExplore extends Component {
   state = {
     //sights: [];
-    currentRand: undefined,
-    newRand: undefined,
-    displayCities: [],
     cityData: [],
-    searchValue:'',
+    searchValue: '',
+    loading: false,
+    displayCities: [],
   }
 
   cityData = [];
-
-  randArray = () => {
-    while (randNumbers.length < 4) {
-      let newRandom = makeNewRand();
-      if (randNumbers.includes(newRandom)) { makeNewRand(); }
-      else {
-        this.setState({ currentRand: newRandom });
-        randNumbers.push(newRandom);
-      }
-    }
-  }
-
-  /*   randomCities = () => {
-      let displayCities = [];
-      if (randNumbers !== []) {
-        for (var i of randNumbers) {
-          displayCities.push(this.state.cityData[i])
-        }
-  
-      } console.log(displayCities);
-      this.setState({ displayCities: displayCities });
-    } */
+  displayCities = [];
 
   //const sightsDocs = await getDocs(query(sightsRef, where("cityName", "==", city)));
+
+  getRandArray() {
+    let randNumbers = [];
+    while (randNumbers.length < 4) {
+      let newRandom = makeNewRand(11);
+      if (randNumbers.includes(newRandom)) { makeNewRand(11) }
+      else { randNumbers.push(newRandom); }
+    }
+    return randNumbers;
+  }
 
   ratingStars = (r) => {
     let grade = '';
@@ -76,56 +61,54 @@ class CityExplore extends Component {
       localStorage.setItem('city', JSON.stringify(city));
     } */
 
+  searchHandler = (e) => {
+    this.setState({ searchValue: e.target.value });
+    console.log(this.state.searchValue);
+    let cityFilter = this.state.cityData.filter(city =>
+      city.cityName.includes(this.state.searchValue.trim().toLowerCase())
+    );
+    this.setState({ displayCities: cityFilter })
+
+  };
 
   componentDidMount = async () => {
+    this.setState({ loading: true });
     const querySnapshot = await getDocs(collection(db, "cities"));
     querySnapshot.docs.forEach((city) => {
       this.cityData.push(city.data());
     });
-    this.setState({
-      cityData: this.cityData,
-    });
+    this.setState({ cityData: this.cityData });
+    this.setState({ loading: false });
+    let randNumbers = this.getRandArray();
+    this.displayCities = this.cityData.filter((city) => randNumbers.includes(this.cityData.indexOf(city)));
+    this.setState({ displayCities: this.displayCities });
 
-    this.setState({ currentRand: makeNewRand() });
-    this.randArray();
-    // this.randomCities();
-
-  };
-
-  searchHandler = (e) => {
-    this.setState({ searchValue: e.target.value });
-    
-  };
-
-  /*  let url = 'http://localhost:8080/cities/descriptions/helsinki';
-   let opts = {'mode': 'no-cors'}
-   fetch(url, opts)
-   .then((response) => {
-     console.log(response)}); }*/
+  }
 
   render() {
-   const cityArray =this.state.cityData.filter(city => 
-    city.cityName?.trim().toUpperCase().includes(this.state.searchValue.trim().toUpperCase())
-    ).map((city) => {
-    return (<CityContainer
-      // planCityTrip={() => this.handleplanCityTrip(city.cityName)}
-      key={city.cityName}
-      cityName={city.cityName.charAt(0).toUpperCase() + city.cityName.substring(1)}
-      description={city.description}
-      rating={this.ratingStars(city.rating)}
-      searchresult ='Search result'
-    />
-    );
-  });
+
+    let cityArray = this.state.displayCities.map((city) => {
+      return (<CityContainer
+        //planCityTrip={() => this.handleplanCityTrip(city.cityName)}
+        key={city.cityName}
+        cityName={city.cityName.charAt(0).toUpperCase() + city.cityName.substring(1)}
+        //description={city.description}
+        rating={this.ratingStars(city.rating)}
+        searchresult='Search result'
+      />
+      );
+    });
+
 
     return (
       <>
-      <SearchBar searchEvent={this.searchHandler} />
+        <SearchBar searchEvent={this.searchHandler} />
         <h2>Top Places</h2>
-        <div className="city-explore">{cityArray.length > 0 ? cityArray : <h2>Your search did return any City, Please try again</h2>}</div>
+        <div className="city-explore">{cityArray}</div>
       </>
     );
   }
+
 }
 
 export default CityExplore;
