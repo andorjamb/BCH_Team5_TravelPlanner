@@ -21,7 +21,7 @@ let yourTrips = [];
 const Account = () => {
   const { logOut, user } = UserAuth();
   const owner = user ? user.uid : 'unknown';
-  const ref = collection(db, 'myplan')
+  const ref = collection(db, 'usersTrip')
 
   const [Trips, setTrips] = useState([]);
   const [userTrips, setUserTrips] = useState([]);
@@ -52,7 +52,7 @@ const Account = () => {
     const q = query(
       ref,
       //  where('owner', '==', currentUserId),
-      where('title', '==', 'School1') // does not need index
+      where('trips', '==', 'trips1') // does not need index
       //  where('score', '<=', 100) // needs index  https://firebase.google.com/docs/firestore/query-data/indexing?authuser=1&hl=en
       // orderBy('score', 'asc'), // be aware of limitations: https://firebase.google.com/docs/firestore/query-data/order-limit-data#limitations
       // limit(1)
@@ -67,7 +67,7 @@ const Account = () => {
       });
       setTrips(items);
       setLoading(false);
-      console.log(items, items.tripdate?.nanoseconds)
+      // console.log(items, items.tripdate?.nanoseconds)
 
       setUserTrips(yourTrips);
 
@@ -111,7 +111,7 @@ const Account = () => {
             TotalTrip={mytrip.length}
             key={mytrip.transactionID}
             name={mytrip.tripname}
-            date={`${new Date(mytrip.tripdate?.seconds * 1000 + mytrip.tripdate?.nanoseconds / 1000000)}`}
+            date={ `${new Date(mytrip.tripdate?.seconds * 1000 + mytrip.tripdate?.nanoseconds/1000000)}`}
             sights={mytrip.sightname.length}
             sightLists={mytrip.sightname?.map((sight) => { return <ol key={Math.random()}><li key={sight}>{sight}</li></ol> })} >
             {console.log(mytrip.sightname)}
