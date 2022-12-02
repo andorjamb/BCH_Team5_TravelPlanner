@@ -13,6 +13,7 @@ import SignIn from "./components/SignIn/SignIn";
 import NotFound from "./views/NotFound/NotFound"
 import Experiments from './views/Experiments/Experiments';
 import SecureAccess from "./adminActions/SecureAccess";
+import ThankYou from "./components/ThankYou/ThankYou";
 
 import "./App.css";
 
@@ -31,7 +32,9 @@ const App = () => {
           <Route path='/planner' element={<PlannerView />}>Planner</Route>
           <Route path='/profile/signin' element={<SignIn />}>SignIn</Route>
           <Route path='/profile' element={<ProfileView />}></Route>
-          {/* require signed in user  */}
+          <Route path='/thankyou' element={<ThankYou />}></Route>
+          {/* require sidned in user  */}
+
           <Route path='/profile/account' element={<SecureAccess>
           <Account /></SecureAccess>}></Route>
           <Route path='/:cityname' element={<CityView />}></Route>

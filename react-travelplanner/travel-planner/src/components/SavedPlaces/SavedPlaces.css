@@ -10,14 +10,15 @@
     color: black;
     height: 100px;
 }
-
 .saved-places img {
     width: 50%;
     height: 100%;
     border-radius: 20px 0 0 20px;
 }
 .saved-places-name {
+    text-align: left;
     width: 70%;
+    font-size: 20px;
 }
 .add {
     padding-right: 15px;
