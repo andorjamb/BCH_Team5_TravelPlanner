@@ -1,0 +1,15 @@
+.thankyou {
+  text-align: center;
+  max-width: 800px;
+  min-height: calc(100vh - 85px);
+  color: #139DEA;
+}
+.thankyou h2 {
+  font-size: 2em;
+}
+.thankyou p {
+  font-size: 1.2em;
+}
+.thankyou img {
+  height: 400px;
+}

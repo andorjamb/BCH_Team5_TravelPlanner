@@ -1,14 +1,12 @@
 * {
-  list-style-type: none;
-  text-decoration: none;
   max-width: 800px;
 }
 
 .planner-view {
   text-align: center;
 }
-
-h1, h2 {
+.planner-view h1,
+h2 {
   color: black;
   padding: 10px 0;
 }
@@ -22,7 +20,6 @@ h1, h2 {
   background-position: left;
   object-fit: cover;
 }
-
 
 .plan-title {
   display: flex;
@@ -49,14 +46,11 @@ h1, h2 {
   width: 60%;
   text-align: left;
 }
+
 .plan-info div {
   display: flex;
   align-items: center;
   gap: 15px;
-}
-.edit-button {
-  width: 10%;
-  cursor: pointer;
 }
 
 .plan-content {
@@ -80,11 +74,11 @@ h1, h2 {
 .plan-button {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;  padding-top: 10px;
-
+  justify-content: space-around;
+  padding-top: 10px;
 }
-.plan-button button{
-  width: 30%;
+.plan-button button {
+  width: 200px;
   border-radius: 20px;
   font-size: 24px;
   padding: 5px;
@@ -95,4 +89,6 @@ h1, h2 {
 }
 .delete {
   background-color: red;
+  width: 100%;
+  width: 200px;
 }
