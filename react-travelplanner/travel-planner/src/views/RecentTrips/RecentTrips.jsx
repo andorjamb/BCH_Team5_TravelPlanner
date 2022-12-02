@@ -10,7 +10,7 @@ const RecentTrips = (props) => {
       </div>
       <div className="trip-details">
         <h3 className="trip-name">{props.name}</h3>
-        <ol className="sights-list">{props.sightsList}</ol>
+        <ol className="sights-list">{props.sightLists}</ol>
         <p>visited : {props.date}</p>
         <div><img src={`4.svg`} alt={props.rating} /></div>
       </div>
