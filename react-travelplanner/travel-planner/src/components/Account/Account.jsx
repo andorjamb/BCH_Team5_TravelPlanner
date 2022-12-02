@@ -16,7 +16,7 @@ import WelcomeUser from "../../components/WelcomeUser/WelcomeUser"
 import "./Account.css";
 
 let newarray = [];
-const items = [];
+let items = [];
 let yourTrips = [];
 const Account = () => {
   const { logOut, user } = UserAuth();
@@ -24,11 +24,8 @@ const Account = () => {
   const ref = collection(db, 'usersTrip')
 
   const [Trips, setTrips] = useState([]);
-  const [userTrips, setUserTrips] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  const myTrips = trips;
-  //const [myTrips, setMyTrips] = useState({ mytrips });
   const navigate = useNavigate();
 
   const handleSignOut = async () => {
@@ -41,7 +38,6 @@ const Account = () => {
   };
 
 
-
   useEffect(() => {
 
     if (user == null) {
@@ -52,25 +48,20 @@ const Account = () => {
     const q = query(
       ref,
       //  where('owner', '==', currentUserId),
-      where('trips', '==', 'trips1') // does not need index
-      //  where('score', '<=', 100) // needs index  https://firebase.google.com/docs/firestore/query-data/indexing?authuser=1&hl=en
-      // orderBy('score', 'asc'), // be aware of limitations: https://firebase.google.com/docs/firestore/query-data/order-limit-data#limitations
+      where('userID', '==', `${owner}`) // does not need index
+      //  where('trips', '<=', 100) // needs index  https://firebase.google.com/docs/firestore/query-data/indexing?authuser=1&hl=en
+      // orderBy('tripDate', 'asc'), // be aware of limitations: https://firebase.google.com/docs/firestore/query-data/order-limit-data#limitations
       // limit(1)
     );
-
     setLoading(true);
-    // const unsub = onSnapshot(q, (querySnapshot) => {     to be used when query is present
-    const unsub = onSnapshot(ref, (querySnapshot) => {
+     const unsub = onSnapshot(q, (querySnapshot) => {   //  to be used when query is present
+   // const unsub = onSnapshot(ref, (querySnapshot) => {
 
       querySnapshot.forEach((doc) => {
         items.push(doc.data());
       });
       setTrips(items);
       setLoading(false);
-      // console.log(items, items.tripdate?.nanoseconds)
-
-      setUserTrips(yourTrips);
-
 
     });
     return () => {
@@ -80,16 +71,8 @@ const Account = () => {
     // eslint-disable-next-line
   }, []);
 
-
-  const convertDate = (date) => {
-    // whatever formatting you want to do can be done here
-    var d = date.toString()
-    return d.substr(0, 21);
-  }
-
   function newdata() {
-    newarray = items.filter((item) => item.userId === owner)
-    return newarray.length;
+    items=[];
   }
 
 
@@ -102,23 +85,23 @@ const Account = () => {
 
   const CurrentUserTrips = () => {
     return (
-      items.filter((item) => item.userId === owner).map((mytrip) => (
+      Trips.map((mytrip) => (
         <div key={Math.random()}>
-
-          {/* {console.log(new Date(mytrip.tripdate.seconds * 1000 + mytrip.tripdate.nanoseconds/1000000))} */}
+       
           <RecentTrips
 
             TotalTrip={mytrip.length}
             key={mytrip.transactionID}
-            name={mytrip.tripname}
-            date={ `${new Date(mytrip.tripdate?.seconds * 1000 + mytrip.tripdate?.nanoseconds/1000000)}`}
-            sights={mytrip.sightname.length}
-            sightLists={mytrip.sightname?.map((sight) => { return <ol key={Math.random()}><li key={sight}>{sight}</li></ol> })} >
-            {console.log(mytrip.sightname)}
+            name={mytrip.tripName}
+            date= {mytrip.tripDate}// { `${new Date(mytrip.tripdate?.seconds * 1000 + mytrip.tripdate?.nanoseconds/1000000)}`}
+            sights={mytrip.sights.length}
+            sightLists={mytrip.sights?.map((sight) => ( 
+               <ol key={Math.random()}>
+              <li key={sight}>{sight.sightName} in : {sight.cityName}</li>
+              </ol> ))} >
+            {/* {console.log(mytrip.sightname)} */}
           </RecentTrips>
           <div key={mytrip.sightname}>
-
-
 
           </div>
         </div>
@@ -135,7 +118,7 @@ const Account = () => {
         <div className="next-trips">
 
           {loading ? <h4>Loading Content.... </h4>
-            : <div> <h3>You have  {newdata()} Trips Planned</h3>
+            : <div> <h3>You have  {Trips.length} Trips Planned</h3>
               <div>
                 {CurrentUserTrips()}
               </div>
