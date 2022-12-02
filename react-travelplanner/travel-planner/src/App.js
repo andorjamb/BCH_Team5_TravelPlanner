@@ -19,7 +19,6 @@ import "./App.css";
 
 // const {user} = UserAuth();
 
-
 const App = () => {
   return (
     <div className="App">
@@ -46,7 +45,6 @@ const App = () => {
 
     </div>
   )
-
 }
 
 export default App;

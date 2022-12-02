@@ -1,0 +1,57 @@
+@import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,FILL@1");
+
+.city-view {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 30px;
+  padding: 1rem;
+}
+
+.favorite {
+    position: absolute;
+    font-family: 'Material Symbols Outlined';
+}
+
+.favorite.red {
+    color: red;
+}
+
+.top-container {
+  display: flex;
+}
+.description, .map{
+    max-width: 400px;
+    height: 600px;
+    border: 2px solid grey;
+    background-color: rgb(217,217,217);
+    flex: 1;
+}
+
+.sight-gallery {
+  display: flex;
+  justify-content: center;
+  flex-wrap: nowrap;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  overflow-x: scroll;
+}
+.sight-gallery>img:focus {
+    transform: scale(1.2);
+}
+.gallery-card {
+  height: 600px;
+  width:90%;
+  border-radius: 30px;
+  border: 3px solid green;
+  flex: 100%;
+}
+/* 
+@media screen and (min-width: 800px) {
+  .sight-gallery {
+    flex-wrap: wrap;
+    scroll-snap-type: y mandatory;
+    overflow-y: scroll;
+    height: 450px;
+  }
+} */
