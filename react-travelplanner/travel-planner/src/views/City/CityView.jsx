@@ -21,37 +21,34 @@ const filteredSights =[];
 const [loading, setLoading] = useState(false);
 const [citySights, setCitySights] = useState([]);
 
-    async function getData() { 
-        await getDocs(collection(db, "sights"))
+async function getData() { 
+    await getDocs(collection(db, "sights"))
     .then((snapshot)=>snapshot.docs.forEach(
-        (sight) => {
-            if (sight.data().cityName == cityname){
-                console.log('found one');
-                console.log(sight.data());
-                filteredSights.push(sight.data());
-                setCitySights([...citySights, ...filteredSights]);
+    (sight) => {
+        if (sight.data().cityName == cityname){
+            filteredSights.push(sight.data());
+            setCitySights(filteredSights);
    }
    }))
 
 };
 
+function handleClick(){
+    console.log('image clicked');
+}
 
+function favoriteClickHandler(){
+    console.log('favorite clicked');
+}
 useEffect(()=>{
     setLoading(true);
     if (cityname) {
      getData();
-    
 }  
-
-   // return <div className="favorite">favorite</div>
-
+   // return 
 setLoading(false);
-
  },[]);
 
-/* style={{ 
-                    backgroundImage: `url("https://via.placeholder.com/500")` 
-                  }} */
     return (
         
         <div className="city-view">
@@ -60,16 +57,19 @@ setLoading(false);
             <div className="description">
                 <h4>Description</h4>
             </div>
-            <div className="map"></div>
+            <div className="map"><h4>(map)</h4></div>
 </section>
+         <div className="weather">place holder for weather widget</div>
          {/*    < Weather 
             cityname = {cityname}/> */}
            {/*  */}
             <section className="sight-gallery">
               { citySights.map((sight)=>(
-                <div className="gallery-card">
-                    <h4>{sight.sightName}</h4>
-                    
+                <div className="gallery-card" onClick={handleClick} style={{ 
+                    backgroundImage: `url('https://source.unsplash.com/500x400/?${sight.sightName}')` 
+                  }}>
+                    <h3>{sight.sightName}</h3>
+                    <div className="favorite" onClick={favoriteClickHandler}>favorite</div>
                 </div>
             
               )) } 
