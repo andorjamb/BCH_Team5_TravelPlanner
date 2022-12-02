@@ -1,6 +1,9 @@
 import React from "react";
-import "./App.css";
+import { Route, Routes, useParams } from 'react-router-dom';
+import { AuthContextProvider } from "./components/Context/Context"
+
 import ExploreView from "./views/Explore/ExploreView";
+import CityView from "./views/City/CityView";
 import NavBar from "./components/NavBar/NavBar";
 import FlightView from "./views/Flight/FlightView";
 import PlannerView from "./views/Planner/PlannerView";
@@ -8,11 +11,10 @@ import ProfileView from "./views/Profile/ProfileView";
 import Account from "./components/Account/Account";
 import SignIn from "./components/SignIn/SignIn";
 import NotFound from "./views/NotFound/NotFound"
-import { AuthContextProvider } from "./components/Context/Context"
-import { Route, Routes } from 'react-router-dom';
 import Experiments from './views/Experiments/Experiments';
 import SecureAccess from "./adminActions/SecureAccess";
 
+import "./App.css";
 
 // const {user} = UserAuth();
 
@@ -29,9 +31,10 @@ const App = () => {
           <Route path='/planner' element={<PlannerView />}>Planner</Route>
           <Route path='/profile/signin' element={<SignIn />}>SignIn</Route>
           <Route path='/profile' element={<ProfileView />}></Route>
-          {/* require sidned in user  */}
+          {/* require signed in user  */}
           <Route path='/profile/account' element={<SecureAccess>
-            <Account /></SecureAccess>}></Route>
+          <Account /></SecureAccess>}></Route>
+          <Route path='/:cityname' element={<CityView />}></Route>
 
           <Route path='/experiments' element={<Experiments />}></Route>
           <Route path='*' element={<NotFound />}></Route>

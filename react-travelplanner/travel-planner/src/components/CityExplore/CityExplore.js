@@ -1,8 +1,5 @@
 import React, { Component } from "react";
-import SearchBar from "../SearchBar/SearchBar";
-import "./CityExplore.css";
-import CityContainer from "../CityContainer/CityContainer";
-//import { cities } from "../../data/cities.js";
+import { Link } from 'react-router-dom';
 import { db } from '../../FireBaseInit';
 import {
   addDoc,
@@ -10,6 +7,11 @@ import {
   doc, query, orderBy, limit, deleteDoc, setDoc, updateDoc
 } from "@firebase/firestore";
 import { async } from "@firebase/util";
+
+import SearchBar from "../SearchBar/SearchBar";
+import CityContainer from "../CityContainer/CityContainer";
+
+import "./CityExplore.css";
 
 const citiesRef = collection(db, "cities");
 //const sightsRef = collection(db, "sights");
@@ -52,15 +54,15 @@ class CityExplore extends Component {
     return (grade);
   }
 
-  /*   handleplanCityTrip = (cityname) => {
+  handleplanCityTrip = (cityname) => {
       console.log(cityname);
       localStorage.clear();
       let city = {
         "SelectedCity": cityname
       }
       localStorage.setItem('city', JSON.stringify(city));
-    } */
-
+    } 
+ 
   searchHandler = (e) => {
     this.setState({ searchValue: e.target.value });
     console.log(this.state.searchValue);
@@ -88,14 +90,14 @@ class CityExplore extends Component {
   render() {
 
     let cityArray = this.state.displayCities.map((city) => {
-      return (<CityContainer
-        //planCityTrip={() => this.handleplanCityTrip(city.cityName)}
+      return (   <Link to={`/${city.cityName}`}><CityContainer
+        planCityTrip={() => this.handleplanCityTrip(city.cityName)}
         key={city.cityName}
         cityName={city.cityName.charAt(0).toUpperCase() + city.cityName.substring(1)}
         //description={city.description}
         rating={this.ratingStars(city.rating)}
         searchresult='Search result'
-      />
+      /></Link>
       );
     });
 
@@ -103,8 +105,10 @@ class CityExplore extends Component {
     return (
       <>
         <SearchBar searchEvent={this.searchHandler} />
-        <h2>Top Places</h2>
-        <div className="city-explore">{cityArray}</div>
+  
+        <div className="city-explore">
+                <h2>Top Places</h2>
+          {cityArray}</div>
       </>
     );
   }
