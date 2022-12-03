@@ -19,6 +19,7 @@
   --font: "Poppins", "Courier New", Courier, monospace;
   --app-width: 800px;
   margin: auto;
+  margin-bottom: 11vh;
   background-color: rgb(217, 217, 217);
 }
 

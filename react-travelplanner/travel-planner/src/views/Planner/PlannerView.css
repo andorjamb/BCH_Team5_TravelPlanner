@@ -84,13 +84,26 @@ h2 {
   color: white;
 }
 .save {
-  background-color: green;
+background-color: green;
+}
+
+.save:active {
+  background-color: rgb(16, 189, 16);
 }
 .delete {
-  background-color: red;
+  background-color: rgb(129, 19, 19);
   width: 100%;
   width: 200px;
 }
+
+.delete:active {
+  background-color: red;
+}
+
+#send:hover {
+  background-color: green;
+}
+
 
 @media screen and (max-width: 600px) {
 

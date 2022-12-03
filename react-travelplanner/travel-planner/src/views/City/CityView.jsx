@@ -7,7 +7,7 @@ import {
 } from "firebase/firestore";
 
 import Weather from '../../components/Weather/Weather';
-import CityContainer from '../../components/CityContainer/CityContainer';
+import Rating from '../../components/Rating/Rating';
 import { async } from '@firebase/util';
 
 //const city = 'helsinki';
@@ -25,6 +25,7 @@ const CityView = () => {
   //const q = query(collection(db, "sights"), where("cityName", "==", "helsinki"));
   const [loading, setLoading] = useState(false);
   const [citySights, setCitySights] = useState([]);
+  const [rating, setRating] = useState();
 
   async function getData() {
     await getDocs(collection(db, "sights"))
@@ -63,7 +64,15 @@ const CityView = () => {
   return (
 
     <div className="city-view">
+      <div className="city-img" style={{
+            backgroundImage: `url('https://source.unsplash.com/500x400/?${cityname}')`}}>
+        {/* <img
+          src={`https://source.unsplash.com/500x400/?${cityname}`}
+          alt="city img"
+        /> */}
+      </div>
       <h3>{cityname.charAt(0).toUpperCase() + cityname.substring(1)}</h3>
+      <Rating rating={cityname.rating}/>
       <section className="top-container">
         <div className="description">
           <h4>Description</h4>
