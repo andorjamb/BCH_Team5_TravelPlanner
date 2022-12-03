@@ -1,82 +1,95 @@
-import React, {useState, useEffect} from 'react';
-import {useParams} from'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import { db } from '../../FireBaseInit';
 import {
   collection, getDocs, onSnapshot, where, setLoading,
-    doc, query
-  } from "firebase/firestore";
+  doc, query
+} from "firebase/firestore";
 
 import Weather from '../../components/Weather/Weather';
 import CityContainer from '../../components/CityContainer/CityContainer';
 import { async } from '@firebase/util';
 
+//const city = 'helsinki';
+/* fetch('https://en.wikipedia.org/w/api.php?action=query&prop=extracts&exchars=400&explaintext&titles=Helsinki&format=json')
+    .then((response) => response.json())
+    .then((data) => console.log(data)); */
+
 import './CityView.css';
 
 const CityView = () => {
 
-let {cityname} = useParams();
-const filteredSights =[];
-//const sightsRef = collection(db, "sights");
-//const q = query(collection(db, "sights"), where("cityName", "==", "helsinki"));
-const [loading, setLoading] = useState(false);
-const [citySights, setCitySights] = useState([]);
+  let { cityname } = useParams();
+  const filteredSights = [];
+  //const sightsRef = collection(db, "sights");
+  //const q = query(collection(db, "sights"), where("cityName", "==", "helsinki"));
+  const [loading, setLoading] = useState(false);
+  const [citySights, setCitySights] = useState([]);
 
-async function getData() { 
+  async function getData() {
     await getDocs(collection(db, "sights"))
-    .then((snapshot)=>snapshot.docs.forEach(
-    (sight) => {
-        if (sight.data().cityName == cityname){
+      .then((snapshot) => snapshot.docs.forEach(
+        (sight) => {
+          if (sight.data().cityName.toLowerCase() === cityname) {
             filteredSights.push(sight.data());
             setCitySights(filteredSights);
-   }
-   }))
+          }
+        }))
 
-};
+  };
 
-function handleClick(){
+  function handleClick() {
     console.log('image clicked');
-}
+  }
 
-function favoriteClickHandler(){
+  function favoriteClickHandler(e) {
     console.log('favorite clicked');
-}
-useEffect(()=>{
+    try {
+      localStorage.setItem("savedPlaces", JSON.stringify(e.target.id))
+    }
+    catch {
+      console.log('Failed to set storage');
+    }
+  }
+  useEffect(() => {
     setLoading(true);
     if (cityname) {
-     getData();
-}  
-   // return 
-setLoading(false);
- },[]);
+      getData();
+    }
+    // return 
+    setLoading(false);
+  }, []);
 
-    return (
-        
-        <div className="city-view">
-            <h3>{cityname.charAt(0).toUpperCase() + cityname.substring(1)}</h3>
-            <section className="top-container">
-            <div className="description">
-                <h4>Description</h4>
-            </div>
-            <div className="map"><h4>(map)</h4></div>
-</section>
-         <div className="weather">place holder for weather widget</div>
-         {/*    < Weather 
-            cityname = {cityname}/> */}
-           {/*  */}
-            <section className="sight-gallery">
-              { citySights.map((sight)=>(
-                <div className="gallery-card" onClick={handleClick} style={{ 
-                    backgroundImage: `url('https://source.unsplash.com/500x400/?${sight.sightName}')` 
-                  }}>
-                    <h3>{sight.sightName}</h3>
-                    <div className="favorite" onClick={favoriteClickHandler}>favorite</div>
-                </div>
-            
-              )) } 
-               
-            </section>
+  return (
+
+    <div className="city-view">
+      <h3>{cityname.charAt(0).toUpperCase() + cityname.substring(1)}</h3>
+      <section className="top-container">
+        <div className="description">
+          <h4>Description</h4>
         </div>
-    );
+        <div className="map"><h4>(map)</h4></div>
+      </section>
+      <div>
+        < Weather
+          cityName={cityname} />
+
+      </div>
+
+      <section className="sight-gallery">
+        {citySights.map((sight) => (
+          <div className="gallery-card" key="sight.sightName" onClick={handleClick} style={{
+            backgroundImage: `url('https://source.unsplash.com/500x400/?${sight.sightName}')`
+          }}>
+            <h3>{sight.sightName}</h3>
+            <div className="favorite" id="sight.sightName" onClick={() => favoriteClickHandler}>favorite</div>
+          </div>
+
+        ))}
+
+      </section>
+    </div>
+  );
 };
 
 export default CityView;

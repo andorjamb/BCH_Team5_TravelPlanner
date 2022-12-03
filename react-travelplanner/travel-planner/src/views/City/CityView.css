@@ -11,6 +11,7 @@ h4 {
   color: black;
   text-transform: uppercase;
 }
+
 .city-view {
   box-sizing: border-box;
   display: flex;
@@ -21,38 +22,42 @@ h4 {
 }
 
 .favorite {
-    position: absolute;
-    font-family: 'Material Symbols Outlined';
-    font-size: 2.5rem;
-    right: 1rem;
-    top: 1rem;
+  position: absolute;
+  font-family: 'Material Symbols Outlined';
+  font-size: 2.5rem;
+  right: 1rem;
+  top: 1rem;
+  height: 3rem;
+  width: auto;
 }
 
 .favorite.red {
-    color: red;
+  color: red;
 }
 
 .top-container {
   display: flex;
 }
+
 .description {
-    max-width: 400px;
-    height: 30vh;
-    background-color: rgb(217,217,217);
-    flex: 60%;
-    margin: 1rem;
-    padding: 1rem;
+  max-width: 400px;
+  height: 30vh;
+  background-color: rgb(217, 217, 217);
+  flex: 60%;
+  margin: 1rem;
+  padding: 1rem;
 }
 
 .map {
-flex: 40%;
-margin: 1rem;
-padding: 1rem;
+  flex: 40%;
+  margin: 1rem;
+  padding: 1rem;
 
 
 }
 
-.sight-gallery { /*container element*/
+.sight-gallery {
+  /*container element*/
   display: flex;
   width: 100%;
   justify-content: center;
@@ -69,10 +74,12 @@ padding: 1rem;
 .sight-gallery::-webkit-scrollbar {
   display: none;
 }
-.gallery-card { /*child element*/
+
+.gallery-card {
+  /*child element*/
   position: sticky;
   height: auto;
-  width:80%;
+  width: 80%;
   background-repeat: no-repeat;
   background-size: cover;
   border-radius: 30px;
@@ -84,13 +91,14 @@ padding: 1rem;
 }
 
 .gallery-card>h3 {
-   padding-top: 90%;
-   color: white;
+  padding-top: 90%;
+  color: white;
 }
 
 .sight-gallery>img:focus {
   transform: scale(1.2);
 }
+
 /* 
 @media screen and (min-width: 800px) {
   .sight-gallery {
