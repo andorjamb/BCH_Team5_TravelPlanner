@@ -108,7 +108,9 @@ class CityExplore extends Component {
   
         <div className="city-explore">
                 <h2>Top Places</h2>
-          {cityArray}</div>
+          {cityArray.length > 0 ? cityArray : 
+          <h3>No Record to display Currently, Try searching ir different search name</h3>
+          }</div>
       </>
     );
   }
