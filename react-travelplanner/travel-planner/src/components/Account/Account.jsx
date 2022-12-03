@@ -15,10 +15,10 @@ import NextTripList from "../../views/NextTripList/NextTripList";
 import WelcomeUser from "../../components/WelcomeUser/WelcomeUser"
 import "./Account.css";
 
-let newarray = [];
+
 let items = [];
-let yourTrips = [];
 const Account = () => {
+
   const { logOut, user } = UserAuth();
   const owner = user ? user.uid : 'unknown';
   const ref = collection(db, 'usersTrip')
@@ -71,7 +71,7 @@ const Account = () => {
     // eslint-disable-next-line
   }, []);
 
-  function newdata() {
+  const newdata = () => {
     items=[];
   }
 
