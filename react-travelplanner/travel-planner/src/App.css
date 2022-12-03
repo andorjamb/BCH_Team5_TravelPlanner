@@ -1,9 +1,9 @@
 .App {
   text-align: center;
-  max-width: 800px;
+  max-width: var(--app-width);
   margin: auto;
 }
-
+/* 
 .nav {
   position: fixed;
   bottom: 0;
@@ -29,7 +29,7 @@
 }
 .active {
   color: aqua;
-}
+} */
 .trips{
   color:white;
   background: green;

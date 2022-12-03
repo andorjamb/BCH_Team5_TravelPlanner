@@ -90,11 +90,10 @@ class CityExplore extends Component {
   render() {
 
     let cityArray = this.state.displayCities.map((city) => {
-      return (   <Link to={`/${city.cityName}`}><CityContainer
+      return (   <Link to={`/explore/${city.cityName}`}><CityContainer
         planCityTrip={() => this.handleplanCityTrip(city.cityName)}
         key={city.cityName}
         cityName={city.cityName.charAt(0).toUpperCase() + city.cityName.substring(1)}
-        //description={city.description}
         rating={this.ratingStars(city.rating)}
         searchresult='Search result'
       /></Link>

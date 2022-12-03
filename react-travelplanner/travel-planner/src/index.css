@@ -17,7 +17,7 @@
   --bcred: #60103a;
   --bcpink: #f7e1d3;
   --font: "Poppins", "Courier New", Courier, monospace;
-  max-width: 800px;
+  --app-width: 800px;
   margin: auto;
   background-color: rgb(217, 217, 217);
 }

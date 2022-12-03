@@ -36,7 +36,7 @@ const App = () => {
 
           <Route path='/profile/account' element={<SecureAccess>
           <Account /></SecureAccess>}></Route>
-          <Route path='/:cityname' element={<CityView />}></Route>
+          <Route path='/explore/:cityname' element={<CityView />}></Route>
 
           <Route path='/experiments' element={<Experiments />}></Route>
           <Route path='*' element={<NotFound />}></Route>

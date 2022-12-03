@@ -1,22 +1,27 @@
 .nav {
+  background-color: gray;
   position: fixed;
+  max-width: var(--app-width);
   bottom: 0;
-  left: 0;
   display: grid;
   grid-template-columns: repeat(4, auto);
   align-items: center;
+  height: 10vh;
+  width: inherit;
+  z-index: 2;
+
 }
 
 .nav-item {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background-color: gray;
   text-decoration: none;
-  height: 85px;
-  width: 25vw;
+  width: calc(var(--app-width)/4);
   color: var(--black);
   font-size: 1.3rem;
+  height: 100%;
+ 
 }
 
 .nav-item:hover {

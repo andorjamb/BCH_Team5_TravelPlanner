@@ -1,8 +1,8 @@
 .not-found {
     text-align: center;
-    max-width: 800px;
+    max-width: var(--app-width);
     margin: auto;
-    padding-top: 200px;
+    padding-top: 20vh;
     background-image: url('/public/images/northern-lights.webp');
     background-size: cover;
     background-repeat: no-repeat;

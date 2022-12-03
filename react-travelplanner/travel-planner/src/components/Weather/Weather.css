@@ -1,13 +1,13 @@
 .weather {
     background-color: var(--orange);
     border-radius: 30px;
-    height: 90px;
+    height: 10vh;
     width: 85vw;
     border: none;
     display: flex;
     margin: auto;
     justify-content: space-evenly;
-    line-height: 90px;
+    line-height: 10vh;
 
 
 }
