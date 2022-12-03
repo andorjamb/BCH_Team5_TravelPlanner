@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { GoogleButton } from 'react-google-button';
 import { UserAuth } from "../Context/Context";
 import { useNavigate } from 'react-router-dom';
-import './Signin.css'
+import './SignIn.css'
 
 const SignIn = () => {
   const { googleSignIn, user } = UserAuth();
@@ -25,8 +25,8 @@ const SignIn = () => {
 
   return (
     <div className="signin">
-      <h1 >Sign in</h1>
-      <p>Please sign in to view your profile:</p>
+      <h1>Sign in</h1>
+      <h4>Please sign in to view your profile:</h4>
       <div className="googleButtonContainer">
         <GoogleButton onClick={handleGoogleSignIn} />
       </div>

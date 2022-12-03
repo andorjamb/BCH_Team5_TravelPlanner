@@ -7,7 +7,6 @@
   grid-template-columns: repeat(4, auto);
   align-items: center;
   height: 10vh;
-  width: inherit;
   z-index: 2;
 
 }
@@ -31,4 +30,16 @@
 
 .nav-item.active {
   color: aqua;
+}
+
+
+@media screen and (max-width: 600px) {
+.nav {
+  max-width:420px;
+}
+
+.nav-item {
+  max-width: 25vw;
+  font-size: 1rem;
+}
 }

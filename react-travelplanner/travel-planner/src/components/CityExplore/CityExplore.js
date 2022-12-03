@@ -44,7 +44,7 @@ class CityExplore extends Component {
     return randNumbers;
   }
 
-  ratingStars = (r) => {
+/*   ratingStars = (r) => {
     let grade = '';
     let i = 0;
     while (i < r) {
@@ -52,7 +52,7 @@ class CityExplore extends Component {
       i++;
     }
     return (grade);
-  }
+  } */
 
   handleplanCityTrip = (cityname) => {
       console.log(cityname);
@@ -90,11 +90,12 @@ class CityExplore extends Component {
   render() {
 
     let cityArray = this.state.displayCities.map((city) => {
-      return (   <Link to={`/explore/${city.cityName}`}><CityContainer
+      return (   <Link to={`/explore/${city.cityName}`}>
+        <CityContainer
         planCityTrip={() => this.handleplanCityTrip(city.cityName)}
         key={city.cityName}
         cityName={city.cityName.charAt(0).toUpperCase() + city.cityName.substring(1)}
-        rating={this.ratingStars(city.rating)}
+        rating={city.rating} /* {this.ratingStars(city.rating)} */
         searchresult='Search result'
       /></Link>
       );

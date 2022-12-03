@@ -1,21 +1,21 @@
 import  React from 'react';
+import Rating from '../Rating/Rating'
 import "./CityContainer.css";
 
 
-const CityContainer = (props) => {
+const CityContainer = ({planCityTrip, cityName, rating}) => {
   return (
-    <div className="city-container" onClick={props.planCityTrip}>
+    <div className="city-container" onClick={planCityTrip}>
       <div className="city-img">
         <img
-          src={`https://source.unsplash.com/500x400/?${props.cityName}`}
+          src={`https://source.unsplash.com/500x400/?${cityName}`}
           alt="city img"
         />
       </div>
       <div className="city-info">
-        <p>{props.searchresult}</p>
-        <h3 className="city-name">{props.cityName}</h3>
-        <p>{props.sights}</p>
-        <p id="rating">{props.rating}</p>
+        <h3 className="city-name">{cityName}</h3>
+        {/* <p>{props.sights}</p> */}
+        <Rating rating={rating} />
       </div>
     </div>
   );

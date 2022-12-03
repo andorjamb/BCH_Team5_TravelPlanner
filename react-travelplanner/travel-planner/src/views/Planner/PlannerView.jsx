@@ -149,8 +149,8 @@ class PlannerView extends Component {
         <form onSubmit={this.submitHandler}>
           <div className="plan-title">
             <div className="plan-info">
-              <h1>Plan Details</h1>
-              <label>Trip Name: </label>
+             <h1>Plan Details</h1>
+             <label>Trip Name: </label>
               <input
                 type="text"
                 placeholder={this.state.tripName}

@@ -1,20 +1,17 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
 
 .welcome-user {
   background-color: rgb(245, 245, 245);
   display: flex;
   flex-direction: column;
-  align-items: center;
-
+  align-items: center; 
+  margin: 0;
+  padding: 0;
+ box-sizing: border-box;
 }
 
 cover-img {
   width: 100%;
-  height: 200px;
+  height: 20vh;
   background-image: url("https://source.unsplash.com/500x400/?me");
   background-repeat: no-repeat;
   background-size: cover;
@@ -34,9 +31,8 @@ cover-img {
   margin: 0 20px 0 20px;
   background-color: lightgray;
   border-radius: 30px;
-  padding: 0 40px;
+  padding: 0 30px;
 }
-
 
 img#user-avatar {
   background-color: aqua;
@@ -48,7 +44,6 @@ img#user-avatar {
 .user-noti {
   font-size: 3em;
 }
-
 
 .user-hello {
   font-weight: bold;
@@ -69,6 +64,17 @@ button.logout {
   font-weight: 500;
 }
 
-/* img {
-  display: block;
-} */
+@media screen and (max-width: 600px) {
+  .user-noti {
+    font-size: 2rem;
+  }
+
+  .user-info {
+    height: 25vh;
+    width: 90vw;
+    top: 80px;
+  }
+  .cover-img {
+    height: 10vh;
+  }
+}

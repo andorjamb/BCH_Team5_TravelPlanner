@@ -28,10 +28,8 @@ class ExploreView extends Component {
         );
 
     return <div className="explore-view">{viewShown}</div>
-  
 
-    }
-
+   }
 
 }
 
