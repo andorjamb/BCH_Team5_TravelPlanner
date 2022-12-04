@@ -4,12 +4,12 @@
   margin: auto;
 }
 
-.trips{
-  color:white;
+.trips {
+  color: white;
   background: green;
 }
 
-.loading { 
+.loading {
   font-size: 2.5 rem;
   color: var(--darkblue);
   text-align: center;
@@ -19,8 +19,15 @@
 
 .cover-img {
   width: 100%;
-  height: 200px;
+  height: 30vh;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+}
+
+@media screen and (max-width: 600px) {
+
+  .App {
+    max-width: 100vw;
+  }
 }

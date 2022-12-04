@@ -1,14 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { db } from '../../FireBaseInit';
-import {
-  collection, getDocs, onSnapshot, where, setLoading,
-  doc, query
-} from "firebase/firestore";
+import { collection, getDocs } from "firebase/firestore";
 
 import Weather from '../../components/Weather/Weather';
 import Rating from '../../components/Rating/Rating';
-import { async } from '@firebase/util';
 
 //const city = 'helsinki';
 /* fetch('https://en.wikipedia.org/w/api.php?action=query&prop=extracts&exchars=400&explaintext&titles=Helsinki&format=json')
@@ -65,14 +61,15 @@ const CityView = () => {
 
     <div className="city-view">
       <div className="city-img" style={{
-            backgroundImage: `url('https://source.unsplash.com/500x400/?${cityname}')`}}>
+        backgroundImage: `url('https://source.unsplash.com/500x400/?${cityname}')`
+      }}>
         {/* <img
           src={`https://source.unsplash.com/500x400/?${cityname}`}
           alt="city img"
         /> */}
       </div>
       <h3>{cityname.charAt(0).toUpperCase() + cityname.substring(1)}</h3>
-      <Rating rating={cityname.rating}/>
+      <Rating rating={cityname.rating} />
       <section className="top-container">
         <div className="description">
           <h4>Description</h4>

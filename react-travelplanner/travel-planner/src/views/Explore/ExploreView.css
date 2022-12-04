@@ -1,4 +1,10 @@
-a,li {
+.explore-view {
+  text-align: center;
+  max-width: var(--app-width);
+}
+
+a,
+li {
   list-style-type: none;
   text-decoration: none;
 }
@@ -8,25 +14,22 @@ h1 {
   color: var(--yellow);
 }
 
-.explore-view {
-  text-align: center;
-  max-width: var(--app-width);
-}
 
 main {
-  padding: 0 20px;
+  width: 80%;
   overflow: auto;
+  margin: auto;
 }
 
 .explore-intro {
- background-color: var(--darkblue);
- padding: 1rem;
- height: 20vh;
+  background-color: var(--darkblue);
+  padding: 1rem;
+  height: 25vh;
 }
 
 .explore-intro p {
-  padding-top: 10vh; 
-  color: var(--yellow); 
+  padding-top: 10vh;
+  color: var(--yellow);
   font-weight: bold;
   font-size: 2em;
 }
@@ -34,7 +37,7 @@ main {
 @media screen and (max-width: 600px) {
   .explore-intro p {
     font-size: 1.5rem;
-  
+
   }
 
 }
