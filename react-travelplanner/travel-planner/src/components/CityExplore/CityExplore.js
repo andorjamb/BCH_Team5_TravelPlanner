@@ -4,19 +4,17 @@ import { db } from '../../FireBaseInit';
 import {
   addDoc,
   serverTimestamp, collection, getDocs, onSnapshot, where, setLoading,
-  doc, query, orderBy, limit, deleteDoc, setDoc, updateDoc
+  doc, query
 } from "@firebase/firestore";
-import { async } from "@firebase/util";
+
 import SearchBar from "../SearchBar/SearchBar";
 import CityContainer from "../CityContainer/CityContainer";
 import "./CityExplore.css";
-const citiesRef = collection(db, "cities");
-//const sightsRef = collection(db, "sights");
+
 function makeNewRand(factor) { return (Math.floor(Math.random() * factor)) };
-/**///////////////////////////////////////////////// */
+
 class CityExplore extends Component {
   state = {
-    //sights: [];
     cityData: [],
     searchValue: '',
     loading: false,
@@ -24,7 +22,7 @@ class CityExplore extends Component {
   }
   cityData = [];
   displayCities = [];
-  //const sightsDocs = await getDocs(query(sightsRef, where("cityName", "==", city)));
+
   getRandArray() {
     let randNumbers = [];
     while (randNumbers.length < 4) {
@@ -61,12 +59,11 @@ class CityExplore extends Component {
     let cityArray = this.state.displayCities.map((city) => {
       return (<Link to={`/explore/${city.cityName}`}>
         <CityContainer
-          planCityTrip={() => this.handleplanCityTrip(city.cityName)}
           key={city.cityName}
           cityName={city.cityName.charAt(0).toUpperCase() + city.cityName.substring(1)}
-          rating={city.rating} /* {this.ratingStars(city.rating)} */
+          rating={city.rating}
           searchresult='Search result'
-        /></Link>
+        /> </Link>
       );
     });
     return (
