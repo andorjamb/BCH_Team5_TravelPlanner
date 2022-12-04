@@ -60,13 +60,9 @@ const CityView = () => {
   return (
 
     <div className="city-view">
-      <div className="city-img" style={{
+      <div className="city-view-banner" style={{
         backgroundImage: `url('https://source.unsplash.com/500x400/?${cityname}')`
       }}>
-        {/* <img
-          src={`https://source.unsplash.com/500x400/?${cityname}`}
-          alt="city img"
-        /> */}
       </div>
       <h3>{cityname.charAt(0).toUpperCase() + cityname.substring(1)}</h3>
       <Rating rating={cityname.rating} />
