@@ -11,6 +11,9 @@ h2 {
   color: black;
   padding: 10px 0;
 }
+.planner-view h3, h4 {
+  text-align: left;
+}
 
 .cover-img {
   width: 100%;
