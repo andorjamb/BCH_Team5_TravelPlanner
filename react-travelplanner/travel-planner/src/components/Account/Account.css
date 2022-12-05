@@ -1,45 +1,42 @@
 .account-container {
-    display: flex;
+    display: grid;
     max-width: var(--app-width);
-    margin: auto;
-    flex-direction: column;
+    align-items: center;
     min-height: 1000px;
 }
 
-h3 {
-    color: #60103A;
-    text-align: center;
-}
-
-h2 {
+.account-container h2 {
     color: #60103A;
     text-transform: capitalize;
 }
 
 .trips-container {
+    width: 100%;
     display: grid;
+    grid-gap: 1rem;
     grid-template-areas:
         " title title "
         " next-trips  explore-trips"
         "recent-trips recent-trips"
         "recent-trips recent-trips";
-    grid-gap: 1rem;
-
-    /*  grid-template-rows: 1fr 1fr 1fr 1fr;
-    grid-template-columns: 2fr 1fr; */
 }
 
 .title {
-    width: 100vw;
+    width: 100%;
     height: 60px;
+    grid-area: 'title';
     line-height: 60px;
     padding-top: 15vh;
-    grid-area: 'title';
+    align-items: center;
+}
+
+.title h3 {
+    color: #60103A;
 }
 
 .next-trips {
+    min-height: 50vh;
     grid-area: 'next-trips';
-    min-height: 300px;
 }
 
 .recent-trips {
