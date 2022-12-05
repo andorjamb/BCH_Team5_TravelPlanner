@@ -100,9 +100,9 @@ const Account = () => {
   return (
     <div className="account-container">
       <WelcomeUser />
-      <div className="title"><h3>Your Account</h3></div>
-      <section className="trips-container">
 
+      <section className="trips-container">
+        <div className="title"><h3>Your Account</h3></div>
         <div className="next-trips">
 
           {loading ? <h4>Loading Content.... </h4>
@@ -115,8 +115,7 @@ const Account = () => {
 
         </div>
         <div className="explore-trips">
-          <div><h3>What Next?</h3></div>
-          <h4>Explore more</h4>
+          <h3>What Next?</h3>
           <div className="next-trip-list">
             <h3>total trips </h3>
             <NextTripList name={'happy trips'} />

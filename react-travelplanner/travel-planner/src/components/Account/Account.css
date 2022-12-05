@@ -1,9 +1,9 @@
 .account-container {
     display: flex;
-    max-width: 800px;
+    max-width: var(--app-width);
+    margin: auto;
     flex-direction: column;
     min-height: 1000px;
-    display: grid;
 }
 
 h3 {
@@ -16,38 +16,38 @@ h2 {
     text-transform: capitalize;
 }
 
+.trips-container {
+    display: grid;
+    grid-template-areas:
+        " title title "
+        " next-trips  explore-trips"
+        "recent-trips recent-trips"
+        "recent-trips recent-trips";
+    grid-gap: 1rem;
+
+    /*  grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 2fr 1fr; */
+}
+
 .title {
     width: 100vw;
     height: 60px;
-    padding-top: 50px;
+    line-height: 60px;
+    padding-top: 15vh;
+    grid-area: 'title';
 }
-
-.trips-container {
-    margin-top: 1rem;
-    display: grid;
-    grid-template-areas:
-        "a c "
-        "a c"
-        "b b"
-        "b b";
-    grid-gap: 1rem;
-    padding-top: 100px;
-    grid-template-rows: 1fr 1fr 1fr 1fr;
-    grid-template-columns: 2fr 1fr;
-}
-
 
 .next-trips {
-    grid-area: a;
+    grid-area: 'next-trips';
     min-height: 300px;
 }
 
 .recent-trips {
-    grid-area: b;
+    grid-area: 'recent-trips';
 }
 
 .explore-trips {
-    grid-area: c;
+    grid-area: 'explore-trips';
     margin-top: 35px;
     padding: 0.5rem;
     width: 80%;
