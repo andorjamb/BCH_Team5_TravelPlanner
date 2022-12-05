@@ -1,24 +1,29 @@
-import React, { Component, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./PlannerView.css";
 import { Link, Navigate } from "react-router-dom";
+import { useRef } from "react";
+import { flushSync } from "react-dom";
+
 import { v4 as uuidv4 } from "uuid";
+import { db } from "../../FireBaseInit";
+import { async } from "@firebase/util";
 import {
   collection,
   getDocs,
   addDoc,
   serverTimestamp,
 } from "firebase/firestore";
+import { onAuthStateChanged } from "firebase/auth";
+
 
 import SearchBar from "../../components/SearchBar/SearchBar";
 import SightList from "../../components/SightList/SightList";
 import Trip from "../../components/Trip/Trip";
+import { UserAuth } from "../../components/Context/Context";
 
-import { db } from "../../FireBaseInit";
-import { async } from "@firebase/util";
-import { useRef } from "react";
-import { flushSync } from "react-dom";
 
 const PlannerView = () => {
+  const { logOut, user } = UserAuth();
   const [tripName, changeTripName] = useState("New Trip");
   const [tripDate, changeTripDate] = useState("");
   const [tripList, addTripList] = useState([]);
@@ -26,16 +31,26 @@ const PlannerView = () => {
   const [sightFilter, addSightFilter] = useState([]);
   const [searchParams, setSearchParams] = useState("");
   const [notes, editNotes] = useState("");
-  const [userID, setUserID] = useState("4paHqkOpZoWosQCMZaDHKNmA3GK2");
+  const [userID, setUserID] = useState();
+
+
   /* UID for everyone:
 - Jesse: OG04lGkSWibiXstJ4zWFdh92w8J2
 - Anna: adPz97i9O6N4WOxE467OFMhKwgC3
 - Dang: 4paHqkOpZoWosQCMZaDHKNmA3GK2
  */
 
+
+  useEffect(() => {
+    const owner = user ? user.uid : 'unknown';
+    setUserID(owner);
+    console.log('owner:', owner);
+  }, [user, onAuthStateChanged])
+
   // fetch sights from db
   useEffect(() => {
     async function fetchSightData() {
+      console.log('planner user:', userID);
       let sights = [];
       const querySnapshot = await getDocs(collection(db, "sights"));
       querySnapshot.docs.forEach((sight) => {

@@ -4,7 +4,6 @@ import axios from 'axios';
 import './Weather.css'
 //sconst APIKey = process.env.REACT_APP_WEATHER_API_KEY;
 const APIKey = "6f830172b6d7108b4a5dfcff5c0ca21a";
-//const iconUrl = `http://openweathermap.org/img/wn/${iconCode}@2x.png`
 
 const Weather = ({ cityName }) => {
     const [weatherData, setWeatherData] = useState([]);
@@ -17,6 +16,11 @@ const Weather = ({ cityName }) => {
             this.temp_max = temp_max;
         }
     }
+
+    var dt = new Date(1670228039000);
+    //eg 1485789600 * 1000
+    console.log(dt.toDateString());
+
 
     useEffect(() => {
         axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${APIKey}`)
