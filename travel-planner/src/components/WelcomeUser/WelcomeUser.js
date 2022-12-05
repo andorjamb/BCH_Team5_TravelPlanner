@@ -5,7 +5,6 @@ import "./WelcomeUser.css";
 
 const WelcomeUser = () => {
   const { logOut, user } = UserAuth();
-  console.log(user?.photoURL);
 
   function setName(str) {
     if (user) {

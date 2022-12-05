@@ -4,4 +4,9 @@ node_modules
 TestAPI
 backup
 .env
-firebaseKey.json
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+npm-debug.log*
+

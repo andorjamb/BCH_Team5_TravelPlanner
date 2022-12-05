@@ -14,20 +14,21 @@ import NextTripList from "../../views/NextTripList/NextTripList";
 import WelcomeUser from "../../components/WelcomeUser/WelcomeUser"
 import "./Account.css";
 
-let items = [];
+let dataArray= [];
 const Account = () => {
 
   const { logOut, user } = UserAuth();
-  const owner = user ? user.uid : 'unknown';
-  const ref = collection(db, 'usersTrip')
+  //const owner = user ? user.uid : 'unknown';
+  const ref = collection(db, 'usersTrip');
+  const navigate = useNavigate();
 
   const [Trips, setTrips] = useState([]);
   const [loading, setLoading] = useState(false);
-
-  const navigate = useNavigate();
+  const [pastTrips, setPastTrips] = useState([]);
+  const [visitedCities, setVisitedCities] = useState([]);
+  const [userID, setUserID] = useState(user.uid);
 
   const handleSignOut = async () => {
-
     try {
       await logOut();
     } catch (error) {
@@ -35,63 +36,82 @@ const Account = () => {
     }
   };
 
+
+  //whole list of user Trips=> Trips[]
+  //filter by date past => pastTrips[]
+  //map pastTrips to array of visited cities => visitedCities[]
+  //call functions in useEffect when Trips is populated
+
+  function filterPastTrips (){
+    const filteredArray = Trips.filter((trip)=>{
+
+    })
+
+
+
+  }
+
+  useEffect(()=>{
+     const owner = user ? user.uid : 'unknown';
+    setUserID(owner);
+  }, []);
+
+  
+
   useEffect(() => {
 
     if (user == null) {
       navigate('/');
     }
 
-    const q = query(
-      ref,
+    const q = query(ref, where('userID', '==', `${userID}`) // does not need index
       //  where('owner', '==', currentUserId),
-      where('userID', '==', `${owner}`) // does not need index
       //  where('trips', '<=', 100) // needs index  https://firebase.google.com/docs/firestore/query-data/indexing?authuser=1&hl=en
       // orderBy('tripDate', 'asc'), // be aware of limitations: https://firebase.google.com/docs/firestore/query-data/order-limit-data#limitations
       // limit(1)
     );
     setLoading(true);
+    console.log(userID);
     const unsub = onSnapshot(q, (querySnapshot) => {   //  to be used when query is present
       // const unsub = onSnapshot(ref, (querySnapshot) => {
-
       querySnapshot.forEach((doc) => {
-        items.push(doc.data());
+       dataArray.push(doc.data());
       });
-      setTrips(items);
+      setTrips(dataArray);
+      console.log(dataArray);
       setLoading(false);
 
     });
     return () => {
-      newdata();
+      clearDataArray();
       unsub();
     };
     // eslint-disable-next-line
   }, []);
 
-  const newdata = () => {
-    items = [];
+  const clearDataArray = () => {
+    dataArray = [];
   }
+
 
   const CurrentUserTrips = () => {
     return (
-      Trips.map((mytrip) => (
-        <div key={Math.random()}>
-
+      Trips.map((trip) => (
+        <div>
           <RecentTrips
+            TotalTrip={trip.length}
+            key={trip.transactionID}
+            name={trip.tripName}
+            date={trip.tripDate}// { `${new Date(trip.tripdate?.seconds * 1000 + trip.tripdate?.nanoseconds/1000000)}`}
 
-            TotalTrip={mytrip.length}
-            key={mytrip.transactionID}
-            name={mytrip.tripName}
-            date={mytrip.tripDate}// { `${new Date(mytrip.tripdate?.seconds * 1000 + mytrip.tripdate?.nanoseconds/1000000)}`}
-            sights={mytrip.sights.length}
-            sightLists={mytrip.sights?.map((sight) => (
-              <ol key={Math.random()}>
+
+            sights={trip.sights.length}
+            sightLists={trip.sights?.map((sight) => (
+              <ol>
                 <li key={sight}>{sight.sightName} in : {sight.cityName}</li>
               </ol>))} >
-            {/* {console.log(mytrip.sightname)} */}
+            {/* {console.log(trip.sightname)} */}
           </RecentTrips>
-          <div key={mytrip.sightname}>
-
-          </div>
         </div>
 
       )))
@@ -102,7 +122,7 @@ const Account = () => {
       <WelcomeUser />
 
       <section className="trips-container">
-        <div className="title"><h3>Your Account</h3></div>
+        <div className="title"><h3>Your Past Trips</h3></div>
         <div className="next-trips">
 
           {loading ? <h4>Loading Content.... </h4>
@@ -115,9 +135,9 @@ const Account = () => {
 
         </div>
         <div className="explore-trips">
-          <h3>What Next?</h3>
+          <h3>Ready for more?</h3>
           <div className="next-trip-list">
-            <h3>total trips </h3>
+            <h4>Explore these places</h4>
             <NextTripList name={'happy trips'} />
           </div>
         </div>

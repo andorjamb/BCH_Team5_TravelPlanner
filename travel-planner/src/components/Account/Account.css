@@ -39,6 +39,10 @@
     grid-area: 'next-trips';
 }
 
+.next-trips h3 {
+    color: var(--black);
+}
+
 .recent-trips {
     grid-area: 'recent-trips';
 }

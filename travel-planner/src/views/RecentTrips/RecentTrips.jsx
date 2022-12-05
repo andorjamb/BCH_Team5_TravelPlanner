@@ -1,18 +1,18 @@
 import React from "react";
 import './RecentTrips.css';
 import { useContext, createContext, useEffect, useState } from "react";
-//ff
+
 const RecentTrips = (props) => {
   return (
     <div className="trip-component-box">
       <div className="trip-image">
-        <img src={`${props.name}.svg`} alt={props.name} />
+        <img src={`https://source.unsplash.com/500x400/?finland&adventure`} alt={props.name} />
       </div>
       <div className="trip-details">
         <h3 className="trip-name">{props.name}</h3>
         <ol className="sights-list">{props.sightLists}</ol>
         <p>visited : {props.date}</p>
-        <div><img src={`4.svg`} alt={props.rating} /></div>
+      
       </div>
 
 

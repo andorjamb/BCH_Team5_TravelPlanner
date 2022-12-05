@@ -133,6 +133,7 @@ const PlannerView = () => {
     window.location.reload();
   };
 
+
   const submitHandler = async (e) => {
     const dataToSubmit = {
       tripName: tripName,
@@ -143,10 +144,11 @@ const PlannerView = () => {
       notes: notes,
       userID: userID,
       transactionID: uuidv4(),
+     
     };
     console.log("Sending this data to firebase: -->>> ", dataToSubmit);
     // change collection of firebase db here
-    await addDoc(collection(db, "tripDemo"), dataToSubmit);
+    await addDoc(collection(db, "usersTrip"), dataToSubmit);
     console.log("Add data successful!!!");
     console.log("redirect to plannerview .....");
   };
