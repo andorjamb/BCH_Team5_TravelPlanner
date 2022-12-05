@@ -1,7 +1,6 @@
 
 import React, { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
-import { trips } from '../../data/trips';
 import {
   addDoc,
   serverTimestamp, collection, getDocs, onSnapshot, where, setLoading,
@@ -14,7 +13,6 @@ import RecentTrips from "../../views/RecentTrips/RecentTrips";
 import NextTripList from "../../views/NextTripList/NextTripList";
 import WelcomeUser from "../../components/WelcomeUser/WelcomeUser"
 import "./Account.css";
-
 
 let items = [];
 const Account = () => {
@@ -37,13 +35,11 @@ const Account = () => {
     }
   };
 
-
   useEffect(() => {
 
     if (user == null) {
       navigate('/');
     }
-
 
     const q = query(
       ref,
@@ -54,8 +50,8 @@ const Account = () => {
       // limit(1)
     );
     setLoading(true);
-     const unsub = onSnapshot(q, (querySnapshot) => {   //  to be used when query is present
-   // const unsub = onSnapshot(ref, (querySnapshot) => {
+    const unsub = onSnapshot(q, (querySnapshot) => {   //  to be used when query is present
+      // const unsub = onSnapshot(ref, (querySnapshot) => {
 
       querySnapshot.forEach((doc) => {
         items.push(doc.data());
@@ -72,33 +68,25 @@ const Account = () => {
   }, []);
 
   const newdata = () => {
-    items=[];
-  }
-
-
-  function setName() {
-    if (user) {
-      let indexFirstSpace = /\s/.exec(user.displayName).index;
-      return (user.displayName).slice(0, indexFirstSpace);
-    }
+    items = [];
   }
 
   const CurrentUserTrips = () => {
     return (
       Trips.map((mytrip) => (
         <div key={Math.random()}>
-       
+
           <RecentTrips
 
             TotalTrip={mytrip.length}
             key={mytrip.transactionID}
             name={mytrip.tripName}
-            date= {mytrip.tripDate}// { `${new Date(mytrip.tripdate?.seconds * 1000 + mytrip.tripdate?.nanoseconds/1000000)}`}
+            date={mytrip.tripDate}// { `${new Date(mytrip.tripdate?.seconds * 1000 + mytrip.tripdate?.nanoseconds/1000000)}`}
             sights={mytrip.sights.length}
-            sightLists={mytrip.sights?.map((sight) => ( 
-               <ol key={Math.random()}>
-              <li key={sight}>{sight.sightName} in : {sight.cityName}</li>
-              </ol> ))} >
+            sightLists={mytrip.sights?.map((sight) => (
+              <ol key={Math.random()}>
+                <li key={sight}>{sight.sightName} in : {sight.cityName}</li>
+              </ol>))} >
             {/* {console.log(mytrip.sightname)} */}
           </RecentTrips>
           <div key={mytrip.sightname}>

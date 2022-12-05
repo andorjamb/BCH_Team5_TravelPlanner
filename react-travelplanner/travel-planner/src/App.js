@@ -11,7 +11,6 @@ import ProfileView from "./views/Profile/ProfileView";
 import Account from "./components/Account/Account";
 import SignIn from "./components/SignIn/SignIn";
 import NotFound from "./views/NotFound/NotFound"
-import Experiments from './views/Experiments/Experiments';
 import SecureAccess from "./adminActions/SecureAccess";
 import ThankYou from "./components/ThankYou/ThankYou";
 
@@ -32,13 +31,11 @@ const App = () => {
           <Route path='/profile/signin' element={<SignIn />}>SignIn</Route>
           <Route path='/profile' element={<ProfileView />}></Route>
           <Route path='/thankyou' element={<ThankYou />}></Route>
-          {/* require sidned in user  */}
+          {/* require signed in user  */}
 
           <Route path='/profile/account' element={<SecureAccess>
-          <Account /></SecureAccess>}></Route>
+            <Account /></SecureAccess>}></Route>
           <Route path='/explore/:cityname' element={<CityView />}></Route>
-
-          <Route path='/experiments' element={<Experiments />}></Route>
           <Route path='*' element={<NotFound />}></Route>
         </Routes>
       </AuthContextProvider>

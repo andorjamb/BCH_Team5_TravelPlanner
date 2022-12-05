@@ -1,5 +1,6 @@
 # BCH_Team5_TravelPlanner
 ## Travel planner MVP: Travel Planning for major cities in Finland
+A Single-Page Application built with Reactjs and Firebase Firestore.
 
 ### Features:
 
@@ -22,7 +23,7 @@
 
 Run npm install to ensure the following dependencies are installed:
 <ul>
-<li>Google SignIn Button: npm install --save react-google-button n</li>
+<li>Google SignIn Button: npm install --save react-google-button</li>
 <li>React Router: npm install react-router-dom</li>
 <li>Firebase package: npm install firebase</li>
 </ul>
