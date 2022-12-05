@@ -23,7 +23,6 @@ const Weather = ({ cityName }) => {
             .then((res) => {
                 setWeatherData(new WeatherObject(res.data.weather[0].description, res.data.weather[0].icon, res.data.main.temp_min.toFixed(), res.data.main.temp_max.toFixed()))
             })
-            .then((res) => console.log(weatherData))
             .catch(error => console.log(error));
     }, []);
 
@@ -38,6 +37,7 @@ const Weather = ({ cityName }) => {
             <p>{weatherData.temp_min} &#8451;</p>
             <p>{weatherData.temp_max} &#8451;</p>
         </div>
+        <div><button className="nextForecast">chevron_right</button></div>
     </div>)
 
 }

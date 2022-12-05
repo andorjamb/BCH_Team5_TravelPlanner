@@ -2,12 +2,13 @@
 
 .rating {
     background-color: transparent;
-    width:auto;
+    width: auto;
     height: auto;
 }
 
 .star {
     font-family: 'Material Symbols Outlined';
-   color: #fac300;
-   font-size: 3rem;
-  }
+    color: #fac300;
+    font-size: 3rem;
+    z-index: 2;
+}

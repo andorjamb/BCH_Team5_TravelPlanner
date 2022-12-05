@@ -5,11 +5,18 @@ import { collection, getDocs } from "firebase/firestore";
 
 import Weather from '../../components/Weather/Weather';
 import Rating from '../../components/Rating/Rating';
+import Map from '../../components/Map/Map';
 
 //const city = 'helsinki';
 /* fetch('https://en.wikipedia.org/w/api.php?action=query&prop=extracts&exchars=400&explaintext&titles=Helsinki&format=json')
     .then((response) => response.json())
     .then((data) => console.log(data)); */
+
+/*    onClick={window.scrollBy({
+     top: 0,
+     left: -300,
+     behavior: 'smooth'
+ })} */
 
 import './CityView.css';
 
@@ -64,13 +71,15 @@ const CityView = () => {
         backgroundImage: `url('https://source.unsplash.com/500x400/?${cityname}')`
       }}>
       </div>
-      <h3>{cityname.charAt(0).toUpperCase() + cityname.substring(1)}</h3>
-      <Rating rating={cityname.rating} />
+      <div className='city-title'>  <h3>{cityname.charAt(0).toUpperCase() + cityname.substring(1)}</h3></div>
+
+
       <section className="top-container">
         <div className="description">
-          <h4>Description</h4>
+          <Rating rating={cityname.rating} />
+          <h4>Top Places</h4>
         </div>
-        <div className="map"><h4>(map)</h4></div>
+        <div><Map /></div>
       </section>
       <div>
         < Weather

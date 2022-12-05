@@ -1,0 +1,9 @@
+.map {
+    margin: 1rem;
+    padding: 0;
+}
+
+.map-img {
+    border-radius: 40px;
+    margin-top: 0;
+}

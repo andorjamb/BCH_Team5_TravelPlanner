@@ -1,3 +1,16 @@
+/*
+MapBox API
+
+https://api.mapbox.com/styles/v1/mapbox/light-v10/static/[20,59,31,70]/300x600?access_token=pk.eyJ1IjoiamFtYml1cyIsImEiOiJjbGI5d3hyMDMwejZoM3dxaDdmZm5oYXZzIn0.VaK4NVDUArlcKkIZlTfmJg
+
+https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/pin-s+c03030(24.9,60.1)/[18.7766,58.9565,35.1869,70.4466]/150x250?access_token=pk.eyJ1IjoiamFtYml1cyIsImEiOiJjbGI5d3hyMDMwejZoM3dxaDdmZm5oYXZzIn0.VaK4NVDUArlcKkIZlTfmJg
+
+https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/pin-s+c03030(${lon,lat})/[18.7766,58.9565,35.1869,70.4466]/150x250?access_token=pk.${MapsAPIKey}
+
+const MapsAPIKey = eyJ1IjoiamFtYml1cyIsImEiOiJjbGI5d3hyMDMwejZoM3dxaDdmZm5oYXZzIn0.VaK4NVDUArlcKkIZlTfmJg
+
+/**////////////////////// */
+
 function myMap() {
   //map options
   let mapOptions = {
