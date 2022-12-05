@@ -1,5 +1,5 @@
 import React from "react";
-import "./SavedPlaces.css";
+import "./SightList.css";
 
 const SavedPlaces = (props) => {
   return (
