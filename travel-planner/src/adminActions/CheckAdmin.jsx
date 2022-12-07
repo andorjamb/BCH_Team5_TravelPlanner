@@ -52,11 +52,11 @@ const CheckAdmin = ({ children }) => {
 
     const userInAdmin = () => {
 
-        if (items.length>0 && users[0]?.email === userEmail) {
-            return <NavLink to='/admin'> Admin Page</NavLink>
+        if (!items.length>0 && users[0]?.email !== userEmail && !users[0]?.isAdmin) {
+            return <></>
         }
         else {
-            return <></>
+            return <NavLink to='/admin'> Admin Page</NavLink>
         }
     }
     return (
