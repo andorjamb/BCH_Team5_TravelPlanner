@@ -1,8 +1,9 @@
 .weather {
     background-color: var(--orange);
-    border-radius: 50px;
-    max-width: 60%;
+    max-width: 80%;
+    height: 15vh;
     border: none;
+    border-radius: 50px;
     display: flex;
     justify-content: space-between;
     align-items: center;

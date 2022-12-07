@@ -22,11 +22,23 @@ A Single-Page Application built with Reactjs and Firebase Firestore.
 #### Additional NPM dependencies
 
 Run npm install to ensure the following dependencies are installed:
-<ul>
-<li>Google SignIn Button: npm install --save react-google-button</li>
-<li>React Router: npm install react-router-dom</li>
-<li>Firebase package: npm install firebase</li>
-</ul>
+
+* Google SignIn Button: npm install --save react-google-button
+* React Router: npm install react-router-dom
+* Firebase package: npm install firebase
+* npm install axios
+
+#### Environment Variables for API keys
+
+Generate your own API keys for the following services:
+* Open weather API 
+* Google Places / Google Maps API
+
+Save the keys to an .env file at the project root as follows:
+
+REACT_APP_OPENWEATHER_API_KEY:your key
+REACT_APP_GOOGLEMAPS_API_KEY: your key
+
 
 
 

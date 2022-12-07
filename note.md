@@ -23,4 +23,7 @@ trip.tripdate?.seconds * 1000 + trip.tripdate?.nanoseconds/1000000
 new Date(trip.tripdate?.seconds * 1000 + trip.tripdate?.nanoseconds/1000000)
 
 
+https://maps.googleapis.com/maps/api/js?key=AIzaSyDCqk89zEBVq3EHVK1ucjCf6trAfXDjH8U&callback=myMap
+
+
 
