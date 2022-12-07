@@ -3,6 +3,7 @@ import { useRef } from "react";
 import { db} from "../FireBaseInit";
 import { addDoc,setDoc, collection, getDocs ,doc} from "@firebase/firestore";
 import FormCss from './form.module.css'
+import AdminMenu from "./AdminMenu";
 
 const NewCity = () => {
   // const msgRef = useRef();

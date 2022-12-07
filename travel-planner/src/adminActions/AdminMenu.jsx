@@ -3,8 +3,11 @@ import {Button,Offcanvas,Nav,NavItem,Toast,ToastHeader,ToastBody} from 'react-bo
 import {NavLink} from 'react-router-dom';
 
 
-const AdminMenu = (...arg) => {
-
+const AdminMenu = () => {
+    const arg ={
+        scroll: true,
+        backdrop: true,
+    }
     const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
