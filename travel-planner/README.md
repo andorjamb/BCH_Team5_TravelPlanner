@@ -36,8 +36,8 @@ Generate your own API keys for the following services:
 
 Save the keys to an .env file at the project root as follows:
 
-REACT_APP_OPENWEATHER_API_KEY:your key
-REACT_APP_GOOGLEMAPS_API_KEY: your key
+REACT_APP_OPENWEATHER_API_KEY=your key
+REACT_APP_GOOGLEMAPS_API_KEY=your key
 
 
 

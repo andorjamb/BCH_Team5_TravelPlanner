@@ -1,8 +1,6 @@
 https://www.planetware.com/tourist-attractions-/helsinki-helsingfors-sf-udn-hels.htm
 
 
-
-
 class FirebaseTimestamp {
     constructor(seconds, nanoseconds){
       this.seconds = Number(seconds);
@@ -14,7 +12,11 @@ class FirebaseTimestamp {
   const unixTime = (dateString)=>Date.parse(dateString);
 
 ### Convert from Unix Epoch Time in ms to calendar string:
- const calendarDate=(date) => new Date(date);
+ const calendarDate=(date) => new Date(date).toDateString();
+
+   var dt = new Date(1670228039000);
+    //eg 1485789600 * 1000
+    console.log(dt.toDateString());
 
 ### Convert from Firebase timeStamp to Unix Epoch Time in milliseconds:
 trip.tripdate?.seconds * 1000 + trip.tripdate?.nanoseconds/1000000
