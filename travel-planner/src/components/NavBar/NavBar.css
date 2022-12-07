@@ -1,4 +1,4 @@
-.nav {
+.mainnav {
   background-color: gray;
   position: fixed;
   max-width: var(--app-width);
@@ -34,7 +34,7 @@
 
 
 @media screen and (max-width: 600px) {
-.nav {
+.mainnav {
   max-width:420px;
 }
 
