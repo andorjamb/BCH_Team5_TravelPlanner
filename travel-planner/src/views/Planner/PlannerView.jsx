@@ -44,7 +44,7 @@ const PlannerView = () => {
   useEffect(() => {
     const owner = user ? user.uid : 'unknown';
     setUserID(owner);
-    console.log('owner:', owner);
+    // console.log('owner:', owner);
   }, [user, onAuthStateChanged])
 
   // fetch sights from db

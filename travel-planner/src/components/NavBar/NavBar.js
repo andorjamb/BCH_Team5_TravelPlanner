@@ -10,7 +10,7 @@ const NavBar = (props) => {
 
 
   return (
-    <div className="nav">
+    <div className="mainnav">
 
       <NavLink className="nav-item" to='/' ><i className="fa-solid fa-compass"></i>Explore</NavLink>
       <NavLink className="nav-item" to='/flight'><i className="fa-solid fa-plane"></i>Flight</NavLink>
