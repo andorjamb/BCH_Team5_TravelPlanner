@@ -58,7 +58,8 @@ const AdminHome = () => {
         }
         else {
        return ( <>
-       <AdminMenu/>  <Outlet/>
+       <AdminMenu/>  
+       {/* <Outlet/> */}
        </>
         )    
         }
