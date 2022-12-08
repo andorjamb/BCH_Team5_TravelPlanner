@@ -2,10 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { NavLink, Navigate } from 'react-router-dom';
 import {Spinner} from 'react-bootstrap';
 import { db } from "../FireBaseInit";
-import {
-    addDoc,
-    serverTimestamp, collection, getDocs, onSnapshot, where,
-    doc, query, orderBy, limit, deleteDoc, setDoc, updateDoc
+import { collection, onSnapshot, where, query
 } from "@firebase/firestore";
 
 import { UserAuth } from '../components/Context/Context';
@@ -47,7 +44,7 @@ const CheckAdmin = ({ children }) => {
             unsub();
         };
 
-    }, [users]);
+    }, [ref, userEmail]);
 
 
     const userInAdmin = () => {
