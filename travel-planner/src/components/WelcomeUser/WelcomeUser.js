@@ -5,8 +5,8 @@ import "./WelcomeUser.css";
 import CheckAdmin from "../../adminActions/CheckAdmin";
 
 const WelcomeUser = () => {
-  const { logOut, user } = UserAuth();
-
+  const { logOut, user,role } = UserAuth();
+console.log(role);
   function setName(str) {
     if (user) {
       let indexFirstSpace = /\s/.exec(str).index;
@@ -34,7 +34,7 @@ const WelcomeUser = () => {
         Hello, {user?.displayName && (<div><span>{setName(user?.displayName)}</span><br />
           <button className="logout" onClick={handleSignOut}>Logout</button></div>)}
         {!user?.displayName && (<div><span>Welcome Guest</span><br /><Link to='/profile/signin'>Sign in</Link></div>)}
-        <small><CheckAdmin></CheckAdmin></small>
+        <small>{role && <CheckAdmin></CheckAdmin>}</small>
       </div>
 <i className="user-noti fa-solid fa-bell"> </i>
       </div>

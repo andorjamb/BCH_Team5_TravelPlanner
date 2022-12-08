@@ -40,12 +40,12 @@ const App = () => {
           <Route path='/profile/signin' element={<SignIn />}>SignIn</Route>
           <Route path='/profile' element={<ProfileView />}></Route>
           <Route path='/thankyou' element={<ThankYou />}></Route>
-          <Route path='/admin' element={<AdminHome />}>
+          {/* <Route path='/admin' element={<AdminHome />}></Route>
             <Route path="/admin/addcity" element={<NewCity/>}>Add City</Route>
             <Route path="/admin/addsights" element = {<AddCityTripPlaces/>}>Add Sights</Route>
             <Route path="/admin/manageuser" element={<ManageUsers></ManageUsers>} >Manage Users</Route>
-            <Route path="/admin/tests" element={<TestRealtimeFirebase/>}>running test page</Route>
-          </Route>
+            <Route path="/admin/tests" element={<TestRealtimeFirebase/>}>running test page</Route> */}
+          
           {/* require signed in user  */}
 
           <Route path='/profile/account' element={<SecureAccess>
