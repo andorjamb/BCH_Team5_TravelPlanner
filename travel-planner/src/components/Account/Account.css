@@ -31,6 +31,9 @@
     margin: 0.5rem;
 }
 
+h4 {
+    padding-left: 2rem;
+}
 
 .past-trips {
     min-height: 50vh;

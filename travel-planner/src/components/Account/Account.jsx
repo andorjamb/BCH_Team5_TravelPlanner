@@ -5,7 +5,7 @@ import { collection, onSnapshot, where, query, getDocs } from "@firebase/firesto
 import { db } from '../../FireBaseInit';
 import { UserAuth } from "../Context/Context";
 
-import WelcomeUser from "../../components/WelcomeUser/WelcomeUser"
+import PastTrip from '../../components/PastTrip/PastTrip'
 //import ExploreTrips from "../../components/ExploreTrips/ExploreTrips"
 import "./Account.css";
 
@@ -34,6 +34,7 @@ const Account = () => {
   };
 
   const pastTripsFilter = (array) => {
+    console.log(Trips);
     const dateToday = Date.now();
     const pastTrips = array.filter((trip) =>
       Date.parse(trip.tripDate) < dateToday)
@@ -94,15 +95,15 @@ const Account = () => {
 
 
   const pastTripList = (pastTrips) => {
-    pastTrips.map((trip) => (
-      <div className="past-trip">
-        <h3>{trip.tripName}</h3>
-        <p>You visited on:{trip.tripDate}</p>
-        <ol>
-          {trip.sights?.map((sight) => (<li key={sight}>{sight.sightName} in : {sight.cityName}</li>))}
-        </ol>
-      </div>
-    ))
+    return (pastTrips.map((trip) => (
+      <PastTrip
+        name={trip.tripyName}
+        date={trip.tripDate}
+        sightLists={trip.sights?.map((sight) => (
+          <li key={sight}>{sight.sightName} in : {sight.cityName}</li>))}
+      ></PastTrip>
+    )))
+
   }
 
   const notVisited = () => {
@@ -120,7 +121,8 @@ const Account = () => {
           <section className="past-trips">
             <h3>You have completed {pastTrips.length} Trips! </h3>
             <h4>Places visited:</h4>
-            {pastTripList}
+
+            {pastTripList(pastTrips)}
           </section>
 
           <section className="explore-trips">
@@ -132,7 +134,6 @@ const Account = () => {
         </>
         {/* } */}
       </div>
-
     </div>)
 
 }
