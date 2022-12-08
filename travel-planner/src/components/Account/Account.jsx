@@ -1,29 +1,29 @@
-
 import React, { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
-import { Spinner } from 'react-bootstrap';
-import { collection, onSnapshot, where, query } from "@firebase/firestore";
+//import { Spinner } from 'react-bootstrap';
+import { collection, onSnapshot, where, query, getDocs } from "@firebase/firestore";
 import { db } from '../../FireBaseInit';
 import { UserAuth } from "../Context/Context";
 
-import RecentTrips from "../../views/RecentTrips/RecentTrips";
-import NextTripList from "../../views/NextTripList/NextTripList";
 import WelcomeUser from "../../components/WelcomeUser/WelcomeUser"
+//import ExploreTrips from "../../components/ExploreTrips/ExploreTrips"
 import "./Account.css";
 
 let dataArray = [];
+let cityData = [];
+
 const Account = () => {
 
   const { logOut, user } = UserAuth();
-  //const owner = user ? user.uid : 'unknown';
   const ref = collection(db, 'usersTrip');
   const navigate = useNavigate();
 
   const [userID, setUserID] = useState(user.uid);
-  const [Trips, setTrips] = useState([]); //user's trips
+  const [Trips, setTrips] = useState([]);
   const [loading, setLoading] = useState(true);
   const [pastTrips, setPastTrips] = useState([]);
   const [visitedCities, setVisitedCities] = useState([]);
+  const [cityNames, setCityNames] = useState([]);
 
   const handleSignOut = async () => {
     try {
@@ -32,8 +32,6 @@ const Account = () => {
       console.log(error);
     }
   };
-  //map pastTrips to array of visited cities => visitedCities[]
-  //call functions in useEffect when Trips is populated
 
   const pastTripsFilter = (array) => {
     const dateToday = Date.now();
@@ -42,12 +40,26 @@ const Account = () => {
     return pastTrips;
   }
 
+  const clearDataArray = () => {
+    dataArray = [];
+  }
+
+  const extractVisitedCities = () => (pastTrips.map((trip) => trip.sights)).map((visit) => visit.cityName);
+
+  const citiesSnapshot = async () => {
+    await getDocs(collection(db, "cities"));
+    citiesSnapshot.docs.forEach((city) => {
+      cityData.push(city.data());
+    });
+    let cityNamesArray = cityData.map((city) => city.cityName);
+    setCityNames(cityNamesArray);
+  }
+
+
   useEffect(() => {
     const owner = user ? user.uid : 'unknown';
     setUserID(owner);
   }, []);
-
-
 
   useEffect(() => {
 
@@ -57,12 +69,12 @@ const Account = () => {
     }
 
     const q = query(ref, where('userID', '==', `${userID}`));
-    console.log(userID);
     const unsub = onSnapshot(q, (querySnapshot) => {
       querySnapshot.forEach((doc) => {
         dataArray.push(doc.data());
       });
       setTrips(dataArray);
+      citiesSnapshot();
       setLoading(false);
 
     });
@@ -70,57 +82,56 @@ const Account = () => {
       clearDataArray();
       unsub();
     };
-  }, []);
+  }, [userID]);
 
-  const clearDataArray = () => {
-    dataArray = [];
-  }
 
   useEffect(() => {
     let pastTrips = pastTripsFilter(Trips);
     setPastTrips(pastTrips);
+    console.log('past trips:', pastTrips)
+    setVisitedCities(extractVisitedCities());
   }, [Trips])
 
 
-  const pastTripList = () => {
-    return (
-      (pastTrips.map((trip) => (
-        <RecentTrips
-          key={trip.transactionID}
-          name={trip.tripName}
-          date={trip.tripDate}
-          sightLists={trip.sights?.map((sight) => (
-            <ol>
-              <li key={sight}>{sight.sightName} in : {sight.cityName}</li>
-            </ol>))} >
-        </RecentTrips>
-
-      ))))
+  const pastTripList = (pastTrips) => {
+    pastTrips.map((trip) => (
+      <div className="past-trip">
+        <h3>{trip.tripName}</h3>
+        <p>You visited on:{trip.tripDate}</p>
+        <ol>
+          {trip.sights?.map((sight) => (<li key={sight}>{sight.sightName} in : {sight.cityName}</li>))}
+        </ol>
+      </div>
+    ))
   }
 
+  const notVisited = () => {
+    cityNames.filter((city) => !visitedCities.includes(city))
+  }
+
+
   return (
-    <div className="account-container">
-      <WelcomeUser />
-
+    <div>
       <div className="trips-container">
-        {loading ? <Spinner color="primary">
+        {/*   {loading ? <Spinner color="primary">
         </Spinner>
-          : <>
-            <section className="past-trips">
-              <h3>Your Past Trips</h3>
+          :  */}<>
+          <section className="past-trips">
+            <h3>Your Past Trips</h3>
 
-              <h3>You have completed {pastTrips.length} Trips </h3>
-              <h4>Cities visited:</h4>
+            <h3>You have completed {pastTrips.length} Trips </h3>
+            <h4>Places visited:</h4>
+            {pastTripList}
+          </section>
 
-            </section>
+          <div className="explore-trips">
+            <h3>Ready for more?</h3>
+            <h4>Explore these places:</h4>
+            {/* <ExploreTrips notVisited={notVisited()} /> */}
+          </div>
 
-            <div className="explore-trips">
-              <h3>Ready for more?</h3>
-              <h4>Explore these places</h4>
-              <NextTripList name={'happy trips'} />
-            </div>
-
-          </>}
+        </>
+        {/* } */}
       </div>
 
     </div>)

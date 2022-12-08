@@ -1,10 +1,3 @@
-.account-container {
-    display: grid;
-    max-width: var(--app-width);
-    align-items: center;
-    min-height: 1000px;
-}
-
 .account-container h2 {
     color: #60103A;
     text-transform: capitalize;
@@ -13,12 +6,13 @@
 .trips-container {
     width: 100%;
     display: grid;
+    max-width: var(--app-width);
     grid-gap: 1rem;
     grid-template-areas:
         " title title "
-        " next-trips  explore-trips"
-        "recent-trips recent-trips"
-        "recent-trips recent-trips";
+        "past trips past trips"
+        "explore trips explore trips"
+
 }
 
 .title {
@@ -34,28 +28,21 @@
     color: #60103A;
 }
 
-.next-trips {
+.past-trips {
     min-height: 50vh;
-    grid-area: 'next-trips';
-}
-
-.next-trips h3 {
-    color: var(--black);
-}
-
-.recent-trips {
-    grid-area: 'recent-trips';
+    grid-area: 'past-trips';
 }
 
 .explore-trips {
     grid-area: 'explore-trips';
-    margin-top: 35px;
-    padding: 0.5rem;
-    width: 80%;
+    padding: 1rem;
+    width: 100%;
     height: 300px;
     border-radius: 30px;
     background-color: lightgray;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+
+}
+
+.explore-trips h3 {
+    text-align: left;
 }

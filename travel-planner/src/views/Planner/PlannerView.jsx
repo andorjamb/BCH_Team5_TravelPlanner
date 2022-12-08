@@ -15,7 +15,7 @@ import {
 } from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
 
-
+//
 import SearchBar from "../../components/SearchBar/SearchBar";
 import SightList from "../../components/SightList/SightList";
 import Trip from "../../components/Trip/Trip";
