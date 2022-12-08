@@ -1,11 +1,8 @@
 
 import React, { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
-import {
-  addDoc,
-  serverTimestamp, collection, getDocs, onSnapshot, where, setLoading,
-  doc, query, orderBy, limit, deleteDoc, setDoc, updateDoc
-} from "@firebase/firestore";
+import {Spinner} from 'react-bootstrap';
+import {collection, onSnapshot, where, query} from "@firebase/firestore";
 import { db } from '../../FireBaseInit';
 import { UserAuth } from "../Context/Context";
 
@@ -23,7 +20,7 @@ const Account = () => {
   const navigate = useNavigate();
 
   const [Trips, setTrips] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [pastTrips, setPastTrips] = useState([]);
   const [visitedCities, setVisitedCities] = useState([]);
   const [userID, setUserID] = useState(user.uid);
@@ -36,20 +33,11 @@ const Account = () => {
     }
   };
 
-
-  //whole list of user Trips=> Trips[]
-  //filter by date past => pastTrips[]
-  //map pastTrips to array of visited cities => visitedCities[]
-  //call functions in useEffect when Trips is populated
-
   function filterPastTrips (){
-    const filteredArray = Trips.filter((trip)=>{
+    const filteredArray = Trips.filter((trip) => {
 
     })
-
-
-
-  }
+}
 
   useEffect(()=>{
      const owner = user ? user.uid : 'unknown';
@@ -60,6 +48,7 @@ const Account = () => {
 
   useEffect(() => {
 
+    setLoading(true);
     if (user == null) {
       navigate('/');
     }
@@ -70,7 +59,6 @@ const Account = () => {
       // orderBy('tripDate', 'asc'), // be aware of limitations: https://firebase.google.com/docs/firestore/query-data/order-limit-data#limitations
       // limit(1)
     );
-    setLoading(true);
     console.log(userID);
     const unsub = onSnapshot(q, (querySnapshot) => {   //  to be used when query is present
       // const unsub = onSnapshot(ref, (querySnapshot) => {
@@ -78,7 +66,6 @@ const Account = () => {
        dataArray.push(doc.data());
       });
       setTrips(dataArray);
-      console.log(dataArray);
       setLoading(false);
 
     });
@@ -86,7 +73,6 @@ const Account = () => {
       clearDataArray();
       unsub();
     };
-    // eslint-disable-next-line
   }, []);
 
   const clearDataArray = () => {
@@ -96,7 +82,10 @@ const Account = () => {
 
   const CurrentUserTrips = () => {
     return (
-      Trips.map((trip) => (
+      loading ? (<Spinner color="primary">  
+      </Spinner>)
+      :
+      (Trips.map((trip) => (
         <div>
           <RecentTrips
             TotalTrip={trip.length}
@@ -110,12 +99,13 @@ const Account = () => {
               <ol>
                 <li key={sight}>{sight.sightName} in : {sight.cityName}</li>
               </ol>))} >
-            {/* {console.log(trip.sightname)} */}
           </RecentTrips>
         </div>
 
-      )))
-  }
+      )))) 
+    }
+      
+  
 
   return (
     <div className="account-container">
@@ -125,7 +115,8 @@ const Account = () => {
         <div className="title"><h3>Your Past Trips</h3></div>
         <div className="next-trips">
 
-          {loading ? <h4>Loading Content.... </h4>
+          {loading ? <Spinner color="primary">  
+                </Spinner>
             : <div> <h3>You have  {Trips.length} Trips Planned</h3>
               <div>
                 {CurrentUserTrips()}
