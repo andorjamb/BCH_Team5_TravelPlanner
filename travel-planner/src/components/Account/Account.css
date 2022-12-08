@@ -1,9 +1,4 @@
-.account-container h2 {
-    color: #60103A;
-    text-transform: capitalize;
-}
-
-.trips-container {
+.account-container {
     width: 100%;
     display: grid;
     max-width: var(--app-width);
@@ -15,18 +10,27 @@
 
 }
 
-.title {
-    width: 100%;
-    height: 60px;
-    grid-area: 'title';
-    line-height: 60px;
-    padding-top: 15vh;
-    align-items: center;
+.account-container h2 {
+    color: #60103A;
+    text-transform: capitalize;
 }
 
-.title h3 {
-    color: #60103A;
+
+.title {
+    width: 100%;
+    height: 15vh;
+    grid-area: 'title';
+    line-height: 60px;
+    align-items: center;
+    padding-top: 10vh;
 }
+
+.title h3,
+.past-trips h3 {
+    color: #60103A;
+    margin: 0.5rem;
+}
+
 
 .past-trips {
     min-height: 50vh;

@@ -112,23 +112,22 @@ const Account = () => {
 
   return (
     <div>
-      <div className="trips-container">
+      <div className="account-container">
         {/*   {loading ? <Spinner color="primary">
         </Spinner>
           :  */}<>
+          <h2 className="title">Your Account</h2>
           <section className="past-trips">
-            <h3>Your Past Trips</h3>
-
-            <h3>You have completed {pastTrips.length} Trips </h3>
+            <h3>You have completed {pastTrips.length} Trips! </h3>
             <h4>Places visited:</h4>
             {pastTripList}
           </section>
 
-          <div className="explore-trips">
+          <section className="explore-trips">
             <h3>Ready for more?</h3>
             <h4>Explore these places:</h4>
             {/* <ExploreTrips notVisited={notVisited()} /> */}
-          </div>
+          </section>
 
         </>
         {/* } */}
