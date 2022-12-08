@@ -8,7 +8,7 @@ const Error403 = () => {
     }
     return (
         <div className={style}>
-            <h2>Not allowed to access</h2>
+            <h2>Error 403 Access Denied</h2>
             <NavLink to='/'>Go Home</NavLink>
 
         
