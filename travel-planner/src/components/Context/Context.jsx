@@ -11,6 +11,7 @@ import {
   collection, onSnapshot, where, query, serverTimestamp
   , doc, setDoc
 } from "@firebase/firestore";
+import { async } from "@firebase/util";
 
 
 const AuthContext = createContext();
@@ -18,9 +19,23 @@ const ref = collection(db, 'admin');
 const items = [];
 
 export const AuthContextProvider = ({ children }) => {
+
+  const adminUser = [
+    {"email":"haidang.levn@gmail.com",
+    "isAdmin":true
+    }
+    ,{"email":"jessejzee@gmail.com",
+    "isAdmin":true
+
+    },{
+        "email":"adpetelin@gmail.com",
+        "isAdmin":true
+    }
+]
   const [user, setUser] = useState({});
-  const [regUser, setRegUser] = useState([]);
-  const [role, setRole] = useState({ "email": regUser[0]?.email, "isAdmin": regUser[0]?.isAdmin })
+  // const [regUser, setRegUser] = useState([]);
+  const [role, setRole] = useState(false)
+  
 
   const googleSignIn = () => {
     const provider = new GoogleAuthProvider();
@@ -34,56 +49,73 @@ export const AuthContextProvider = ({ children }) => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
       console.log('User', currentUser)
+      userRoles(user?.email);
+    
     });
     return () => {
       unsubscribe();
     };
-  }, []);
+  }, [user?.email]);
 
 
-  useEffect(() => {
-    const q = query(
-      ref,
-      where('email', '==', `${user.email}`)
-    );
-    const unsub = onSnapshot(q, (querySnapshot) => {
+  const userRoles = async (uemail) =>{
 
-      querySnapshot.forEach((doc) => {
-        items.push(doc.data());
-        console.log('this is item,',items);
-        setRegUser(items);
-        checkUserStatus();
-      });
-    });
+   let uroles =  await adminUser.filter(item =>item.email === uemail)
+  
+      const isAdmin = uroles[0]?.isAdmin;
 
-    const checkUserStatus = () => {
-      if (regUser.length > 0) {
-        setRole({ "email": regUser[0]?.email, "isAdmin": regUser[0]?.isAdmin });
-      }
-      else {
-        regNewUser()
-      }
-    }
+          setRole(isAdmin)
+  }
 
-    const regNewUser = async () => {
-      const data = {
-        email: user.email,
-        isAdmin: false,
-        dateCreated: serverTimestamp()
-      }
+  useEffect(() =>{
+  
+  
+  },[])
 
-      try {
-        const dataRef = doc(ref, data);
-        await setDoc(dataRef, data);
-      } catch (error) {
-        console.error(error);
-      }
-    }
-    return () => {
-      unsub();
-    };
+  // useEffect(() => {
+  //   const q = query(
+  //     ref,
+  //     where('email', '==', `${user.email}`)
+  //   );
+  //   const unsub = onSnapshot(q, (querySnapshot) => {
 
-  }, [regUser, user]);
+  //     querySnapshot.forEach((doc) => {
+  //       items.push(doc.data());
+  //       console.log('this is item,',items);
+  //       setRegUser(items);
+  //       checkUserStatus();
+  //     });
+  //   });
+
+  //   const checkUserStatus = () => {
+  //     if (regUser.length > 0) {
+  //       const userroles = adminUser.filter(item =>item.email === user.email)
+  //       setRole({ userroles});
+  //     }
+  //     else {
+  //       regNewUser()
+  //     }
+  //   }
+
+  //   const regNewUser = async () => {
+  //     const data = {
+  //       email: user.email,
+  //       isAdmin: false,
+  //       dateCreated: serverTimestamp()
+  //     }
+
+  //     try {
+  //       const dataRef = doc(ref, data);
+  //       await setDoc(dataRef, data);
+  //     } catch (error) {
+  //       console.error(error);
+  //     }
+  //   }
+  //   return () => {
+  //     unsub();
+  //   };
+
+  // }, [regUser, user]);
 
 
   return (
@@ -94,6 +126,7 @@ export const AuthContextProvider = ({ children }) => {
 };
 
 export const UserAuth = () => {
+  
   return useContext(AuthContext);
 };
 
