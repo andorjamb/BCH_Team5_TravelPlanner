@@ -45,7 +45,7 @@ const App = () => {
             <Route path="/admin/addsights" element = {<AddCityTripPlaces/>}>Add Sights</Route>
             <Route path="/admin/manageuser" element={<ManageUsers></ManageUsers>} >Manage Users</Route>
             <Route path="/admin/tests" element={<TestRealtimeFirebase/>}>running test page</Route> */}
-          
+
           {/* require signed in user  */}
 
           <Route path='/profile/account' element={<SecureAccess>

@@ -12,12 +12,7 @@ const CityContainer = ({ cityName, rating }) => {
   const [sightsArray, setSightsArray] = useState([]);
 
   const sightData = [];
-  const sightsList = () => {
-    sightsArray.filter((sight) => sight.cityName === { cityName });
-    return (
-      <p><ul>{sightsList.map((sight) => (<li>{sight.sightName}</li>))}</ul></p>
-    )
-  }
+  const imageSrc = `https://source.unsplash.com/500x400/?${cityName}`;
 
   async function getSights() {
     const sightsSnapshot = await getDocs(collection(db, "sights"));
@@ -28,6 +23,16 @@ const CityContainer = ({ cityName, rating }) => {
     setSightsArray(sightData);
     return sightData;
   }
+
+  const sightsList = () => {
+    sightsArray.filter((sight) => sight.cityName === { cityName });
+    return (
+      <p><ul>{sightsList.map((sight) => (<li>{sight.sightName}</li>))}</ul></p>
+    )
+  }
+
+
+
 
   useEffect(() => {
     getSights();
@@ -40,10 +45,7 @@ const CityContainer = ({ cityName, rating }) => {
   return (
     <div className="city-container" >
       <div className="city-img">
-        <img
-          src={`https://source.unsplash.com/500x400/?${cityName}`}
-          alt="city img"
-        />
+        <img src={imageSrc} alt="city img" />
       </div>
       <div className="city-info">
         <h3 className="city-name">{cityName}</h3>

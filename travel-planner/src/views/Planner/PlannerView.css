@@ -11,7 +11,9 @@ h2 {
   color: black;
   padding: 10px 0;
 }
-.planner-view h3, h4 {
+
+.planner-view h3,
+h4 {
   text-align: left;
 }
 
@@ -28,7 +30,7 @@ h2 {
   max-width: 700px;
   margin: auto;
   position: relative;
-  height: 30vh;
+  height: 32vh;
   top: -12vh;
   background-color: rgba(173, 216, 230, 0.741);
   border-radius: 30px;

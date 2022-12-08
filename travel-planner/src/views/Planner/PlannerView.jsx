@@ -44,13 +44,11 @@ const PlannerView = () => {
   useEffect(() => {
     const owner = user ? user.uid : 'unknown';
     setUserID(owner);
-    // console.log('owner:', owner);
   }, [user, onAuthStateChanged])
 
   // fetch sights from db
   useEffect(() => {
     async function fetchSightData() {
-      console.log('planner user:', userID);
       let sights = [];
       const querySnapshot = await getDocs(collection(db, "sights"));
       querySnapshot.docs.forEach((sight) => {
@@ -144,7 +142,7 @@ const PlannerView = () => {
       notes: notes,
       userID: userID,
       transactionID: uuidv4(),
-     
+
     };
     console.log("Sending this data to firebase: -->>> ", dataToSubmit);
     // change collection of firebase db here
@@ -175,7 +173,6 @@ const PlannerView = () => {
         </div>
 
         <div className="plan-content">
-          <p>Active UID: {userID}</p>
           <h1>Trip details</h1>
           {renderTripList()}
           <h1>Places to visit </h1>

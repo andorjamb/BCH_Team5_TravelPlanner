@@ -7,7 +7,7 @@
   grid-template-columns: repeat(4, auto);
   align-items: center;
   height: 10vh;
-  z-index: 2;
+  z-index: 3;
 
 }
 
@@ -20,7 +20,7 @@
   color: var(--black);
   font-size: 1.3rem;
   height: 100%;
- 
+
 }
 
 .nav-item:hover {
@@ -34,12 +34,12 @@
 
 
 @media screen and (max-width: 600px) {
-.mainnav {
-  max-width:420px;
-}
+  .mainnav {
+    max-width: 420px;
+  }
 
-.nav-item {
-  max-width: 25vw;
-  font-size: 1rem;
-}
+  .nav-item {
+    max-width: 25vw;
+    font-size: 1rem;
+  }
 }
