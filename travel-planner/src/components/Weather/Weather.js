@@ -8,9 +8,13 @@ const Weather = ({ cityName }) => {
     const APIKey = process.env.REACT_APP_OPENWEATHERMAP_API_KEY;
 
     const [weatherData, setWeatherData] = useState([]);
+    /*     const [coords, setCoords] = useState({ lat: 0, lon: 0 }); */
+    const [weatherDate, setWeatherDate] = useState(0)
 
-    const nextDateClickHandler = () => {//show next date
+    const nextDateClickHandler = () => {//show next date's weather
+        console.log('weather arrow clicked');
 
+        setWeatherDate(weatherDate => weatherDate + 1);
     }
     class WeatherObject {
         constructor(description, iconCode, temp_min, temp_max, date) {
@@ -23,16 +27,30 @@ const Weather = ({ cityName }) => {
     }
 
 
+
+    //first convert cityname to coords
+    /*    useEffect(() => {
+           axios.get(`http://api.openweathermap.org/geo/1.0/direct?q=${cityName},FI&limit=1&appid=${APIKey}`)
+               .then((res) => {
+                   console.log('lat:', res.data.lat, 'lon:', res.data.lon)
+                   setCoords({ lat: res.data.lat, lon: res.data.lon });
+                   console.log('city coords:', res.data.lat, res.data.lon);
+               })
+   ß
+       }, []) */
+
     useEffect(() => {
-        const fdate = (date) => { return new Date(date * 1000).toDateString() };
+        const formatDate = (date) => { return new Date(date * 1000).toDateString() };
         axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${APIKey}`)
             .then((res) => {
-                setWeatherData(new WeatherObject(res.data.weather[0].description, res.data.weather[0].icon, res.data.main.temp_min.toFixed(), res.data.main.temp_max.toFixed(), fdate(res.data.dt)))
+                setWeatherData(new WeatherObject(res.data.weather[0].description, res.data.weather[0].icon, res.data.main.temp_min.toFixed(), res.data.main.temp_max.toFixed(), formatDate(res.data.dt)))
             })
+
+
             .catch(error => console.log(error));
     }, []);
 
-    useEffect(() => { }, [])
+
 
     return (<div className="weather" >
         <div>
@@ -41,7 +59,7 @@ const Weather = ({ cityName }) => {
             </img>
         </div>
         <div className="weatherElement">
-            <p>{weatherData.date}</p>
+            <p id="weatherDate">{weatherData.date}</p>
             <p>{weatherData.description}</p>
             <p>{weatherData.temp_min} &#8451;</p>
             <p>{weatherData.temp_max} &#8451;</p>

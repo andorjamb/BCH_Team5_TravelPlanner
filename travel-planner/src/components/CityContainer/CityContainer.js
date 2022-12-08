@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import Rating from '../Rating/Rating'
 import Weather from "../Weather/Weather"
 import "./CityContainer.css";
@@ -11,22 +12,26 @@ const CityContainer = ({ cityName, rating }) => {
   const [sightsArray, setSightsArray] = useState([]);
 
   const sightData = [];
-
-  async function getSights() {
-    const sightsData = await getDocs(collection(db, "sights"));
-    sightsData.docs.forEach((sight) => {
-      sightData.push(sight.data());
-    }
-    );
-    return sightsData;
+  const sightsList = () => {
+    sightsArray.filter((sight) => sight.cityName === { cityName });
+    return (
+      <p><ul>{sightsList.map((sight) => (<li>{sight.sightName}</li>))}</ul></p>
+    )
   }
 
+  async function getSights() {
+    const sightsSnapshot = await getDocs(collection(db, "sights"));
+    sightsSnapshot.docs.forEach((sight) => {
+      sightData.push(sight.data());
 
+    })
+    setSightsArray(sightData);
+    return sightData;
+  }
 
   useEffect(() => {
-    setSightsArray(getSights());
+    getSights();
     console.log(sightsArray);
-    /*  const sightsList = () => { sightsArray.filter((sight) => sight.cityName == { cityName })  */
 
 
   }, []);
@@ -42,9 +47,11 @@ const CityContainer = ({ cityName, rating }) => {
       </div>
       <div className="city-info">
         <h3 className="city-name">{cityName}</h3>
-        {/* <p><ul>{sightsList.map((sight) => (<li>{sight.sightName}</li>))}</ul></p> */}
+        {sightsList}
+
         <Rating rating={rating} />
         <Weather cityName={cityName} />
+        <Link to={`/explore/${cityName}`}>See More</Link>
       </div>
     </div>
   );
