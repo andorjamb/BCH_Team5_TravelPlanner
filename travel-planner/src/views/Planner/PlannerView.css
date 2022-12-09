@@ -1,5 +1,6 @@
 .planner-view {
   display: flex;
+  position: relative;
   max-width: var(--app-width);
   flex-direction: column;
   align-items: center;
@@ -11,29 +12,32 @@ h2 {
   color: black;
   padding: 10px 0;
 }
-.planner-view h3, h4 {
+.planner-view h3,
+h4 {
   text-align: left;
 }
 
-.cover-img {
+.planner-view .cover-img {
   width: 100%;
   height: 30vh;
-  background-image: url("https://source.unsplash.com/1600x1200/?Helsinki");
+  background-image: url("https://source.unsplash.com/1600x1200/?trip");
   background-repeat: no-repeat;
   background-size: cover;
   object-fit: cover;
 }
 
 .plan-title {
-  max-width: 700px;
-  margin: auto;
-  position: relative;
+  width: 80%;
+  margin: 0 10%;
+  position: absolute;
   height: 30vh;
-  top: -12vh;
+  top: 12vh;
   background-color: rgba(173, 216, 230, 0.741);
   border-radius: 30px;
   padding: 1rem 2rem;
-  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .plan-title:hover {
@@ -43,7 +47,6 @@ h2 {
 .plan-info {
   align-items: center;
   text-align: left;
-
 }
 
 .plan-info label,
@@ -59,6 +62,7 @@ span {
 }
 
 .plan-content {
+  margin-top: 100px;
   text-align: left;
   padding: 0 20px;
 }
@@ -100,22 +104,13 @@ span {
 }
 
 .delete {
-  background-color: rgb(129, 19, 19);
-  width: 100%;
-  width: 200px;
-}
-
-.delete:active {
   background-color: red;
 }
 
-#send:hover {
-  background-color: green;
-}
+
 
 
 @media screen and (max-width: 600px) {
-
   .plan-info {
     height: 25vh;
     width: 90vw;
@@ -130,6 +125,4 @@ span {
     display: grid;
     grid-template-columns: auto;
   }
-
-
 }
