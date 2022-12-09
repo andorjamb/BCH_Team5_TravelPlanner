@@ -21,21 +21,23 @@ const items = [];
 export const AuthContextProvider = ({ children }) => {
 
   const adminUser = [
-    {"email":"haidang.levn@gmail.com",
-    "isAdmin":true
+    {
+      "email": "haidang.levn@gmail.com",
+      "isAdmin": true
     }
-    ,{"email":"jessejzee@gmail.com",
-    "isAdmin":true
+    , {
+      "email": "jessejzee@gmail.com",
+      "isAdmin": true
 
-    },{
-        "email":"adpetelin@gmail.com",
-        "isAdmin":true
+    }, {
+      "email": "adpetelin@gmail.com",
+      "isAdmin": true
     }
-]
+  ]
   const [user, setUser] = useState({});
   // const [regUser, setRegUser] = useState([]);
   const [role, setRole] = useState(false)
-  
+
 
   const googleSignIn = () => {
     const provider = new GoogleAuthProvider();
@@ -45,12 +47,12 @@ export const AuthContextProvider = ({ children }) => {
   const logOut = () => {
     signOut(auth)
   }
- useEffect(() => {
+  useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
       console.log('User', currentUser)
       userRoles(user?.email);
-    
+
     });
     return () => {
       unsubscribe();
@@ -58,19 +60,19 @@ export const AuthContextProvider = ({ children }) => {
   }, [user?.email]);
 
 
-  const userRoles = async (uemail) =>{
+  const userRoles = async (uemail) => {
 
-   let uroles =  await adminUser.filter(item =>item.email === uemail)
-  
-      const isAdmin = uroles[0]?.isAdmin;
+    let uroles = await adminUser.filter(item => item.email === uemail)
 
-          setRole(isAdmin)
+    const isAdmin = uroles[0]?.isAdmin;
+
+    setRole(isAdmin)
   }
 
-  useEffect(() =>{
-  
-  
-  },[])
+  useEffect(() => {
+
+
+  }, [])
 
   // useEffect(() => {
   //   const q = query(
@@ -119,14 +121,13 @@ export const AuthContextProvider = ({ children }) => {
 
 
   return (
-    <AuthContext.Provider value={{ googleSignIn, logOut, user,role }}>
+    <AuthContext.Provider value={{ googleSignIn, logOut, user, role }}>
       {children}
     </AuthContext.Provider>
   );
 };
 
 export const UserAuth = () => {
-  
+
   return useContext(AuthContext);
 };
-

@@ -2,9 +2,9 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
-const ExploreTrips = ({ notVisited }) => {
+const ExploreTrips = ({ cityArray }) => {
 
-    const exploreTrips = notVisited.map((cityname) => (
+    const exploreTrips = cityArray.map((cityname) => (
         <Link to="/explore/:cityname"><li>{cityname}</li></Link>
     ))
 

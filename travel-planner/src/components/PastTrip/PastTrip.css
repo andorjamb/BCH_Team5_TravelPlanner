@@ -12,6 +12,7 @@
 .past-trip-image {
     width: 30%;
     margin: 0.5em;
+    justify-content: center;
 }
 
 .past-trip-image>img {
@@ -33,9 +34,9 @@
 
 .sights-list {
     font-style: italic;
-    list-style-type: decimal-leading-zero;
+    list-style-type: decimal;
     text-align: left;
-    font-size: 1vw;
+    font-size: 0.8rem;
 }
 
 .plan-info {

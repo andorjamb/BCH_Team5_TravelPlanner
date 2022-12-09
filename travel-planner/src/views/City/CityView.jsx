@@ -73,32 +73,33 @@ const CityView = () => {
       </div>
       <div className='city-title'>  <h3>{cityname.charAt(0).toUpperCase() + cityname.substring(1)}</h3></div>
 
-
-      <section className="top-container">
-        <div className="description">
-          <Rating rating={cityname.rating} />
-          <h4>Top Places</h4>
-        </div>
-        <div><Map /></div>
-      </section>
-      <div>
-        < Weather
-          cityName={cityname} />
-
-      </div>
-
-      <section className="sight-gallery">
-        {citySights.map((sight) => (
-          <div className="gallery-card" key="sight.sightName" onClick={handleClick} style={{
-            backgroundImage: `url('https://source.unsplash.com/500x400/?${sight.sightName}')`
-          }}>
-            <h3>{sight.sightName}</h3>
-            <div className="favorite" id="sight.sightName" onClick={() => favoriteClickHandler}>favorite</div>
+      <main>
+        <section className="top-container">
+          <div className="description">
+            <Rating rating={cityname.rating} />
+            <h4>Top Places</h4>
           </div>
+          <div><Map /></div>
+        </section>
+        <div>
+          < Weather
+            cityName={cityname} />
 
-        ))}
+        </div>
 
-      </section>
+        <section className="sight-gallery">
+          {citySights.map((sight) => (
+            <div className="gallery-card" key="sight.sightName" onClick={handleClick} style={{
+              backgroundImage: `url('https://source.unsplash.com/500x400/?${sight.sightName}')`
+            }}>
+              <h3>{sight.sightName}</h3>
+              <div className="favorite" id="sight.sightName" onClick={() => favoriteClickHandler}>favorite</div>
+            </div>
+
+          ))}
+
+        </section>
+      </main>
     </div>
   );
 };

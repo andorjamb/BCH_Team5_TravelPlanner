@@ -32,12 +32,9 @@ const CityContainer = ({ cityName, rating }) => {
   }
 
 
-
-
   useEffect(() => {
     getSights();
     console.log(sightsArray);
-
 
   }, []);
 

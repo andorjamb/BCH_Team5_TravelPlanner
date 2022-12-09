@@ -16,6 +16,12 @@
 
 }
 
+.city-container a {
+  font-size: 1.5rem;
+  color: var(--brightblue);
+  font-weight: bold;
+}
+
 .city-img img {
   width: 100%;
   height: 100%;
