@@ -1,12 +1,9 @@
 import React, { useEffect, useState } from "react";
 import "./PlannerView.css";
-import { Link, Navigate } from "react-router-dom";
-import { useRef } from "react";
-import { flushSync } from "react-dom";
+import { Link } from "react-router-dom";
 
 import { v4 as uuidv4 } from "uuid";
 import { db } from "../../FireBaseInit";
-import { async } from "@firebase/util";
 import {
   collection,
   getDocs,
@@ -15,12 +12,10 @@ import {
 } from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
 
-//
 import SearchBar from "../../components/SearchBar/SearchBar";
 import SightList from "../../components/SightList/SightList";
 import Trip from "../../components/Trip/Trip";
-import { UserAuth } from "../../components/Context/Context";
-
+import Popup from "../../components/Popup/Popup";
 
 const PlannerView = () => {
   const { logOut, user } = UserAuth();
@@ -33,6 +28,8 @@ const PlannerView = () => {
   const [notes, editNotes] = useState("");
   const [userID, setUserID] = useState();
 
+  const [showPopup, setShowPopup] = useState(false);
+  const [popupContent, setPopupContent] = useState("");
 
   /* UID for everyone:
 - Jesse: OG04lGkSWibiXstJ4zWFdh92w8J2
@@ -40,11 +37,11 @@ const PlannerView = () => {
 - Dang: 4paHqkOpZoWosQCMZaDHKNmA3GK2
  */
 
-
   useEffect(() => {
-    const owner = user ? user.uid : 'unknown';
+    const owner = user ? user.uid : "unknown";
     setUserID(owner);
   }, [user, onAuthStateChanged])
+
 
   // fetch sights from db
   useEffect(() => {
@@ -93,6 +90,7 @@ const PlannerView = () => {
     if (searchParams === "") {
       return sightList.map((sight) => (
         <SightList
+          key={sight.sightName}
           sightName={sight.sightName}
           cityName={sight.cityName}
           addTrip={addTrip}
@@ -131,7 +129,6 @@ const PlannerView = () => {
     window.location.reload();
   };
 
-
   const submitHandler = async (e) => {
     const dataToSubmit = {
       tripName: tripName,
@@ -142,13 +139,50 @@ const PlannerView = () => {
       notes: notes,
       userID: userID,
       transactionID: uuidv4(),
-
     };
     console.log("Sending this data to firebase: -->>> ", dataToSubmit);
     // change collection of firebase db here
     await addDoc(collection(db, "usersTrip"), dataToSubmit);
     console.log("Add data successful!!!");
     console.log("redirect to plannerview .....");
+  };
+
+  // decide what content is shown in popup, depends on which button is clicked.
+  const popupHandler = (e) => {
+    console.log(e.target.value);
+    setShowPopup(true);
+    if (e.target.value == "save") {
+      setPopupContent(
+        <div>
+          <h1>Are you sure?</h1>
+          <p>You won't be able to edit them later (until we update that feature...)!</p>
+          <div className="popup-button">
+            <button className="delete" onClick={() => setShowPopup(false)}>
+              Let me check once again
+            </button>
+            <Link to="/thankyou" onClick={submitHandler}>
+              <button className="save">Yeah, save this trip!</button>
+            </Link>
+          </div>
+        </div>
+      );
+    }
+    if (e.target.value == "delete") {
+      setPopupContent(
+        <div>
+          <h1>Are you sure you want to delete?</h1>
+          <p>All unsaved data will be lost.</p>
+          <div className="popup-button">
+            <button className="save" onClick={() => setShowPopup(false)}>
+              Actually, let me check again
+            </button>
+            <button className="delete" onClick={resetHandler}>
+              Yeah, delete them all
+            </button>
+          </div>
+        </div>
+      );
+    }
   };
 
   return (
@@ -187,17 +221,28 @@ const PlannerView = () => {
             onChange={(e) => editNotes(e.target.value)}
           ></textarea>
           <div className="plan-button">
-            <button type="button" className="delete" onClick={resetHandler}>
+            <button
+              type="button"
+              className="delete"
+              value={"delete"}
+              onClick={(e) => popupHandler(e)}
+            >
               Delete
             </button>
-            <Link to="/thankyou" onClick={submitHandler}>
-              <button type="submit" className="save">
-                Save
-              </button>
-            </Link>
+            <button
+              type="button"
+              className="save"
+              value={"save"}
+              onClick={(e) => popupHandler(e)}
+            >
+              Save
+            </button>
           </div>
         </div>
       </form>
+      <Popup trigger={showPopup} setShowPopup={setShowPopup}>
+        {popupContent}
+      </Popup>
     </div>
   );
 };
