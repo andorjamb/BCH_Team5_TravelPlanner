@@ -12,6 +12,7 @@ h2 {
   color: black;
   padding: 10px 0;
 }
+
 .planner-view h3,
 h4 {
   text-align: left;
@@ -27,11 +28,13 @@ h4 {
 }
 
 .plan-title {
+
   width: 80%;
   margin: 0 10%;
   position: absolute;
   height: 30vh;
   top: 12vh;
+
   background-color: rgba(173, 216, 230, 0.741);
   border-radius: 30px;
   padding: 1rem 2rem;

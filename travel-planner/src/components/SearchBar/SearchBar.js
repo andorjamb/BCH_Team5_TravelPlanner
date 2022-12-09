@@ -1,5 +1,6 @@
 import React from "react";
-// import "./SearchBar.css";
+//import "./SearchBar.css";
+
 const SearchBar = (props) => {
   return (
     <div className="input-group">

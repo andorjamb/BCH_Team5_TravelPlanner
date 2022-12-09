@@ -1,11 +1,6 @@
 import React, { Component } from "react";
-import { Link } from 'react-router-dom';
 import { db } from '../../FireBaseInit';
-import {
-  addDoc,
-  serverTimestamp, collection, getDocs, onSnapshot, where, setLoading,
-  doc, query
-} from "@firebase/firestore";
+import { collection, getDocs } from "@firebase/firestore";
 
 import SearchBar from "../SearchBar/SearchBar";
 import CityContainer from "../CityContainer/CityContainer";
@@ -57,23 +52,22 @@ class CityExplore extends Component {
 
   render() {
     let cityArray = this.state.displayCities.map((city) => {
-      return (<Link to={`/explore/${city.cityName}`}>
+      return (
         <CityContainer
           key={city.cityName}
           cityName={city.cityName.charAt(0).toUpperCase() + city.cityName.substring(1)}
           rating={city.rating}
           searchresult='Search result'
-        /> </Link>
+        />
       );
     });
     return (
       <>
         <SearchBar searchEvent={this.searchHandler} />
-
         <div className="city-explore">
           <h2>Top Places</h2>
           {cityArray.length > 0 ? cityArray :
-            <h3>No Record to display Currently, Try searching ir different search name</h3>
+            <h3>No Record to display currently, try a different city</h3>
           }</div>
       </>
     );

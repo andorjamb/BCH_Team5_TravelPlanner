@@ -62,6 +62,12 @@ h4 {
   display: flex;
 }
 
+main {
+  width: 100%;
+  position: relative;
+  top: -10vh;
+}
+
 .description {
   max-width: 400px;
   height: auto;

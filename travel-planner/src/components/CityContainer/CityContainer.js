@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import Rating from '../Rating/Rating'
 import Weather from "../Weather/Weather"
 import "./CityContainer.css";
@@ -11,23 +12,29 @@ const CityContainer = ({ cityName, rating }) => {
   const [sightsArray, setSightsArray] = useState([]);
 
   const sightData = [];
+  const imageSrc = `https://source.unsplash.com/500x400/?${cityName}`;
 
   async function getSights() {
-    const sightsData = await getDocs(collection(db, "sights"));
-    sightsData.docs.forEach((sight) => {
+    const sightsSnapshot = await getDocs(collection(db, "sights"));
+    sightsSnapshot.docs.forEach((sight) => {
       sightData.push(sight.data());
-    }
-    );
-    return sightsData;
+
+    })
+    setSightsArray(sightData);
+    return sightData;
+  }
+
+  const sightsList = () => {
+    sightsArray.filter((sight) => sight.cityName === { cityName });
+    return (
+      <p><ul>{sightsList.map((sight) => (<li>{sight.sightName}</li>))}</ul></p>
+    )
   }
 
 
-
   useEffect(() => {
-    setSightsArray(getSights());
+    getSights();
     console.log(sightsArray);
-    /*  const sightsList = () => { sightsArray.filter((sight) => sight.cityName == { cityName })  */
-
 
   }, []);
 
@@ -35,16 +42,15 @@ const CityContainer = ({ cityName, rating }) => {
   return (
     <div className="city-container" >
       <div className="city-img">
-        <img
-          src={`https://source.unsplash.com/500x400/?${cityName}`}
-          alt="city img"
-        />
+        <img src={imageSrc} alt="city img" />
       </div>
       <div className="city-info">
         <h3 className="city-name">{cityName}</h3>
-        {/* <p><ul>{sightsList.map((sight) => (<li>{sight.sightName}</li>))}</ul></p> */}
+        {sightsList}
+
         <Rating rating={rating} />
         <Weather cityName={cityName} />
+        <Link to={`/explore/${cityName}`}>See More</Link>
       </div>
     </div>
   );

@@ -11,7 +11,6 @@ import {
   serverTimestamp,
 } from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
-import { UserAuth } from "../../components/Context/Context";
 
 import SearchBar from "../../components/SearchBar/SearchBar";
 import SightList from "../../components/SightList/SightList";
@@ -41,13 +40,12 @@ const PlannerView = () => {
   useEffect(() => {
     const owner = user ? user.uid : "unknown";
     setUserID(owner);
-    // console.log('owner:', owner);
-  }, [user, onAuthStateChanged]);
+  }, [user, onAuthStateChanged])
+
 
   // fetch sights from db
   useEffect(() => {
     async function fetchSightData() {
-      console.log("planner user:", userID);
       let sights = [];
       const querySnapshot = await getDocs(collection(db, "sights"));
       querySnapshot.docs.forEach((sight) => {
@@ -209,7 +207,6 @@ const PlannerView = () => {
         </div>
 
         <div className="plan-content">
-          <p>Active UID: {userID}</p>
           <h1>Trip details</h1>
           {renderTripList()}
           <h1>Places to visit </h1>

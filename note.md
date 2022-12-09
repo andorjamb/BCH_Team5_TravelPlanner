@@ -18,6 +18,13 @@ class FirebaseTimestamp {
     //eg 1485789600 * 1000
     console.log(dt.toDateString());
 
+    Date.now() returns Epoch time in ms
+
+    to convert to a nice display date, use
+    .toLocaleDateString();
+    or
+    .toDateStrings();
+
 ### Convert from Firebase timeStamp to Unix Epoch Time in milliseconds:
 trip.tripdate?.seconds * 1000 + trip.tripdate?.nanoseconds/1000000
 

@@ -3,7 +3,8 @@ import WelcomeUser from "../../components/WelcomeUser/WelcomeUser";
 import CityExplore from "../../components/CityExplore/CityExplore";
 //import Account from "../../components/Account/Account";
 import "./ExploreView.css";
-//import AddCityTripPlaces from "../../adminActions/AddCityTripPlaces";
+
+
 
 class ExploreView extends Component {
 

@@ -6,7 +6,7 @@ import WelcomeUser from '../../components/WelcomeUser/WelcomeUser'
 
 class ProfileView extends Component {
   render() {
-    return (<div><h1>This is ProfileView</h1>
+    return (<div>
     <WelcomeUser />
         <Account />
 
