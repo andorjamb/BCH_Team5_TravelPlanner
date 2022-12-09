@@ -157,11 +157,11 @@ const Account = () => {
             <h4>Explore these places:</h4>
             <ExploreTrips cityArray={unvisitedCityNames}
             />
-            <p>links to Explore</p>
+            <p>(links to cities in Explore)</p>
           </section>
           <section className="future-trips">
             <h3>Your upcoming trips:</h3>
-            <p>links to Planner</p>
+            <p>(links to Planner or the profile page being completed by Dang)</p>
 
           </section>
         </>
