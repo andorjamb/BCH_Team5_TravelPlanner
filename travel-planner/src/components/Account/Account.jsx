@@ -8,6 +8,7 @@ import { UserAuth } from "../Context/Context";
 import PastTrip from '../../components/PastTrip/PastTrip'
 import ExploreTrips from "../../components/ExploreTrips/ExploreTrips"
 import "./Account.css";
+import { onAuthStateChanged } from "firebase/auth";
 
 let dataArray = [];
 let newCities = [];
@@ -82,9 +83,13 @@ const Account = () => {
   }
 
   useEffect(() => {
-    const owner = user ? user.uid : 'unknown';
-    setUserID(owner);
-  }, []);
+    async function fetchUserID() {
+      const owner = await user ? user.uid : null;
+      setUserID(owner);
+      console.log('setting user id:', userID);
+    }
+    fetchUserID();
+  }, [user, onAuthStateChanged]);
 
   useEffect(() => {
     setLoading(true);
