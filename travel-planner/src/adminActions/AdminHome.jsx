@@ -12,54 +12,24 @@ import {
 import AdminMenu from './AdminMenu';
 import Error403 from './Error403';
 
-const items =[];
+// const items =[];
 const AdminHome = () => {
 
-    const ref = collection(db, 'admin')
-    const { user } = UserAuth();
+    // const ref = collection(db, 'admin')
+    const { user ,role} = UserAuth();
     const [loading, setLoading] = useState(false);
-    const [users, setUsers] = useState([]);
-    const [userEmail, setUserID] = useState(user.email);
-
-
-    useEffect(() => {
-        const owner = user ? user.email : 'unknown';
-        setUserID(owner);
-    }, [user]);
-
-
-    useEffect(() => {
-        const q = query(
-            ref,
-            where('email', '==', `${userEmail}`)
-        );
-        setLoading(true);
-        const unsub = onSnapshot(q, (querySnapshot) => {    // to be used when query is present
-            // const unsub = onSnapshot(ref, (querySnapshot) => {
-
-            querySnapshot.forEach((doc) => {
-                items.push(doc.data());
-            });
-            setUsers(items);
-            setLoading(false);
-
-        });
-        return () => {
-            unsub();
-        };
-
-    }, [users]);
-
 
     const userInAdmin = () => {
-
-        if (!items.length>0 && users[0]?.email !== userEmail && !users[0]?.isAdmin) {
+const currentRole = role || false
+        if (!currentRole ) {
+            setLoading(false);
             return <> <Error403/></>
         }
         else {
+            setLoading(false);
        return ( <>
        <AdminMenu/>  
-       {/* <Outlet/> */}
+        {/* <Outlet/>  */}
        </>
         )    
         }
@@ -69,12 +39,9 @@ const AdminHome = () => {
     return (
         <div>
             <h1>Admin Home</h1>
-            {loading ? (
-                <Spinner color="primary">  
-                </Spinner>
-            ):(
+            {
                 userInAdmin()
-            )
+          
             }
            
         </div>
