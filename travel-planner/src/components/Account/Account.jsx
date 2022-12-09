@@ -38,7 +38,7 @@ const Account = () => {
   };
 
   const pastTripsFilter = (array) => {
-    console.log(Trips);
+    console.log('Trips state:', Trips);
     const dateToday = Date.now();
     Trips.forEach((trip) => {
       if (Date.parse(trip.tripDate) < dateToday) { pastTripsArray.push(trip) }
@@ -84,7 +84,7 @@ const Account = () => {
   useEffect(() => {
     const owner = user ? user.uid : 'unknown';
     setUserID(owner);
-  }, [user]);
+  }, []);
 
   useEffect(() => {
     setLoading(true);
@@ -101,6 +101,7 @@ const Account = () => {
       let pastTripsArray = pastTripsFilter(Trips); //filters into two arrays, past and future
       console.log('past trips:', pastTripsArray)
       console.log('future trips:', futureTrips)
+
 
 
       setLoading(false);
@@ -123,6 +124,8 @@ const Account = () => {
 
   }, [pastTrips, futureTrips])
 
+
+
   const unvisitedCitiesList = () => {
     return (unvisitedCityNames.map((cityName) => (
       <li>
@@ -131,30 +134,17 @@ const Account = () => {
     )))
   }
 
-  const pastTripList = (pastTrips) => {
-    return (pastTrips.map((trip) => (
-      <PastTrip
-        name={trip.tripyName}
-        date={trip.tripDate.toDateString()}
-        sightLists={trip.sights?.map((sight) => (
-          <li key={sight}>{sight.sightName} in : {sight.cityName}</li>))}
-      ></PastTrip>
-    )))
-
-  }
 
   return (
-    <div>
-      <div className="account-container">
-        {/*   {loading ? <Spinner color="primary">
-        </Spinner>
-          :  */}<>
-          <h2 className="title">Your Account</h2>
+      <div className="account-container">  
+      <h2 className="title">Your Account</h2>
+        {loading ? /* <Spinner color="primary">
+        </Spinner>*/ <p>Loading...</p>
+          : <>
           <section className="past-trips">
             <h3>You have completed {pastTrips.length} Trips! </h3>
             <h4>Places visited:</h4>
-
-            {pastTripList(pastTrips)}
+            <PastTrip arr={pastTrips}/>
           </section>
 
           <section className="explore-trips">
@@ -169,11 +159,9 @@ const Account = () => {
             <p>links to Planner</p>
 
           </section>
-
         </>
-        {/* } */}
-      </div>
-    </div>)
+         } 
+      </div>)
 
 }
 

@@ -14,9 +14,11 @@ class CityExplore extends Component {
     searchValue: '',
     loading: false,
     displayCities: [],
+    sightsData: [],
   }
   cityData = [];
   displayCities = [];
+sightData = [];
 
   getRandArray() {
     let randNumbers = [];
@@ -37,17 +39,30 @@ class CityExplore extends Component {
     this.setState({ displayCities: cityFilter })
   };
 
+  async getSights() {
+    const sightsSnapshot = await getDocs(collection(db, "sights"));
+    sightsSnapshot.docs.forEach((sight) => {
+      this.sightData.push(sight.data());
+    })
+    this.setState({sightData : this.sightData});
+  }
+
   componentDidMount = async () => {
     this.setState({ loading: true });
-    const querySnapshot = await getDocs(collection(db, "cities"));
-    querySnapshot.docs.forEach((city) => {
+    const citySnapshot = await getDocs(collection(db, "cities"));
+    citySnapshot.docs.forEach((city) => {
       this.cityData.push(city.data());
     });
     this.setState({ cityData: this.cityData });
-    this.setState({ loading: false });
     let randNumbers = this.getRandArray();
     this.displayCities = this.cityData.filter((city) => randNumbers.includes(this.cityData.indexOf(city)));
     this.setState({ displayCities: this.displayCities });
+    this.getSights();
+
+    this.setState({ loading: false });
+
+
+
   }
 
   render() {
@@ -58,6 +73,8 @@ class CityExplore extends Component {
           cityName={city.cityName.charAt(0).toUpperCase() + city.cityName.substring(1)}
           rating={city.rating}
           searchresult='Search result'
+          sights = {this.sightsData}
+        
         />
       );
     });

@@ -1,23 +1,29 @@
 import React from "react";
 import './PastTrip.css';
 
+/**
+ * 
+ * @param {array} arr - array of user trip objects
+ *    
+ */
 
-const PastTrip = (props) => {
+const PastTrip = ({arr}) => {
+
     return (
-        <div className="past-trip">
-            <div className="past-trip-image">
-                <img src={`https://source.unsplash.com/500x400/?finland&adventure`} alt={props.name} />
-            </div>
-            <div className="trip-details">
-                <h3 className="trip-name">{props.name}</h3>
-                <ol className="sights-list">{props.sightLists}</ol>
-                <p>visited : {props.date}</p>
-
-            </div>
-
-
-        </div>
-    );
-};
+        <>
+          {arr.map((trip)=>(
+<div className="past-trip">
+ <div className="past-trip-image">
+                <img src={`https://source.unsplash.com/500x400/?finland&adventure`} alt={trip.tripName} />
+ </div>
+    <div className="trip-details">
+    <h3 className="trip-name">{trip.tripName}</h3>
+         {/*        <ol className="sights-list">{trip.sights}</ol> */}
+     <p>You visited on : {trip.date}</p>
+    </div>
+</div>
+))}   
+    </>
+)};
 
 export default PastTrip;
