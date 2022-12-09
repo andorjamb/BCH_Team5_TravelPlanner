@@ -95,7 +95,7 @@ const Account = () => {
     const unsub = onSnapshot(q, (querySnapshot) => {
       querySnapshot.forEach((doc) => {
         dataArray.push(doc.data());
-        setTrips([...Trips, doc.data()]);
+        setTrips((Trips) => [...Trips, doc.data()]);
       });
 
       let pastTripsArray = pastTripsFilter(Trips); //filters into two arrays, past and future
@@ -136,15 +136,15 @@ const Account = () => {
 
 
   return (
-      <div className="account-container">  
+    <div className="account-container">
       <h2 className="title">Your Account</h2>
-        {loading ? /* <Spinner color="primary">
+      {loading ? /* <Spinner color="primary">
         </Spinner>*/ <p>Loading...</p>
-          : <>
+        : <>
           <section className="past-trips">
             <h3>You have completed {pastTrips.length} Trips! </h3>
             <h4>Places visited:</h4>
-            <PastTrip arr={pastTrips}/>
+            <PastTrip arr={pastTrips} />
           </section>
 
           <section className="explore-trips">
@@ -160,8 +160,8 @@ const Account = () => {
 
           </section>
         </>
-         } 
-      </div>)
+      }
+    </div>)
 
 }
 

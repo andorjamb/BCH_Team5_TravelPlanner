@@ -2,6 +2,11 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
+/**
+ * 
+ * @param {Array} cityArray -  array of cityname strings
+ * 
+ */
 const ExploreTrips = ({ cityArray }) => {
 
     const exploreTrips = cityArray.map((cityname) => (

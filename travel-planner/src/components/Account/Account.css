@@ -1,12 +1,15 @@
 .account-container {
     width: 100%;
     display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 15vh, auto auto auto;
     max-width: var(--app-width);
     grid-gap: 1rem;
     grid-template-areas:
         "title title"
         "past-trips past-trips"
-        "explore-trips future-trips"
+        "past-trips past-trips"
+        "explore-trips future-trips";
 
 }
 
@@ -19,7 +22,7 @@
 .title {
     width: 100%;
     height: 15vh;
-    grid-area: 'title';
+    grid-area: title;
     line-height: 15vh;
     align-items: center;
     padding-top: 10vh;
@@ -37,9 +40,9 @@ h4 {
 
 .past-trips {
     min-height: 50vh;
-    grid-area: 'past-trips';
+    grid-area: past-trips;
     align-items: center;
-    padding-top: 10vh;
+    padding-top: 5vh;
 }
 
 .explore-trips,
@@ -53,11 +56,11 @@ h4 {
 }
 
 .explore-trips {
-    grid-area: 'explore-trips';
+    grid-area: explore-trips;
 }
 
 .future-trips {
-    grid-area: 'future-trips';
+    grid-area: future-trips;
 
 }
 
