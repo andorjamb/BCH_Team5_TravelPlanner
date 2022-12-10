@@ -1,18 +1,33 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "./ProfileView.css";
 import Account from '../../components/Account/Account';
 import WelcomeUser from '../../components/WelcomeUser/WelcomeUser'
 
+import { onAuthStateChanged } from "firebase/auth";
+import { UserAuth } from "../../components/Context/Context";
 
-class ProfileView extends Component {
-  render() {
-    return (<div>
+
+const ProfileView = () => {
+
+  const { logOut, user } = UserAuth();
+  const navigate = useNavigate();
+
+  const handleSignOut = async () => {
+    try {
+      await logOut();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+
+  return (<div>
     <WelcomeUser />
-        <Account />
+    <Account user={user} signout={handleSignOut} />
 
-      </div>
-    )
-  }
+  </div>
+  )
 }
 
 export default ProfileView;

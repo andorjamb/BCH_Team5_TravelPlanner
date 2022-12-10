@@ -78,6 +78,11 @@ main {
   border-radius: 30px;
 }
 
+.description ul,
+li {
+  color: black;
+}
+
 .sight-gallery {
   /*container element*/
   display: flex;

@@ -19,7 +19,7 @@ const SignIn = () => {
 
   useEffect(() => {
     if (user) {
-      navigate('/profile');
+      navigate('/profile/');
     }
   }, [user]);
 

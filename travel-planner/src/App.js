@@ -38,7 +38,6 @@ const App = () => {
           <Route path='/flight' element={<FlightView />}>Flight</Route>
           <Route path='/planner' element={<PlannerView />}>Planner</Route>
           <Route path='/profile/signin' element={<SignIn />}>SignIn</Route>
-          <Route path='/profile' element={<ProfileView />}></Route>
           <Route path='/thankyou' element={<ThankYou />}></Route>
           {/* <Route path='/admin' element={<AdminHome />}></Route>
             <Route path="/admin/addcity" element={<NewCity/>}>Add City</Route>
@@ -48,8 +47,8 @@ const App = () => {
 
           {/* require signed in user  */}
 
-          <Route path='/profile/account' element={<SecureAccess>
-            <Account /></SecureAccess>}></Route>
+          <Route path='/profile' element={<SecureAccess>
+            <ProfileView /></SecureAccess>}></Route>
           <Route path='/explore/:cityname' element={<CityView />}></Route>
           <Route path='*' element={<NotFound />}></Route>
         </Routes>

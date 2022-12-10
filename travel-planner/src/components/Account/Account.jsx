@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from 'react-router-dom';
+//import { useNavigate } from 'react-router-dom';
 //import { Spinner } from 'react-bootstrap';
 import { collection, onSnapshot, where, query, getDocs } from "@firebase/firestore";
 import { db } from '../../FireBaseInit';
-import { UserAuth } from "../Context/Context";
+//import { UserAuth } from "../Context/Context";
+import { onAuthStateChanged } from "firebase/auth";
 
 import PastTrip from '../../components/PastTrip/PastTrip'
 import ExploreTrips from "../../components/ExploreTrips/ExploreTrips"
 import "./Account.css";
-import { onAuthStateChanged } from "firebase/auth";
 
 let dataArray = [];
 let newCities = [];
@@ -16,43 +16,82 @@ let pastTripsArray = [];
 let futureTripsArray = [];
 let visitedCities = []
 
-const Account = () => {
 
-  const { logOut, user } = UserAuth();
+const Account = ({ user, signout }) => {
+
   const ref = collection(db, 'usersTrip');
-  const navigate = useNavigate();
+  const dateToday = Date.now();
 
+  const [loading, setLoading] = useState(true);
   const [userID, setUserID] = useState(null);
   const [Trips, setTrips] = useState([]);
-  const [loading, setLoading] = useState(true);
   const [pastTrips, setPastTrips] = useState([]);
   const [futureTrips, setFutureTrips] = useState([]);
-  //const [visitedCities, setVisitedCities] = useState([]);
   const [unvisitedCityNames, setUnvisitedCityNames] = useState([]);
+  const [readyState, setReadyState] = useState([false])
 
-  const handleSignOut = async () => {
-    try {
-      await logOut();
-    } catch (error) {
-      console.log(error);
+  useEffect(() => {
+
+    async function fetchUserID() {
+      let owner = await user ? user.uid : null;
+      console.log('setting user id:', user, owner);
+      setUserID(owner);
+      setReadyState(true);
     }
-  };
 
-  const pastTripsFilter = (array) => {
-    console.log('Trips state:', Trips);
-    const dateToday = Date.now();
-    Trips.forEach((trip) => {
-      if (Date.parse(trip.tripDate) < dateToday) { pastTripsArray.push(trip) }
-      else {
-        futureTripsArray.push(trip);
-      }
-    })
-    setFutureTrips(futureTripsArray);
-    setPastTrips(pastTripsArray);
+    fetchUserID();
 
-    console.log('in past trips filter function, past trips:', futureTripsArray)
-    console.log('in past trips filter function, future trips:', pastTripsArray);
+  }, [user, onAuthStateChanged]);
+
+  useEffect(() => {
+    if (readyState === false) { console.log('awaiting user') }
+    const q = query(ref, where('userID', '==', `${userID}`));
+    const unsub = onSnapshot(q, (querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        dataArray.push(doc.data());
+      });
+      setTrips(dataArray);
+      dataArray.forEach((trip) => {
+        if (Date.parse(trip.tripDate) < dateToday) {
+          pastTripsArray.push(trip)
+          console.log('pushing to pastarray')
+          console.log('future trips:', pastTripsArray)
+        }
+        else {
+          futureTripsArray.push(trip);
+          console.log('pushing to future array')
+          console.log('future trips:', futureTripsArray)
+        }
+      })
+      setFutureTrips(futureTripsArray);
+      setPastTrips(pastTripsArray);
+      resetArrays();
+    });
+    return () => {
+
+      unsub();
+    };
+  }, [userID, readyState]);
+
+
+  const resetArrays = () => {
+    dataArray = [];
+    futureTripsArray = [];
+    pastTripsArray = [];
   }
+
+
+  useEffect(() => {
+    setLoading(false);
+
+    extractVisitedCities(pastTrips);
+    console.log(visitedCities);
+    unvisitedCitiesSnapshot();
+    console.log(unvisitedCityNames);
+
+
+  }, [pastTrips, futureTrips]);
+
 
 
   const extractVisitedCities = (arr) => {
@@ -61,7 +100,7 @@ const Account = () => {
       console.log(visitedSights);
       visitedCities = visitedSights.map((sight) => sight.cityName);
       console.log(visitedCities)
-      //setVisitedCities(visitedCities);
+
     }
     catch (err) {
       console.log(err);
@@ -78,56 +117,7 @@ const Account = () => {
     setUnvisitedCityNames(cityNamesArray);
   }
 
-  const clearDataArray = () => {
-    dataArray = [];
-  }
 
-  useEffect(() => {
-    async function fetchUserID() {
-      const owner = await user ? user.uid : null;
-      setUserID(owner);
-      console.log('setting user id:', userID);
-    }
-    fetchUserID();
-  }, [user, onAuthStateChanged]);
-
-  useEffect(() => {
-    setLoading(true);
-    if (user == null) {
-      navigate('/');
-    }
-    const q = query(ref, where('userID', '==', `${userID}`));
-    const unsub = onSnapshot(q, (querySnapshot) => {
-      querySnapshot.forEach((doc) => {
-        dataArray.push(doc.data());
-        setTrips((Trips) => [...Trips, doc.data()]);
-      });
-
-      let pastTripsArray = pastTripsFilter(Trips); //filters into two arrays, past and future
-      console.log('past trips:', pastTripsArray)
-      console.log('future trips:', futureTrips)
-
-
-
-      setLoading(false);
-
-    });
-    return () => {
-      clearDataArray();
-      unsub();
-    };
-  }, [userID]);
-
-
-  useEffect(() => {
-    if (visitedCities.length > 0) {
-      extractVisitedCities(pastTrips);
-      console.log(visitedCities);
-      unvisitedCitiesSnapshot();
-      console.log(unvisitedCityNames);
-    }
-
-  }, [pastTrips, futureTrips])
 
 
 

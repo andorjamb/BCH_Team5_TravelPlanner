@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { db } from '../../FireBaseInit';
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, query, where } from "firebase/firestore";
 
 import Weather from '../../components/Weather/Weather';
 import Rating from '../../components/Rating/Rating';
@@ -20,31 +20,14 @@ import Map from '../../components/Map/Map';
 
 import './CityView.css';
 
+
 const CityView = () => {
 
-  let { cityname } = useParams();
+  const { cityname } = useParams();
   const filteredSights = [];
-  //const sightsRef = collection(db, "sights");
-  //const q = query(collection(db, "sights"), where("cityName", "==", "helsinki"));
+
   const [loading, setLoading] = useState(false);
   const [citySights, setCitySights] = useState([]);
-  const [rating, setRating] = useState();
-
-  async function getData() {
-    await getDocs(collection(db, "sights"))
-      .then((snapshot) => snapshot.docs.forEach(
-        (sight) => {
-          if (sight.data().cityName.toLowerCase() === cityname) {
-            filteredSights.push(sight.data());
-            setCitySights(filteredSights);
-          }
-        }))
-
-  };
-
-  function handleClick() {
-    console.log('image clicked');
-  }
 
   function favoriteClickHandler(e) {
     console.log('favorite clicked');
@@ -55,17 +38,33 @@ const CityView = () => {
       console.log('Failed to set storage');
     }
   }
+
+
+  async function getData() {
+    const querySnapshot = await getDocs(query(collection(db, "sights"), where("cityName", "==", `${cityname.toLowerCase()}`)));
+    querySnapshot.forEach((doc) => {
+      filteredSights.push(doc.data());
+    })
+    setCitySights(filteredSights);
+  }
+
   useEffect(() => {
     setLoading(true);
-    if (cityname) {
-      getData();
-    }
-    // return 
+    getData();
     setLoading(false);
+    console.log(citySights);
+    console.log(filteredSights);
   }, []);
 
-  return (
+  const sightsMap = () => {
+    filteredSights.map((sight) => (
+      <li>{sight.sightName}</li>))
+  }
 
+  /*   [{ cityName: 'espoo', sightName: 'Kino Tapiola', rating: 4 },
+    { cityName: 'espoo', sightName: 'Ikea Espoo', rating: 5 }] */
+
+  return (
     <div className="city-view">
       <div className="city-view-banner" style={{
         backgroundImage: `url('https://source.unsplash.com/500x400/?${cityname}')`
@@ -76,8 +75,18 @@ const CityView = () => {
       <main>
         <section className="top-container">
           <div className="description">
-            <Rating rating={cityname.rating} />
             <h4>Top Places</h4>
+            {loading ? <p>Loading...</p> :
+
+              <ul> {filteredSights.map((sight) => {
+                return (<li> key={sight.sightName}{sight.sightName}</li>)
+              })
+              }</ul>
+
+
+            }
+
+
           </div>
           <div><Map /></div>
         </section>
@@ -89,7 +98,7 @@ const CityView = () => {
 
         <section className="sight-gallery">
           {citySights.map((sight) => (
-            <div className="gallery-card" key="sight.sightName" onClick={handleClick} style={{
+            <div className="gallery-card" key="sight.sightName" style={{
               backgroundImage: `url('https://source.unsplash.com/500x400/?${sight.sightName}')`
             }}>
               <h3>{sight.sightName}</h3>
@@ -100,7 +109,7 @@ const CityView = () => {
 
         </section>
       </main>
-    </div>
+    </div >
   );
 };
 
