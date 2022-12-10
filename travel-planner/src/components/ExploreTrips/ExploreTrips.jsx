@@ -1,5 +1,4 @@
 import React from 'react';
-//simport { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
 /**
@@ -8,13 +7,13 @@ import { Link } from 'react-router-dom';
  * 
  */
 const ExploreTrips = ({ cityArray }) => {
-    const exploreTrips = cityArray.map((cityname) => (
-        <Link to="/explore/:cityname"><li>{cityname}</li></Link>
+    const exploreList = cityArray.map((cityname) => (
+        <Link to='/explore/:cityname'><li>{cityname}</li></Link>
     ))
 
     return (
         <div>
-            {exploreTrips}
+            {exploreList}
         </div>
 
     );

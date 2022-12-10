@@ -54,13 +54,11 @@ const Account = ({ user, signout }) => {
       dataArray.forEach((trip) => {
         if (Date.parse(trip.tripDate) < dateToday) {
           pastTripsArray.push(trip)
-          console.log('pushing to pastarray')
-          console.log('future trips:', pastTripsArray)
+
         }
         else {
           futureTripsArray.push(trip);
-          console.log('pushing to future array')
-          console.log('future trips:', futureTripsArray)
+
         }
       })
       setFutureTrips(futureTripsArray);
@@ -80,54 +78,56 @@ const Account = ({ user, signout }) => {
     pastTripsArray = [];
   }
 
-
   useEffect(() => {
     setLoading(false);
 
-    extractVisitedCities(pastTrips);
+    const visitedSights = [];
+    const visitedCities = [];
+    pastTrips.map((trip) => trip.sights.forEach((sight) => {
+      visitedSights.push(sight.sightName)
+    }));
+    console.log('pastTrips', pastTrips);
+    console.log('visited sights:', visitedSights)
+
+
+    /* example sights array from db:     
+    const sights = [{ sightName: 'Unto Seppänen Statue', cityName: 'Kouvola' },
+        { sightName: 'St Nicholas Church', cityName: 'kotka' },
+        { sightName: 'Satakunta Museum', cityName: 'pori' },
+        { sightName: ' Wolkoff House Museum', cityName: 'lappeenranta' },
+        { sightName: 'Lappia Hall', cityName: 'rovaniemi' }
+        ] */
+
+    pastTrips.map((trip) => trip.sights.forEach((sight) => {
+      visitedCities.push(sight.cityName)
+    }));
     console.log(visitedCities);
+
+    const unvisitedCitiesSnapshot = async () => {
+      const q = query(collection(db, 'cities'), where('city.cityName', 'not-in', `${visitedCities}`));
+      q.docs.forEach((city) => {
+        newCities.push(city.data());
+      });
+      let cityNamesArray = newCities.map((city) => city.cityName);
+      setUnvisitedCityNames(cityNamesArray);
+      return cityNamesArray;
+    }
     unvisitedCitiesSnapshot();
+
+
     console.log(unvisitedCityNames);
 
 
   }, [pastTrips, futureTrips]);
 
 
-
-  const extractVisitedCities = (arr) => {
-    try {
-      const visitedSights = arr.map((trip) => trip.sights);
-      console.log(visitedSights);
-      visitedCities = visitedSights.map((sight) => sight.cityName);
-      console.log(visitedCities)
-
-    }
-    catch (err) {
-      console.log(err);
-    }
-    return visitedCities;
-  }
-
-  const unvisitedCitiesSnapshot = async () => {
-    const q = query(collection(db, 'cities'), where('city.cityName', 'not-in', `${visitedCities}`));
-    q.docs.forEach((city) => {
-      newCities.push(city.data());
-    });
-    let cityNamesArray = newCities.map((city) => city.cityName);
-    setUnvisitedCityNames(cityNamesArray);
-  }
-
-
-
-
-
-  const unvisitedCitiesList = () => {
-    return (unvisitedCityNames.map((cityName) => (
-      <li>
-        {cityName}
-      </li>
-    )))
-  }
+  /*   const unvisitedCitiesList = () => {
+      return (unvisitedCityNames.map((cityName) => (
+        <li>
+          {cityName}
+        </li>
+      )))
+    } */
 
 
   return (
