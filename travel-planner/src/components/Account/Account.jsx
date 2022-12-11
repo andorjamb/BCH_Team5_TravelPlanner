@@ -112,6 +112,10 @@ const Account = ({ user, signout }) => {
     getCities();
   }, [visitedCities])
 
+  const futureTripList = futureTrips.map((trip) => (
+    <li>  {/* <Link to={``}> */} {trip.tripName}{/* </Link> */}</li>
+  ))
+
 
   return (
     <div className="account-container">
@@ -133,6 +137,7 @@ const Account = ({ user, signout }) => {
           </section>
           <section className="future-trips">
             <h3>Your upcoming trips:</h3>
+            <ul>{futureTripList}</ul>
             <p>(links to Planner or the profile page being completed by Dang)</p>
 
           </section>
