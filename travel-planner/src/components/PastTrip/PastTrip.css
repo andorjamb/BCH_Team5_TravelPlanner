@@ -1,5 +1,6 @@
 .past-trip {
     height: 200px;
+    object-fit: contain;
     background-color: lightgray;
     display: flex;
     justify-content: space-between;
@@ -30,6 +31,8 @@
 }
 
 .sights-list {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
     font-style: italic;
     text-align: left;
     font-size: 0.8rem;

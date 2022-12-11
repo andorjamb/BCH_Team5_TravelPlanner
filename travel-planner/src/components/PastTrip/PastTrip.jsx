@@ -8,8 +8,10 @@ import './PastTrip.css';
  */
 
 const PastTrip = ({ arr }) => {
+
+
     const sights = (trip) => trip.sights.map((sight) =>
-        (<li>{sight.sightName} in {sight.cityName}</li>)
+        (<li>{sight.sightName},{sight.cityName}</li>)
     )
     return (
         <>
@@ -22,6 +24,7 @@ const PastTrip = ({ arr }) => {
                         <h3 className="trip-name">{trip.tripName}</h3>
                         <ol className="sights-list">{sights(trip)}</ol>
                         <p className="visit-date">Visited : {trip.tripDate}</p>
+                        <p>Your trip rating: </p>
                     </div>
                 </div>
             ))}

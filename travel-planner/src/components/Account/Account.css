@@ -7,9 +7,9 @@
     grid-gap: 1rem;
     grid-template-areas:
         "title title"
+        "explore-trips future-trips"
         "past-trips past-trips"
-        "past-trips past-trips"
-        "explore-trips future-trips";
+        "past-trips past-trips";
 
 }
 
@@ -34,20 +34,16 @@
     margin: 0.5rem;
 }
 
-h4 {
-    padding-left: 2rem;
-}
-
 .past-trips {
     min-height: 50vh;
     grid-area: past-trips;
     align-items: center;
-    padding-top: 5vh;
+    /* padding-top: 5vh; */
 }
 
 .explore-trips,
 .future-trips {
-
+    margin-top: 5vh;
     padding: 1rem;
     height: 300px;
     border-radius: 30px;
@@ -64,6 +60,6 @@ h4 {
 
 }
 
-.explore-trips h3 {
-    text-align: left;
+.explore-trips h3, h4 {
+    text-align: center;
 }

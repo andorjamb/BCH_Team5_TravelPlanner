@@ -92,20 +92,6 @@ const Account = ({ user, signout }) => {
     console.log(visitedSights);
     setVisitedCities(visitedCities);
 
-    /*   async function getCities() {
-        newCities = [];
-        const citySnapshot = await getDocs(collection(db, "cities"));
-        citySnapshot.docs.forEach((doc) => {
-          if (!visitedCities.includes(doc.data().cityName)) {
-            newCities.push(doc.data().cityName);
-          }
-          console.log(newCities);
-        });
-  
-  
-      }
-      getCities(); */
-
 
   }, [pastTrips, futureTrips])
 
@@ -134,16 +120,16 @@ const Account = ({ user, signout }) => {
         </Spinner>*/ <p>Loading...</p>
         : <>
           <section className="past-trips">
-            <h3>You have completed {pastTrips.length} Trips! </h3>
+            <h3>You have completed {pastTrips.length} Trips </h3>
             <PastTrip arr={pastTrips} />
           </section>
 
           <section className="explore-trips">
             <h3>Ready for more?</h3>
             <h4>Explore these places:</h4>
-            <ExploreTrips cityArray={unvisitedCities}
-            />
+            <ExploreTrips cityArray={unvisitedCities} />
             <p>(links to cities in Explore)</p>
+
           </section>
           <section className="future-trips">
             <h3>Your upcoming trips:</h3>
