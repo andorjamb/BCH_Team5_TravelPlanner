@@ -9,7 +9,7 @@ import './PastTrip.css';
 
 const PastTrip = ({ arr }) => {
     const sights = (trip) => trip.sights.map((sight) =>
-        (<li>{sight.sightName}in {sight.Cityname}</li>)
+        (<li>{sight.sightName} in {sight.cityName}</li>)
     )
     return (
         <>
@@ -21,7 +21,7 @@ const PastTrip = ({ arr }) => {
                     <div className="trip-details">
                         <h3 className="trip-name">{trip.tripName}</h3>
                         <ol className="sights-list">{sights(trip)}</ol>
-                        <p className="visit-date">You visited on : {trip.date}</p>
+                        <p className="visit-date">Visited : {trip.tripDate}</p>
                     </div>
                 </div>
             ))}
