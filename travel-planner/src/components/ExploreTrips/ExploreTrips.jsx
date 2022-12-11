@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import './ExploreTrips.css'
 
 /**
  * 
@@ -8,13 +9,13 @@ import { Link } from 'react-router-dom';
  */
 const ExploreTrips = ({ cityArray }) => {
     const exploreList = cityArray.map((cityname) => (
-        <Link to='/explore/:cityname'><li>{cityname}</li></Link>
+        <li>  <Link to={`/explore/${cityname}`}> {cityname}</Link></li>
     ))
 
     return (
-        <div>
+        <ul>
             {exploreList}
-        </div>
+        </ul>
 
     );
 };

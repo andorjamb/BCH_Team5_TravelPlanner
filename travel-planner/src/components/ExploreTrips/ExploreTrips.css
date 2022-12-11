@@ -1,0 +1,12 @@
+.explore-trips h3 {
+    text-align: center;
+
+}
+
+.explore-trips li,
+a {
+    text-align: left;
+    font-size: 1.1rem;
+    color: var(--orange);
+    font-weight: bold;
+}

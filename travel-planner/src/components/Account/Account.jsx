@@ -14,8 +14,6 @@ let dataArray = [];
 let newCities = [];
 let pastTripsArray = [];
 let futureTripsArray = [];
-let visitedCities = []
-
 
 const Account = ({ user, signout }) => {
 
@@ -27,14 +25,15 @@ const Account = ({ user, signout }) => {
   const [Trips, setTrips] = useState([]);
   const [pastTrips, setPastTrips] = useState([]);
   const [futureTrips, setFutureTrips] = useState([]);
-  const [unvisitedCityNames, setUnvisitedCityNames] = useState([]);
+  const [unvisitedCities, setUnvisitedCities] = useState([]);
+  const [visitedCities, setVisitedCities] = useState([]);
   const [readyState, setReadyState] = useState([false])
 
   useEffect(() => {
 
     async function fetchUserID() {
       let owner = await user ? user.uid : null;
-      console.log('setting user id:', user, owner);
+      console.log('setting user id:', user.uid, owner);
       setUserID(owner);
       setReadyState(true);
     }
@@ -80,54 +79,52 @@ const Account = ({ user, signout }) => {
 
   useEffect(() => {
     setLoading(false);
-
     const visitedSights = [];
     const visitedCities = [];
     pastTrips.map((trip) => trip.sights.forEach((sight) => {
       visitedSights.push(sight.sightName)
     }));
-    console.log('pastTrips', pastTrips);
-    console.log('visited sights:', visitedSights)
-
-
-    /* example sights array from db:     
-    const sights = [{ sightName: 'Unto Seppänen Statue', cityName: 'Kouvola' },
-        { sightName: 'St Nicholas Church', cityName: 'kotka' },
-        { sightName: 'Satakunta Museum', cityName: 'pori' },
-        { sightName: ' Wolkoff House Museum', cityName: 'lappeenranta' },
-        { sightName: 'Lappia Hall', cityName: 'rovaniemi' }
-        ] */
 
     pastTrips.map((trip) => trip.sights.forEach((sight) => {
-      visitedCities.push(sight.cityName)
+      visitedCities.push(sight.cityName.toLowerCase())
     }));
     console.log(visitedCities);
+    console.log(visitedSights);
+    setVisitedCities(visitedCities);
 
-    const unvisitedCitiesSnapshot = async () => {
-      const q = query(collection(db, 'cities'), where('city.cityName', 'not-in', `${visitedCities}`));
-      q.docs.forEach((city) => {
-        newCities.push(city.data());
+    /*   async function getCities() {
+        newCities = [];
+        const citySnapshot = await getDocs(collection(db, "cities"));
+        citySnapshot.docs.forEach((doc) => {
+          if (!visitedCities.includes(doc.data().cityName)) {
+            newCities.push(doc.data().cityName);
+          }
+          console.log(newCities);
+        });
+  
+  
+      }
+      getCities(); */
+
+
+  }, [pastTrips, futureTrips])
+
+  useEffect(() => {
+    async function getCities() {
+      newCities = [];
+      const citySnapshot = await getDocs(collection(db, "cities"));
+      citySnapshot.docs.forEach((doc) => {
+        if (!visitedCities.includes(doc.data().cityName)) {
+          newCities.push(doc.data().cityName);
+        }
+
       });
-      let cityNamesArray = newCities.map((city) => city.cityName);
-      setUnvisitedCityNames(cityNamesArray);
-      return cityNamesArray;
+      console.log(newCities);
+      setUnvisitedCities(newCities);
+
     }
-    unvisitedCitiesSnapshot();
-
-
-    console.log(unvisitedCityNames);
-
-
-  }, [pastTrips, futureTrips]);
-
-
-  /*   const unvisitedCitiesList = () => {
-      return (unvisitedCityNames.map((cityName) => (
-        <li>
-          {cityName}
-        </li>
-      )))
-    } */
+    getCities();
+  }, [visitedCities])
 
 
   return (
@@ -138,14 +135,13 @@ const Account = ({ user, signout }) => {
         : <>
           <section className="past-trips">
             <h3>You have completed {pastTrips.length} Trips! </h3>
-            <h4>Places visited:</h4>
             <PastTrip arr={pastTrips} />
           </section>
 
           <section className="explore-trips">
             <h3>Ready for more?</h3>
             <h4>Explore these places:</h4>
-            <ExploreTrips cityArray={unvisitedCityNames}
+            <ExploreTrips cityArray={unvisitedCities}
             />
             <p>(links to cities in Explore)</p>
           </section>
