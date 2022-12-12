@@ -5,7 +5,7 @@ import { AuthContextProvider } from "./components/Context/Context"
 import ExploreView from "./views/Explore/ExploreView";
 import CityView from "./views/City/CityView";
 import NavBar from "./components/NavBar/NavBar";
-import FlightView from "./views/Flight/FlightView";
+import TripView from "./views/Trip/TripView";
 import PlannerView from "./views/Planner/PlannerView";
 import ProfileView from "./views/Profile/ProfileView";
 import Account from "./components/Account/Account";
@@ -35,7 +35,7 @@ const App = () => {
       <AuthContextProvider>
         <Routes>
           <Route path='/' element={<ExploreView />}>Home</Route>
-          <Route path='/flight' element={<FlightView />}>Flight</Route>
+          <Route path='/trip' element={<TripView />}>Trip</Route>
           <Route path='/planner' element={<PlannerView />}>Planner</Route>
           <Route path='/profile/signin' element={<SignIn />}>SignIn</Route>
           <Route path='/thankyou' element={<ThankYou />}></Route>

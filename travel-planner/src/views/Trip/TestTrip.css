@@ -1,0 +1,16 @@
+.testtrip {
+    background-color: gray;
+    border-radius: 20px;
+    margin: 10px 30px;
+    display: grid;
+    grid-template-columns: 40% 60%;
+    text-align: left;
+}
+.testtrip img {
+    height: 100%;
+    width: 100%;
+    border-radius: 20px 0 0 20px;
+}
+.testtrip > .content {
+    padding:  20px;
+}
