@@ -13,7 +13,7 @@ const NavBar = (props) => {
     <div className="mainnav">
 
       <NavLink className="nav-item" to='/' ><i className="fa-solid fa-compass"></i>Explore</NavLink>
-      <NavLink className="nav-item" to='/flight'><i className="fa-solid fa-plane"></i>Flight</NavLink>
+      <NavLink className="nav-item" to='/trip'><i className="fa-solid fa-suitcase"></i>Trip</NavLink>
       <NavLink className="nav-item" to='/planner'><i className="fa-solid fa-location-dot"></i>Planner</NavLink>
       <NavLink className="nav-item" to='/profile/signin'><i className="fa-solid fa-user"></i>Profile</NavLink>
 
