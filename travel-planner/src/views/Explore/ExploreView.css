@@ -15,11 +15,11 @@ h1 {
 }
 
 
-main {
+/* main {
   width: 80%;
   overflow: auto;
   margin: auto;
-}
+} */
 
 .explore-intro {
   background-color: var(--darkblue);

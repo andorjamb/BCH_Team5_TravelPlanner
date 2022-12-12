@@ -1,7 +1,7 @@
 .planner-view {
   display: flex;
   position: relative;
-  max-width: var(--app-width);
+  max-width: 100vw;
   flex-direction: column;
   align-items: center;
   text-align: center;
@@ -19,24 +19,21 @@ h4 {
 }
 
 .planner-view .cover-img {
-  width: 100%;
-  height: 30vh;
+  width: 100vw;
+  height: 20vh;
   background-image: url("https://source.unsplash.com/1600x1200/?trip");
   background-repeat: no-repeat;
   background-size: cover;
-  object-fit: cover;
 }
 
 .plan-title {
-  width: 80%;
-  margin: 0 10%;
+  width:50vw;
   position: absolute;
-  height: 30vh;
-  top: 12vh;
-
+  margin: 0 25vw;
+  height: 20vh;
+  top: 5vh;
   background-color: rgba(173, 216, 230, 0.741);
   border-radius: 30px;
-  padding: 1rem 2rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -49,10 +46,10 @@ h4 {
 .plan-info {
   align-items: center;
   text-align: left;
+  max-height: 100%;
 }
 
-.plan-info label,
-span {
+.plan-info label {
   width: 100px;
 }
 
@@ -64,7 +61,7 @@ span {
 }
 
 .plan-content {
-  margin-top: 12vh;
+  margin-top: 7vh;
   text-align: left;
   padding: 0 20px;
 }
@@ -109,7 +106,29 @@ span {
   background-color: red;
 }
 
+/* fix for extra big screen */
+@media screen and (min-width: 1000px) {
+  .plan-title {
+    width: 500px;
+    margin: 0 200px;
+  }
+}
 
+@media screen and (max-width: 450px) {
+  .plan-title {
+    width: 80vw;
+    margin: 0 20px;
+    padding: 10px;
+    text-align: center;
+  }
+  .plan-info h1 {
+    padding: 0;
+  }
+  .plan-info input {
+    margin: 2px;
+    width: 100px;
+  }
+}
 
 
 @media screen and (max-width: 600px) {

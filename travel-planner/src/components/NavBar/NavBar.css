@@ -1,14 +1,13 @@
 .mainnav {
   background-color: #139DEA;
   position: fixed;
-  max-width: var(--app-width);
+  width: 100vw;
   bottom: 0;
   display: grid;
   grid-template-columns: repeat(4, auto);
   align-items: center;
   height: 10vh;
   z-index: 3;
-
 }
 
 .nav-item {
@@ -16,7 +15,7 @@
   flex-direction: column;
   justify-content: center;
   text-decoration: none;
-  width: calc(var(--app-width)/4);
+  width: 25vw;
   color: white;
   font-size: 1.3rem;
   height: 100%;
