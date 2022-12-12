@@ -32,13 +32,3 @@
   color: #FAFF00;
 }
 
-@media screen and (max-width: 600px) {
-  .mainnav {
-    max-width: 420px;
-  }
-
-  .nav-item {
-    max-width: 25vw;
-    font-size: 1rem;
-  }
-}

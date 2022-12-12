@@ -4,7 +4,7 @@
 
 .trip-view {
   text-align: center;
-  max-width: 800px;
+  width: 100%;
 }
 
 .trip-content {
@@ -12,10 +12,33 @@
 }
 
 
-.trip-view button {
-  width: auto;
+.trip-content button {
   border-radius: 20px;
   font-size: 24px;
   padding: 10px;
   color: white;
+}
+
+.trip-view-wrapper {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 0 10vw;
+}
+
+@media screen and (max-width: 450px) {
+  .trip-view-wrapper{
+    padding: 0;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .trip-view-wrapper {
+    flex-direction: column;
+    align-items: center;
+  }
+  .trip-content {
+    padding-top: 5vh;
+  }
 }

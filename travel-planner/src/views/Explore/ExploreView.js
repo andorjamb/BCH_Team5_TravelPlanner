@@ -17,9 +17,8 @@ class ExploreView extends Component {
       <div className="view">
         <WelcomeUser userName={this.state.userName} />
         <div className="explore-intro"> {/* explore component contains searchBar */}
-          <p>Ready for an adventure?</p>
+          <h2>Ready for an adventure?</h2>
         </div>
-
         <CityExplore />
       </div>
     );

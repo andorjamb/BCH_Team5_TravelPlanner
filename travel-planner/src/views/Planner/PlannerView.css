@@ -29,7 +29,6 @@ h4 {
 .plan-title {
   width:50vw;
   position: absolute;
-  margin: 0 25vw;
   height: 20vh;
   top: 5vh;
   background-color: rgba(173, 216, 230, 0.741);
@@ -69,6 +68,10 @@ h4 {
 .saved-places-wrapper {
   display: grid;
   grid-template-columns: auto auto;
+}
+
+form {
+  width: 80%;
 }
 
 .plan-note {
@@ -145,5 +148,16 @@ h4 {
   .saved-places-wrapper {
     display: grid;
     grid-template-columns: auto;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .plan-title {
+    margin: 0 20px;
+    padding: 10px;
+    text-align: center;
+  }
+  form {
+    width: 100%;
   }
 }
