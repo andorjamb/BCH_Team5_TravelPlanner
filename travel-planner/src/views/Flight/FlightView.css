@@ -1,6 +1,5 @@
-* {
-  list-style-type: none;
-  text-decoration: none;
+.flight-content > * {
+  color: black;
 }
 
 .flight-view {
@@ -8,13 +7,6 @@
   max-width: 800px;
 }
 
-main {
-  padding: 0 20px;
-  overflow: auto;
-  margin-bottom: 50px;
-}
-
-.intro {
-  font-weight: bold;
-  font-size: 2em;
+.flight-content {
+  padding-top: 10vh;
 }
