@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import "./FlightView.css";
+import { Link } from "react-router-dom";
+import "./TripView.css";
 import WelcomeUser from "../../components/WelcomeUser/WelcomeUser";
 import { onAuthStateChanged } from "firebase/auth";
 import { UserAuth } from "../../components/Context/Context";
@@ -12,7 +13,7 @@ import {
 } from "firebase/firestore";
 import TestTrip from "./TestTrip";
 
-const FlightView = () => {
+const TripView = () => {
   const { logOut, user } = UserAuth();
   const [userID, setUserID] = useState();
   const [userTrip, setUserTrip] = useState([]);
@@ -64,15 +65,7 @@ const FlightView = () => {
     fetchUserTrip();
   }, [userID]);
 
-  /* const test = () => {
-    const q = query(ref, where('userID', '==', `${userID}`));
-    const unsub = onSnapshot(q, (querySnapshot) => {
-      querySnapshot.forEach((doc) => {
-        dataArray.push(doc.data());
-        setTrips([...Trips, doc.data()]);
-      }); })
-  }
- */
+  
   const renderUserTrip = (time) => {
     console.log(time);
     if (time === "past") {
@@ -119,18 +112,21 @@ const FlightView = () => {
   };
 
   return (
-    <div className="flight-view">
+    <div className="trip-view">
       <WelcomeUser></WelcomeUser>
-      <div className="flight-content">
+      <div className="trip-content">
         <h1>All your trips are here:</h1>
         <h2>Past trips:</h2>
         {renderUserTrip("past")}
         <h2>Future trips:</h2>
         {renderUserTrip("future")}
-        <button>Test</button>
+        <h2>You can create new trip with the planner !</h2>
+        <Link to="/planner">
+          <button className="save">Create new trip</button>
+        </Link>
       </div>
     </div>
   );
 };
 
-export default FlightView;
+export default TripView;

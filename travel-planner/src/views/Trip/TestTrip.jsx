@@ -18,7 +18,7 @@ const TestTrip = (props) => {
         <h2>{props.tripName}</h2>
         <p>Trip date: {props.tripDate}</p>
         <p>Sights: {props.sights.length}</p>
-        <p>City: {cityFilter.join(" , ")}</p>
+        <p>City: {cityFilter.join(", ")}</p>
       </div>
     </div>
   );
