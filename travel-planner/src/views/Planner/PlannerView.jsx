@@ -31,11 +31,6 @@ const PlannerView = () => {
   const [showPopup, setShowPopup] = useState(false);
   const [popupContent, setPopupContent] = useState("");
 
-  /* UID for everyone:
-- Jesse: OG04lGkSWibiXstJ4zWFdh92w8J2
-- Anna: adPz97i9O6N4WOxE467OFMhKwgC3
-- Dang: 4paHqkOpZoWosQCMZaDHKNmA3GK2
- */
 
   useEffect(() => {
     const owner = user ? user.uid : "unknown";
@@ -197,7 +192,7 @@ const PlannerView = () => {
               type="text"
               placeholder={tripName}
               onChange={(e) => changeTripName(e.target.value)}
-            />
+            /> <br />
             <label>Trip date:</label>
             <input
               type="date"

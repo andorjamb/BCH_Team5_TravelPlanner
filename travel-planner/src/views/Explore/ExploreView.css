@@ -1,6 +1,5 @@
 .explore-view {
   text-align: center;
-  max-width: var(--app-width);
 }
 
 a,
@@ -11,33 +10,25 @@ li {
 
 h1 {
   font-size: 2.5rem;
-  color: var(--yellow);
 }
 
-
-main {
-  width: 80%;
-  overflow: auto;
-  margin: auto;
-}
 
 .explore-intro {
-  background-color: var(--darkblue);
   padding: 1rem;
-  height: 25vh;
+  height: 15vh;
 }
 
-.explore-intro p {
-  padding-top: 10vh;
-  color: var(--yellow);
+.explore-intro h2 {
+  padding-top: 9vh;
   font-weight: bold;
   font-size: 2em;
 }
 
-@media screen and (max-width: 600px) {
-  .explore-intro p {
-    font-size: 1.5rem;
-
+@media screen and (max-width: 900px) {
+  .explore-intro h2 {
+   padding-top: 5vh;
   }
-
+  .explore-intro {
+    height: 12vh;
+  }
 }

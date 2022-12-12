@@ -1,7 +1,6 @@
 .App {
   text-align: center;
-  max-width: var(--app-width);
-  margin: auto;
+  width: 100%;
 }
 
 .trips {
@@ -18,7 +17,7 @@
 }
 
 .cover-img {
-  width: 100%;
+  width: 100vw;
   height: 30vh;
   background-repeat: no-repeat;
   background-size: cover;

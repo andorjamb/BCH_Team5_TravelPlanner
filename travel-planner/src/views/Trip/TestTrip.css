@@ -1,10 +1,12 @@
 .testtrip {
     background-color: gray;
     border-radius: 20px;
-    margin: 10px 30px;
+    margin: 10px;
     display: grid;
     grid-template-columns: 40% 60%;
     text-align: left;
+    max-width: 45%;
+    
 }
 .testtrip img {
     height: 100%;
@@ -13,4 +15,14 @@
 }
 .testtrip > .content {
     padding:  20px;
+}
+@media screen and (max-width: 450px) {
+   .testtrip > .content {
+    padding:  10px;
+}
+}
+@media screen and (max-width: 900px) {
+  .testtrip {
+    max-width: 80%;
+  }
 }

@@ -1,0 +1,11 @@
+.city-explore {
+    padding: 0 30px;
+}
+
+@media screen and (min-width: 1200px) {
+    .city-explore {padding: 0 5vw;}
+    .city-explore-list {
+        display: grid;
+        grid-template-columns: auto auto;
+    }
+}

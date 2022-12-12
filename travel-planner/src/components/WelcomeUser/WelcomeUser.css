@@ -6,21 +6,20 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  width: 100vw;
 }
 
-cover-img {
-  width: 100%;
+.welcome-user .cover-img {
+  width: 100vw;
   height: 30vh;
   background-image: url("https://source.unsplash.com/500x400/?me");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-
 }
 
 .user-info {
   display: flex;
-  flex-shrink: 2;
   height: 25vh;
   width: 75%;
   max-width: 700px;
@@ -64,23 +63,34 @@ button.logout {
   font-weight: 500;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 450px) {
   .user-noti {
     font-size: 2rem;
   }
-
-  .user-info {
-    height: 20vh;
-    width: 90vw;
-    top: 20vh;
+  .user-hello {
+    font-size: 20px;
   }
 
-  .cover-img {
-    height: 10vh;
+  .user-info {
+    height: 30vh;
+    top: 20vh;
   }
 
   img#user-avatar {
     height: 50px;
     width: 50px;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .welcome-user .cover-img {
+    height: 15vh;
+  }
+
+  .user-info {
+    display: flex;
+    height: 15vh;
+    top: 5vh;
+    width: 90vw;
   }
 }

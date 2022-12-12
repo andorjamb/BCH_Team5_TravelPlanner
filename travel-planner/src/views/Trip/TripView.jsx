@@ -5,12 +5,7 @@ import WelcomeUser from "../../components/WelcomeUser/WelcomeUser";
 import { onAuthStateChanged } from "firebase/auth";
 import { UserAuth } from "../../components/Context/Context";
 import { db } from "../../FireBaseInit";
-import {
-  collection,
-  getDocs,
-  addDoc,
-  serverTimestamp,
-} from "firebase/firestore";
+import { collection, getDocs } from "firebase/firestore";
 import TestTrip from "./TestTrip";
 
 const TripView = () => {
@@ -65,7 +60,6 @@ const TripView = () => {
     fetchUserTrip();
   }, [userID]);
 
-  
   const renderUserTrip = (time) => {
     console.log(time);
     if (time === "past") {
@@ -90,7 +84,6 @@ const TripView = () => {
       ));
       return future;
     }
-    
 
     /* if (userTrip === []) {
       console.log(true);
@@ -117,9 +110,9 @@ const TripView = () => {
       <div className="trip-content">
         <h1>All your trips are here:</h1>
         <h2>Past trips:</h2>
-        {renderUserTrip("past")}
+        <div className="trip-view-wrapper">{renderUserTrip("past")}</div>
         <h2>Future trips:</h2>
-        {renderUserTrip("future")}
+        <div className="trip-view-wrapper"> {renderUserTrip("future")}</div>
         <h2>You can create new trip with the planner !</h2>
         <Link to="/planner">
           <button className="save">Create new trip</button>

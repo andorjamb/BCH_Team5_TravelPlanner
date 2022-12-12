@@ -10,10 +10,11 @@
   align-items: flex-end;
 }
 .popup-inner {
-  margin-bottom: 80px;
+  border-radius: 20px;
+  margin-bottom: 10vh;
   position: relative;
   padding: 32px;
-  width: var(--app-width);
+  width: 70vw;
   background-color: white;
 }
 .popup-inner .close-btn {
