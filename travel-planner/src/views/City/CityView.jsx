@@ -43,28 +43,18 @@ const CityView = () => {
 
     const docRef = doc(db, "cities", `${cityname.toLowerCase()}`);
     const docSnap = await getDoc(docRef);
-    console.log(docSnap.data());
-    //let newCityData = docSnap.data();
     setCityData(docSnap.data());
-    console.log(cityData);
-  }
-
-
-  /*  if (docSnap.exists()) {
-     console.log("Document data:", docSnap.data());
-   } else {
-     // doc.data() will be undefined in this case
-     console.log("No such document!");
-   } */
-
-
-
-  async function getCoords() {
-    fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${cityname},FI&limit=1&appid=${mapsApiKey}`)
-      .then((res) => res.JSON)
-      .then((res) => console.log('latitude response: ', res.data.lat));
 
   }
+
+
+  /*   async function getCoords() {
+      fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${cityname},FI&limit=1&appid=${mapsApiKey}`)
+        .then((res) => res.JSON)
+        .then((data) => console.log('latitude response: ', data.lat));
+  
+  
+    } */
 
 
   async function getSightData() {
@@ -79,7 +69,7 @@ const CityView = () => {
     setLoading(true);
     getSightData();
     getCityData();
-    getCoords();
+    // getCoords();
     setLoading(false);
   }, []);
 
@@ -102,7 +92,7 @@ const CityView = () => {
             {loading ? <p>Loading...</p> :
 
               <ul> {citySights.map((sight) => (
-                <li key={sight.sightName}>{sight.sightName}</li>))}</ul>
+                <li key={sight.id}>{sight.sightName}</li>))}</ul>
             }
 
 
@@ -117,7 +107,7 @@ const CityView = () => {
 
         <section className="sight-gallery">
           {citySights.map((sight) => (
-            <div className="gallery-card" key="sight.sightName" style={{
+            <div className="gallery-card" key="sight.id" style={{
               backgroundImage: `url('https://source.unsplash.com/500x400/?${sight.sightName}')`
             }}>
               <h3>{sight.sightName}</h3>
