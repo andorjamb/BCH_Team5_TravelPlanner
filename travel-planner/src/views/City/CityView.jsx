@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { db } from '../../FireBaseInit';
-import { collection, getDocs, query, where } from "firebase/firestore";
+import { collection, getDocs, query, where, getDoc, doc } from "firebase/firestore";
 
 import Weather from '../../components/Weather/Weather';
 import Rating from '../../components/Rating/Rating';
 import Map from '../../components/Map/Map';
 
-//const city = 'helsinki';
 /* fetch('https://en.wikipedia.org/w/api.php?action=query&prop=extracts&exchars=400&explaintext&titles=Helsinki&format=json')
     .then((response) => response.json())
     .then((data) => console.log(data)); */
@@ -20,6 +19,7 @@ import Map from '../../components/Map/Map';
 
 import './CityView.css';
 
+const mapsApiKey = process.env.REACT_APP_OPENWEATHERMAP_API_KEY;
 
 const CityView = () => {
 
@@ -28,6 +28,7 @@ const CityView = () => {
 
   const [loading, setLoading] = useState(false);
   const [citySights, setCitySights] = useState([]);
+  const [cityData, setCityData] = useState({ cityName: "", rating: "", googleId: "" });
 
   function favoriteClickHandler(e) {
     console.log('favorite clicked');
@@ -38,9 +39,35 @@ const CityView = () => {
       console.log('Failed to set storage');
     }
   }
+  async function getCityData() {
+
+    const docRef = doc(db, "cities", `${cityname.toLowerCase()}`);
+    const docSnap = await getDoc(docRef);
+    console.log(docSnap.data());
+    //let newCityData = docSnap.data();
+    setCityData(docSnap.data());
+    console.log(cityData);
+  }
 
 
-  async function getData() {
+  /*  if (docSnap.exists()) {
+     console.log("Document data:", docSnap.data());
+   } else {
+     // doc.data() will be undefined in this case
+     console.log("No such document!");
+   } */
+
+
+
+  async function getCoords() {
+    fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${cityname},FI&limit=1&appid=${mapsApiKey}`)
+      .then((res) => res.JSON)
+      .then((res) => console.log('latitude response: ', res.data.lat));
+
+  }
+
+
+  async function getSightData() {
     const querySnapshot = await getDocs(query(collection(db, "sights"), where("cityName", "==", `${cityname.toLowerCase()}`)));
     querySnapshot.forEach((doc) => {
       filteredSights.push(doc.data());
@@ -50,19 +77,13 @@ const CityView = () => {
 
   useEffect(() => {
     setLoading(true);
-    getData();
+    getSightData();
+    getCityData();
+    getCoords();
     setLoading(false);
-    console.log(citySights);
-    console.log(filteredSights);
   }, []);
 
-  const sightsMap = () => {
-    filteredSights.map((sight) => (
-      <li>{sight.sightName}</li>))
-  }
 
-  /*   [{ cityName: 'espoo', sightName: 'Kino Tapiola', rating: 4 },
-    { cityName: 'espoo', sightName: 'Ikea Espoo', rating: 5 }] */
 
   return (
     <div className="city-view">
@@ -70,7 +91,9 @@ const CityView = () => {
         backgroundImage: `url('https://source.unsplash.com/500x400/?${cityname}')`
       }}>
       </div>
-      <div className='city-title'>  <h3>{cityname.charAt(0).toUpperCase() + cityname.substring(1)}</h3></div>
+      <div className='city-title'>  <h3>{cityname.charAt(0).toUpperCase() + cityname.substring(1)}</h3>
+        <Rating rating={cityData.rating} />
+      </div>
 
       <main>
         <section className="top-container">
@@ -78,12 +101,8 @@ const CityView = () => {
             <h4>Top Places</h4>
             {loading ? <p>Loading...</p> :
 
-              <ul> {filteredSights.map((sight) => {
-                return (<li> key={sight.sightName}{sight.sightName}</li>)
-              })
-              }</ul>
-
-
+              <ul> {citySights.map((sight) => (
+                <li key={sight.sightName}>{sight.sightName}</li>))}</ul>
             }
 
 
