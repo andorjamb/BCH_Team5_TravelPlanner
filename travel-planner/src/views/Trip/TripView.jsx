@@ -19,7 +19,7 @@ const TripView = () => {
     async function fetchUserID() {
       const owner = (await user) ? user.uid : null;
       setUserID(owner);
-      console.log("userID: ", userID);
+  
     }
     fetchUserID();
   }, [user, onAuthStateChanged]);
@@ -27,10 +27,11 @@ const TripView = () => {
   useEffect(() => {
     async function fetchUserTrip() {
       const dateToday = Date.now();
-      console.log("today is ", dateToday);
+   
       let trips = [];
       let userPastTrip = [];
       let userFutureTrip = [];
+
       // fetch everything
       const querySnapshot = await getDocs(collection(db, "usersTrip"));
       querySnapshot.docs.forEach((trip) => {
@@ -38,30 +39,28 @@ const TripView = () => {
       });
       // filter all fetched trips with user ID
       const filterUserTrip = trips.filter((a) => a.userID == userID);
-      console.log("run", filterUserTrip);
       setUserTrip(filterUserTrip);
 
       // filter a second time into two array: past and future trip
       filterUserTrip.forEach((a) => {
-        console.log("checking trip name: ", a.tripName);
+ 
         if (Date.parse(a.tripDate) < dateToday) {
-          console.log("this trip is in the past!");
+        
           userPastTrip.push(a);
           setPastTrip(userPastTrip);
         } else {
-          console.log("this trip is in the future");
+       
           userFutureTrip.push(a);
           setFutureTrip(userFutureTrip);
         }
       });
-      console.log("Future trips: ", userFutureTrip);
-      console.log("Past trips: ", userPastTrip);
+ 
     }
     fetchUserTrip();
   }, [userID]);
 
   const renderUserTrip = (time) => {
-    console.log(time);
+   
     if (time === "past") {
       let past = pastTrip?.map((trip) => (
         <TestTrip

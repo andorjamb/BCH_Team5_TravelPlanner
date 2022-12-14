@@ -184,26 +184,30 @@ const PlannerView = () => {
       <div className="cover-img"></div>
       <form onSubmit={submitHandler}>
         <div className="plan-title">
-          <div className="plan-info">
-            <h1>Plan Details</h1>
-            
-          </div>
+            <h1>New Trip Details</h1>
         </div>
 
         <div className="plan-content">
-         <div style={{display:"inline-block", background:"red",width:"100%" }}>
+          <div className="plan-info">
+            
+          </div>
+         <div className="planner_form_input">
+          <div className="planner_input">
           <label>Trip Name: </label>
             <input
               type="text"
               placeholder={tripName}
               onChange={(e) => changeTripName(e.target.value)}
-            /> <br />
+            /> 
+          </div>
+          <div className="planner_input">
             <label>Trip date:</label>
             <input
               type="date"
               onChange={(e) => changeTripDate(e.target.value)}
             ></input>
             </div>
+          </div>
           {renderTripList()}
           <h1>Select Places to visit </h1>
           <SearchBar searchEvent={searchHandler} />

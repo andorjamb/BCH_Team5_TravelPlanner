@@ -7,6 +7,34 @@
   text-align: center;
 }
 
+.planner_form_input{
+ display: flex;
+flex-direction: row;
+align-items: center;
+padding: 1rem 0rem;
+width: 100%;
+background-color: #d3d3d3;
+justify-content: space-around;
+flex-wrap: wrap;
+border-radius: 15px;
+}
+.planner_input{
+display: inline-block;
+  border-radius: 10px;
+  width: 50%;
+}
+
+.planner_input > label{
+  display: inline-block;
+  padding: 1rem;
+  font-weight: 800;
+}
+.planner_input > input {
+  width: 70%;
+  padding: 5px;
+  display: inline-block;
+  border-radius: 10px;
+}
 .planner-view h1,
 h2 {
   color: black;
@@ -45,7 +73,7 @@ h4 {
 .plan-info {
   align-items: center;
   text-align: left;
-  max-height: 100%;
+ 
 }
 
 .plan-info label {
