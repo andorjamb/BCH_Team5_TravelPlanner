@@ -57,7 +57,7 @@ const CityView = () => {
     }
     citySights.forEach((sight, index) => {
 
-      sight = new sightImage(`${sight.sightName}`, `${sight.sightName}`, index, `https://source.unsplash.com/500x400/?${sight.sightName}`
+      sight = new sightImage(`${sight.sightName}`, `${sight.sightName}`, index, `https://source.unsplash.com/600x400/?${sight.sightName}`
       );
       imagesArray.push(sight);
     }
@@ -65,15 +65,12 @@ const CityView = () => {
     return imagesArray;
   }
 
-
   useEffect(() => {
     setLoading(true);
     getSightData();
     getCityData();
     setLoading(false);
   }, []);
-
-
 
 
   return (

@@ -113,8 +113,17 @@ li {
   color: white;
 }
 
-.sight-gallery>img:focus {
-  transform: scale(1.2);
+.sight-gallery {
+  padding-top: 2rem;
+
+}
+
+.sight-gallery img {
+  margin: auto;
+  border-radius: 30px;
+  max-height: 500px;
+  max-width: 600px;
+  align-items: center;
 }
 
 /* 
