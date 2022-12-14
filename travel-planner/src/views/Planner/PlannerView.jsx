@@ -10,6 +10,7 @@ import {
   addDoc,
   serverTimestamp,
 } from "firebase/firestore";
+
 import { onAuthStateChanged } from "firebase/auth";
 import { UserAuth } from "../../components/Context/Context";
 import SearchBar from "../../components/SearchBar/SearchBar";
@@ -18,7 +19,7 @@ import Trip from "../../components/Trip/Trip";
 import Popup from "../../components/Popup/Popup";
 
 const PlannerView = () => {
-  const { logOut, user } = UserAuth();
+  const {  user } = UserAuth();
   const [tripName, changeTripName] = useState("New Trip");
   const [tripDate, changeTripDate] = useState("");
   const [tripList, addTripList] = useState([]);
@@ -37,8 +38,6 @@ const PlannerView = () => {
     setUserID(owner);
   }, [user, onAuthStateChanged])
 
-
-  // fetch sights from db
   useEffect(() => {
     async function fetchSightData() {
       let sights = [];
@@ -105,7 +104,7 @@ const PlannerView = () => {
   const renderTripList = () => {
     if (tripList.length == 0) {
       return (
-        <p>Add destinations to your trip from the list below ( ͡❛ ‿‿ ͡❛) </p>
+      <></>
       );
     }
     let list = tripList?.map((trip, index) => (
@@ -117,7 +116,7 @@ const PlannerView = () => {
         addTrip={addTrip}
       />
     ));
-    return list;
+    return <><h1>Selected Sights</h1> {list}</> ;
   };
 
   const resetHandler = () => {
@@ -187,7 +186,13 @@ const PlannerView = () => {
         <div className="plan-title">
           <div className="plan-info">
             <h1>Plan Details</h1>
-            <label>Trip Name: </label>
+            
+          </div>
+        </div>
+
+        <div className="plan-content">
+         <div style={{display:"inline-block", background:"red",width:"100%" }}>
+          <label>Trip Name: </label>
             <input
               type="text"
               placeholder={tripName}
@@ -198,13 +203,9 @@ const PlannerView = () => {
               type="date"
               onChange={(e) => changeTripDate(e.target.value)}
             ></input>
-          </div>
-        </div>
-
-        <div className="plan-content">
-          <h1>Trip details</h1>
+            </div>
           {renderTripList()}
-          <h1>Places to visit </h1>
+          <h1>Select Places to visit </h1>
           <SearchBar searchEvent={searchHandler} />
           <div className="saved-places-wrapper"> {renderSightList()}</div>
           <h1>Notes </h1>
