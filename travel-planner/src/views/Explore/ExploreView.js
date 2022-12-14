@@ -1,10 +1,9 @@
 import React, { Component } from "react";
+
 import WelcomeUser from "../../components/WelcomeUser/WelcomeUser";
 import CityExplore from "../../components/CityExplore/CityExplore";
-//import Account from "../../components/Account/Account";
+
 import "./ExploreView.css";
-
-
 
 class ExploreView extends Component {
 
@@ -16,7 +15,7 @@ class ExploreView extends Component {
     const viewShown = (
       <div className="view">
         <WelcomeUser userName={this.state.userName} />
-        <div className="explore-intro"> {/* explore component contains searchBar */}
+        <div className="explore-intro"> 
           <h2>Ready for an adventure?</h2>
         </div>
         <CityExplore />

@@ -7,16 +7,6 @@ import Weather from '../../components/Weather/Weather';
 import Rating from '../../components/Rating/Rating';
 import Map from '../../components/Map/Map';
 
-/* fetch('https://en.wikipedia.org/w/api.php?action=query&prop=extracts&exchars=400&explaintext&titles=Helsinki&format=json')
-    .then((response) => response.json())
-    .then((data) => console.log(data)); */
-
-/*    onClick={window.scrollBy({
-     top: 0,
-     left: -300,
-     behavior: 'smooth'
- })} */
-
 import './CityView.css';
 
 const CityView = () => {
@@ -29,7 +19,7 @@ const CityView = () => {
   const [cityData, setCityData] = useState({ cityName: "", rating: "", googleId: "" });
 
   function favoriteClickHandler(e) {
-    console.log('favorite clicked');
+
     try {
       localStorage.setItem("savedPlaces", JSON.stringify(e.target.id))
     }
@@ -45,16 +35,6 @@ const CityView = () => {
 
   }
 
-
-  /*   async function getCoords() {
-      fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${cityname},FI&limit=1&appid=${mapsApiKey}`)
-        .then((res) => res.JSON)
-        .then((data) => console.log('latitude response: ', data.lat));
-  
-  
-    } */
-
-
   async function getSightData() {
     const querySnapshot = await getDocs(query(collection(db, "sights"), where("cityName", "==", `${cityname.toLowerCase()}`)));
     querySnapshot.forEach((doc) => {
@@ -67,7 +47,6 @@ const CityView = () => {
     setLoading(true);
     getSightData();
     getCityData();
-    // getCoords();
     setLoading(false);
   }, []);
 
@@ -100,7 +79,6 @@ const CityView = () => {
         <div>
           < Weather
             cityName={cityname} />
-
         </div>
 
         <section className="sight-gallery">
