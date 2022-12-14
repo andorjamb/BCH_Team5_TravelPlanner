@@ -87,21 +87,7 @@ li {
   list-style-type: disc;
 }
 
-.sight-gallery {
-  /*container element*/
-  display: flex;
-  max-height: 600px;
-  width: 100%;
-  justify-content: center;
-  flex-wrap: nowrap;
-  scroll-snap-type: x mandatory;
-  scroll-behavior: smooth;
-  overflow-x: auto;
-  overflow-y: hidden;
-  white-space: no-wrap;
-  -ms-overflow-style: none;
-  -webkit-overflow-scrolling: touch;
-}
+
 
 .sight-gallery::-webkit-scrollbar {
   display: none;

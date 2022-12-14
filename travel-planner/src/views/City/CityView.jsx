@@ -57,7 +57,7 @@ const CityView = () => {
     }
     citySights.forEach((sight, index) => {
 
-      sight = new sightImage(`${sight.sightName}`, `${sight.sightName}`, `${index++}`, `https://source.unsplash.com/500x400/?${sight.sightName}`
+      sight = new sightImage(`${sight.sightName}`, `${sight.sightName}`, index, `https://source.unsplash.com/500x400/?${sight.sightName}`
       );
       imagesArray.push(sight);
     }
@@ -65,12 +65,6 @@ const CityView = () => {
     return imagesArray;
   }
 
-
-  /* 
-    altText: `${sight.sightName}`,
-      caption: `${sight.sightName},,
-    key: 1,
-    src: `https://source.unsplash.com/500x400/?${sight.sightName}` */
 
   useEffect(() => {
     setLoading(true);
@@ -99,7 +93,7 @@ const CityView = () => {
             {loading ? <p>Loading...</p> :
 
               <ul> {citySights.map((sight) => (
-                <li key={sight.id}>{sight.sightName}</li>))}</ul>
+                <li key={sight.sightName}>{sight.sightName}</li>))}</ul>
             }
 
 
@@ -116,21 +110,7 @@ const CityView = () => {
           <UncontrolledCarousel
             items={makeImageArray()}
 
-
-          /*     {[
-                {
-                  altText: "city",
-                  caption: "church",
-                  key: 1,
-                  src: 'https://source.unsplash.com/500x400/?church'
-    
-    
-                }
-              ]} */
-
           />
-
-
 
           {/*    {citySights.map((sight) => (
             <div className="gallery-card" key="sight.id" style={{
