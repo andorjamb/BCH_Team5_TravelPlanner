@@ -70,7 +70,8 @@ main {
 
 .description {
   max-width: 400px;
-  height: auto;
+height: -moz-fit-content;
+  height: fit-content;
   background-color: rgb(217, 217, 217);
   flex: 60%;
   margin: 1rem;
@@ -82,7 +83,7 @@ main {
 li {
   color: black;
   text-align: left;
-  font-size: 1.3rem;
+  font-size: 1vh;
   list-style-type: disc;
 }
 
