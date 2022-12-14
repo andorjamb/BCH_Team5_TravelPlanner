@@ -8,7 +8,6 @@ const Map = ({ cityName }) => {
     const mapApiKey = process.env.REACT_APP_MAPBOX_API_KEY;
     const APIKey = process.env.REACT_APP_OPENWEATHERMAP_API_KEY;
     const fuxxy = useParams();
-    const city = cityName;
     const [lon, setLon] = useState();
     const [lat, setLat] = useState();
 
@@ -28,7 +27,7 @@ const Map = ({ cityName }) => {
 
     return (
         <div className='map'>
-            <img className="map-img" src={`https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/pin-s+c03030(${lon},${lat})/[18.7766,58.9565,35.1869,70.4466]/300x500?access_token=${mapApiKey}`} alt="map"></img>
+            <img className="map-img" src={`https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/pin-s+c03030(${lon},${lat})/[18.7766,58.9565,35.1869,70.4466]/300x500?access_token=${mapApiKey}`} alt={fuxxy.cityName}></img>
         </div>
     );
 };

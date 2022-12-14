@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { db } from '../../FireBaseInit';
 import { collection, getDocs, query, where, getDoc, doc } from "firebase/firestore";
+import { Carousel, CarouselItem, CarouselControl, CarouselIndicators, CarouselCaption, UncontrolledCarousel } from 'reactstrap';
 
 import Weather from '../../components/Weather/Weather';
 import Rating from '../../components/Rating/Rating';
@@ -43,12 +44,41 @@ const CityView = () => {
     setCitySights(filteredSights);
   }
 
+  function makeImageArray() {
+    let imagesArray = [];
+    let index = 0;
+    class sightImage {
+      constructor(altText, caption, key, src) {
+        this.altText = altText;
+        this.caption = caption;
+        this.key = key;
+        this.src = src;
+      }
+    }
+    citySights.forEach((sight, index) => {
+
+      sight = new sightImage(`${sight.sightName}`, `${sight.sightName}`, `${index++}`, `https://source.unsplash.com/500x400/?${sight.sightName}`
+      );
+      imagesArray.push(sight);
+    }
+    )
+    return imagesArray;
+  }
+
+
+  /* 
+    altText: `${sight.sightName}`,
+      caption: `${sight.sightName},,
+    key: 1,
+    src: `https://source.unsplash.com/500x400/?${sight.sightName}` */
+
   useEffect(() => {
     setLoading(true);
     getSightData();
     getCityData();
     setLoading(false);
   }, []);
+
 
 
 
@@ -82,7 +112,27 @@ const CityView = () => {
         </div>
 
         <section className="sight-gallery">
-          {citySights.map((sight) => (
+
+          <UncontrolledCarousel
+            items={makeImageArray()}
+
+
+          /*     {[
+                {
+                  altText: "city",
+                  caption: "church",
+                  key: 1,
+                  src: 'https://source.unsplash.com/500x400/?church'
+    
+    
+                }
+              ]} */
+
+          />
+
+
+
+          {/*    {citySights.map((sight) => (
             <div className="gallery-card" key="sight.id" style={{
               backgroundImage: `url('https://source.unsplash.com/500x400/?${sight.sightName}')`
             }}>
@@ -90,7 +140,7 @@ const CityView = () => {
               <div className="favorite" id="sight.sightName" onClick={() => favoriteClickHandler}>favorite</div>
             </div>
 
-          ))}
+          ))} */}
 
         </section>
       </main>
