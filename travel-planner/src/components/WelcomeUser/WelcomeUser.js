@@ -6,7 +6,6 @@ import CheckAdmin from "../../adminActions/CheckAdmin";
 
 const WelcomeUser = () => {
   const { logOut, user, role } = UserAuth();
-console.log(role);
   function setName(str) {
     if (user) {
       let indexFirstSpace = /\s/.exec(str).index;

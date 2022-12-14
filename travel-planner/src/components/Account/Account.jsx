@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-//import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 //import { Spinner } from 'react-bootstrap';
 import { collection, onSnapshot, where, query, getDocs } from "@firebase/firestore";
 import { db } from '../../FireBaseInit';
-//import { UserAuth } from "../Context/Context";
 import { onAuthStateChanged } from "firebase/auth";
+//import { UserAuth } from "../Context/Context";
 
 import PastTrip from '../../components/PastTrip/PastTrip'
 import ExploreTrips from "../../components/ExploreTrips/ExploreTrips"
@@ -33,7 +33,6 @@ const Account = ({ user, signout }) => {
 
     async function fetchUserID() {
       let owner = await user ? user.uid : null;
-      console.log('setting user id:', user.uid, owner);
       setUserID(owner);
       setReadyState(true);
     }
@@ -88,8 +87,6 @@ const Account = ({ user, signout }) => {
     pastTrips.map((trip) => trip.sights.forEach((sight) => {
       visitedCities.push(sight.cityName.toLowerCase())
     }));
-    console.log(visitedCities);
-    console.log(visitedSights);
     setVisitedCities(visitedCities);
 
 
@@ -105,7 +102,6 @@ const Account = ({ user, signout }) => {
         }
 
       });
-      console.log(newCities);
       setUnvisitedCities(newCities);
 
     }
@@ -113,7 +109,7 @@ const Account = ({ user, signout }) => {
   }, [visitedCities])
 
   const futureTripList = futureTrips.map((trip) => (
-    <li>  {/* <Link to={``}> */} {trip.tripName}{/* </Link> */}</li>
+    <li>   <Link to={'/trip'}>  {trip.tripName} </Link> </li>
   ))
 
 
@@ -132,13 +128,13 @@ const Account = ({ user, signout }) => {
             <h3>Ready for more?</h3>
             <h4>Explore these places:</h4>
             <ExploreTrips cityArray={unvisitedCities} />
-            <p>(links to cities in Explore)</p>
+
 
           </section>
           <section className="future-trips">
             <h3>Your upcoming trips:</h3>
             <ul>{futureTripList}</ul>
-            <p>(links to Planner or the profile page being completed by Dang)</p>
+
 
           </section>
         </>

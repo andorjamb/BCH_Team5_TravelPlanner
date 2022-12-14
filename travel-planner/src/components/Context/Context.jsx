@@ -50,7 +50,6 @@ export const AuthContextProvider = ({ children }) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
-      console.log('User', currentUser)
       userRoles(user?.email);
 
     });
@@ -74,6 +73,7 @@ export const AuthContextProvider = ({ children }) => {
 
   }, [])
 
+  //TOFIX: admin role context 
   // useEffect(() => {
   //   const q = query(
   //     ref,

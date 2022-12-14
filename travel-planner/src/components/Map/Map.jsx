@@ -9,33 +9,21 @@ const Map = ({ cityName }) => {
     const APIKey = process.env.REACT_APP_OPENWEATHERMAP_API_KEY;
     const fuxxy = useParams();
     const city = cityName;
-
-    //TODO: function to retrieve (lon,lat) values from API using cityName or Google Place_id
     const [lon, setLon] = useState();
     const [lat, setLat] = useState();
 
-
-
     async function getCoords() {
-        console.log(cityName); //undef.
-        console.log(fuxxy); //object {cityName:"Kotka"}
-        console.log(city); //undefin.
-
         fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${fuxxy.cityname},FI&limit=1&appid=${APIKey}`)
             .then((res) => res.json())
             .then((data) => {
-                console.log('latitude response: ', data[0].lat);
                 setLat(data[0].lat);
                 setLon(data[0].lon);
             });
     }
 
-
-
     useEffect(() => {
 
         getCoords();
-        console.log('got coords: ', lat, lon);
     }, [])
 
     return (
@@ -46,6 +34,3 @@ const Map = ({ cityName }) => {
 };
 
 export default Map;
-/* 
-{`https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/pin-s+c03030(24.9,60.1)/[18.7766,58.9565,35.1869,70.4466]/300x500?access_token=${mapApiKey}`}
- */

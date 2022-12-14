@@ -19,8 +19,6 @@ import Map from '../../components/Map/Map';
 
 import './CityView.css';
 
-const mapsApiKey = process.env.REACT_APP_OPENWEATHERMAP_API_KEY;
-
 const CityView = () => {
 
   const { cityname } = useParams();
