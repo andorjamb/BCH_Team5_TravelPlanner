@@ -17,6 +17,7 @@ h4 {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-content: center;
   border-radius: 30px;
   padding: 1rem;
 }
@@ -42,6 +43,11 @@ h4 {
   border-radius: 30px;
   padding: 1rem 2rem;
   z-index: 2;
+}
+
+.top-container {
+  display: flex;
+  justify-content: center;
 }
 
 .favorite {
@@ -83,7 +89,6 @@ main {
 li {
   color: black;
   text-align: left;
-  font-size: 1vh;
   list-style-type: disc;
 }
 
@@ -115,14 +120,17 @@ li {
 
 .sight-gallery {
   padding-top: 2rem;
-
+  background-color: darkgray;
+  padding-bottom: 2rem;
+  border-radius: 30px;
+  margin: 2rem;
 }
 
 .sight-gallery img {
   margin: auto;
   border-radius: 30px;
-  max-height: 500px;
-  max-width: 600px;
+  max-height: 600px;
+  max-width: 720px;
   align-items: center;
 }
 

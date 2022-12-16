@@ -16,18 +16,20 @@ h1 {
 .explore-intro {
   padding: 1rem;
   height: 15vh;
+  margin-bottom: 2rem;
 }
 
 .explore-intro h2 {
-  padding-top: 9vh;
+  padding: 10vh;
   font-weight: bold;
   font-size: 2em;
 }
 
 @media screen and (max-width: 900px) {
   .explore-intro h2 {
-   padding-top: 5vh;
+    padding-top: 5vh;
   }
+
   .explore-intro {
     height: 12vh;
   }
