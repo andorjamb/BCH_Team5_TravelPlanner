@@ -8,9 +8,8 @@ const Weather = ({ cityName }) => {
     const APIKey = process.env.REACT_APP_OPENWEATHERMAP_API_KEY;
 
     const [weatherData, setWeatherData] = useState([]);
-    /*     const [coords, setCoords] = useState({ lat: 0, lon: 0 }); */
+    /*  const [coords, setCoords] = useState({ lat: 0, lon: 0 }); */
     /*  const [weatherDate, setWeatherDate] = useState(0) */
-
 
     /* TODO: forecast button functionality */
     /*  const nextDateClickHandler = () => {//show next date's weather
@@ -29,9 +28,7 @@ const Weather = ({ cityName }) => {
         }
     }
 
-
-
-    //first convert cityname to coords
+    //if coords needed, first convert cityname to coords
     /*    useEffect(() => {
            axios.get(`http://api.openweathermap.org/geo/1.0/direct?q=${cityName},FI&limit=1&appid=${APIKey}`)
                .then((res) => {
