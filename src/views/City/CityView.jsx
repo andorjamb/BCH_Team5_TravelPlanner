@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { db } from '../../FireBaseInit';
 import { collection, getDocs, query, where, getDoc, doc } from "firebase/firestore";
-import { Carousel, CarouselItem, CarouselControl, CarouselIndicators, CarouselCaption, UncontrolledCarousel } from 'reactstrap';
+import { UncontrolledCarousel } from 'reactstrap';
 
 import Weather from '../../components/Weather/Weather';
 import Rating from '../../components/Rating/Rating';
@@ -19,17 +19,12 @@ const CityView = () => {
   const [citySights, setCitySights] = useState([]);
   const [cityData, setCityData] = useState({ cityName: "", rating: "", googleId: "" });
 
+  /* TODO: implement favorite functionality*/
   function favoriteClickHandler(e) {
+    console.log('favorite clicked')
 
-    try {
-      localStorage.setItem("savedPlaces", JSON.stringify(e.target.id))
-    }
-    catch {
-      console.log('Failed to set storage');
-    }
   }
   async function getCityData() {
-
     const docRef = doc(db, "cities", `${cityname.toLowerCase()}`);
     const docSnap = await getDoc(docRef);
     setCityData(docSnap.data());
@@ -79,14 +74,14 @@ const CityView = () => {
         backgroundImage: `url('https://source.unsplash.com/500x400/?${cityname}')`
       }}>
       </div>
-      <div className='city-title'>  <h3>{cityname.charAt(0).toUpperCase() + cityname.substring(1)}</h3>
+      <div className='city-title'>  <h3 className="white-upper">{cityname.charAt(0).toUpperCase() + cityname.substring(1)}</h3>
         <Rating rating={cityData.rating} />
       </div>
 
       <main>
         <section className="top-container">
           <div className="description">
-            <h4>Top Places</h4>
+            <h4 className="black-upper">Top Places</h4>
             {loading ? <p>Loading...</p> :
 
               <ul> {citySights.map((sight) => (
@@ -109,15 +104,11 @@ const CityView = () => {
 
           />
 
-          {/*    {citySights.map((sight) => (
-            <div className="gallery-card" key="sight.id" style={{
-              backgroundImage: `url('https://source.unsplash.com/500x400/?${sight.sightName}')`
-            }}>
-              <h3>{sight.sightName}</h3>
-              <div className="favorite" id="sight.sightName" onClick={() => favoriteClickHandler}>favorite</div>
-            </div>
 
-          ))} */}
+          {/*    <div className="favorite" id="sight.sightName" onClick={() => favoriteClickHandler}>favorite</div>
+            </div> */}
+
+
 
         </section>
       </main>

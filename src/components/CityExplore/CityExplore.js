@@ -16,15 +16,15 @@ class CityExplore extends Component {
     searchValue: "",
     loading: false,
     displayCities: [],
-    sightsData: [],
   };
   cityData = [];
   displayCities = [];
-  sightData = [];
+
+  numberOfDisplayCities = 6;
 
   getRandArray() {
     let randNumbers = [];
-    while (randNumbers.length < 4) {
+    while (randNumbers.length < this.numberOfDisplayCities) {
       let newRandom = makeNewRand(11);
       if (randNumbers.includes(newRandom)) {
         makeNewRand(11);
@@ -44,13 +44,6 @@ class CityExplore extends Component {
     this.setState({ displayCities: cityFilter });
   };
 
-  async getSights() {
-    const sightsSnapshot = await getDocs(collection(db, "sights"));
-    sightsSnapshot.docs.forEach((sight) => {
-      this.sightData.push(sight.data());
-    });
-    this.setState({ sightData: this.sightData });
-  }
 
   componentDidMount = async () => {
     this.setState({ loading: true });
@@ -78,8 +71,6 @@ class CityExplore extends Component {
             city.cityName.charAt(0).toUpperCase() + city.cityName.substring(1)
           }
           rating={city.rating}
-          searchresult="Search result"
-          sights={this.sightsData}
         />
       );
     });

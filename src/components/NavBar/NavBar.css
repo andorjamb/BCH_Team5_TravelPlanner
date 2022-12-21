@@ -7,6 +7,7 @@
   grid-template-columns: repeat(4, auto);
   align-items: center;
   height: 10vh;
+  min-height: 70px;
   z-index: 3;
 }
 
@@ -22,13 +23,12 @@
 
 }
 
-.nav-item:hover  {
+.nav-item:hover {
   background-color: white;
   cursor: pointer;
-  color:#139DEA;
+  color: #139DEA;
 }
 
 .nav-item.active {
   color: #FAFF00;
 }
-

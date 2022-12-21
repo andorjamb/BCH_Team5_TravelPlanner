@@ -2,10 +2,36 @@
     padding: 0 30px;
 }
 
-@media screen and (min-width: 1200px) {
-    .city-explore {padding: 0 5vw;}
+.city-explore-list {
+    margin: auto;
+    max-width: 90vw;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: auto;
+    grid-gap: 1rem;
+}
+
+/* ipad */
+@media screen and (max-width: 900px) {
+    .city-explore {
+        padding: 0 5vw;
+    }
+
     .city-explore-list {
         display: grid;
-        grid-template-columns: auto auto;
+        grid-template-columns: 100%;
+    }
+}
+
+/* phone and small media */
+@media screen and (max-width: 600px) {
+    .city-explore {
+        padding: 0 5vw;
+
+    }
+
+    .city-explore-list {
+        display: grid;
+        grid-template-columns: 100%;
     }
 }

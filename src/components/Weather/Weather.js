@@ -9,13 +9,16 @@ const Weather = ({ cityName }) => {
 
     const [weatherData, setWeatherData] = useState([]);
     /*     const [coords, setCoords] = useState({ lat: 0, lon: 0 }); */
-    const [weatherDate, setWeatherDate] = useState(0)
+    /*  const [weatherDate, setWeatherDate] = useState(0) */
 
-    const nextDateClickHandler = () => {//show next date's weather
-        console.log('weather arrow clicked');
 
-        setWeatherDate(weatherDate => weatherDate + 1);
-    }
+    /* TODO: forecast button functionality */
+    /*  const nextDateClickHandler = () => {//show next date's weather
+         console.log('weather arrow clicked');
+         setWeatherDate(weatherDate => weatherDate + 1);
+     } */
+
+
     class WeatherObject {
         constructor(description, iconCode, temp_min, temp_max, date) {
             this.description = description;
@@ -61,10 +64,9 @@ const Weather = ({ cityName }) => {
         <div className="weatherElement">
             <p id="weatherDate">{weatherData.date}</p>
             <p>{weatherData.description}</p>
-            <p>{weatherData.temp_min} &#8451;</p>
-            <p>{weatherData.temp_max} &#8451;</p>
+            <p>{weatherData.temp_min} &#8451; -  {weatherData.temp_max} &#8451;</p>
         </div>
-        <div><button className="nextForecast" onClick={nextDateClickHandler}>chevron_right</button></div>
+        <div><button className="nextForecast" /* onClick={nextDateClickHandler} */>chevron_right</button></div>
     </div>)
 
 }

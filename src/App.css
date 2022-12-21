@@ -1,27 +1,7 @@
 .App {
   text-align: center;
-  width: 100%;
-}
-
-.trips {
-  color: white;
-  background: green;
-}
-
-.loading {
-  font-size: 2.5 rem;
-  color: var(--darkblue);
-  text-align: center;
-  padding: 2rem;
-
-}
-
-.cover-img {
-  width: 100vw;
-  height: 30vh;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
+  margin: auto;
+  width: var(--app-width);
 }
 
 @media screen and (max-width: 600px) {
