@@ -30,14 +30,14 @@ Run npm install to ensure the following dependencies are installed:
 
 #### Environment Variables for API keys
 
-Generate your own API keys for the following services:
+You will need to generate your own API keys for the following services:
 * Open weather API 
-* Google Places / Google Maps API
+* MapBox API
 
 Save the keys to an .env file at the project root as follows:
 ```sh
 REACT_APP_OPENWEATHER_API_KEY=your key   
-REACT_APP_MAPBOX_API_KEY==your key
+REACT_APP_MAPBOX_API_KEY=your key
 
 ```
 
