@@ -4,14 +4,13 @@ import "./ProfileView.css";
 import Account from '../../components/Account/Account';
 import WelcomeUser from '../../components/WelcomeUser/WelcomeUser'
 
-import { onAuthStateChanged } from "firebase/auth";
 import { UserAuth } from "../../components/Context/Context";
 
 
 const ProfileView = () => {
 
   const { logOut, user } = UserAuth();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const handleSignOut = async () => {
     try {

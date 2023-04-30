@@ -63,17 +63,16 @@ class CityExplore extends Component {
   };
 
   render() {
-    let cityArray = this.state.displayCities.map((city) => {
-      return (
+    let cityArray = this.state.displayCities.map((city, index) => (
+      
         <CityContainer
-          key={city.cityName}
+          key={city.cityName+index}
           cityName={
             city.cityName.charAt(0).toUpperCase() + city.cityName.substring(1)
           }
           rating={city.rating}
         />
-      );
-    });
+    ));
     return (
       <div className="city-explore">
         <SearchBar searchEvent={this.searchHandler} />

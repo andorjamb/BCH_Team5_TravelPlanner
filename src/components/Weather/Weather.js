@@ -6,7 +6,6 @@ import './Weather.css'
 
 const Weather = ({ cityName }) => {
     const APIKey = process.env.REACT_APP_OPENWEATHERMAP_API_KEY;
-
     const [weatherData, setWeatherData] = useState([]);
     /*  const [coords, setCoords] = useState({ lat: 0, lon: 0 }); */
     /*  const [weatherDate, setWeatherDate] = useState(0) */

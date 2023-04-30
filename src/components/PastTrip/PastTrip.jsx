@@ -10,13 +10,13 @@ import './PastTrip.css';
 const PastTrip = ({ arr }) => {
 
 
-    const sights = (trip) => trip.sights.map((sight) =>
-        (<li className="past-trip-sight-list" key="sight.id">{sight.sightName},{sight.cityName}</li>)
+    const sights = (trip) => trip.sights.map((sight,index) =>
+        (<li key={sight.cityName+index} className="past-trip-sight-list" >{sight.sightName},{sight.cityName}</li>)
     )
     return (
         <>
             {arr.map((trip) => (
-                <div className="past-trip">
+                <div key={trip.tripName} className="past-trip">
                     <div className="past-trip-image">
                         <img src={`https://source.unsplash.com/500x400/?finland&adventure`} alt={trip.tripName} />
                     </div>

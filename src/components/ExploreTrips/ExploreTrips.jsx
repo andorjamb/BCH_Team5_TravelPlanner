@@ -8,8 +8,9 @@ import './ExploreTrips.css'
  * 
  */
 const ExploreTrips = ({ cityArray }) => {
-    const exploreList = cityArray.map((cityname) => (
-        <li>  <Link to={`/explore/${cityname}`}> {cityname}</Link></li>
+    
+    const exploreList = cityArray.map((cityname ,index) => (
+        <li key={cityname+index}>  <Link to={`/explore/${cityname}`}> {cityname}</Link></li>
     ))
 
     return (

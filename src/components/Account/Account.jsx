@@ -78,15 +78,16 @@ const Account = ({ user, signout }) => {
 
   useEffect(() => {
     setLoading(false);
-    const visitedSights = [];
-    const visitedCities = [];
-    pastTrips.map((trip) => trip.sights.forEach((sight) => {
-      visitedSights.push(sight.sightName)
-    }));
+    const visitedSights = pastTrips.reduce((acc, trip) => {
+      const sightNames = trip.sights.map(sight => sight.sightName);
+      return [...acc, ...sightNames];
+    }, []);
 
-    pastTrips.map((trip) => trip.sights.forEach((sight) => {
-      visitedCities.push(sight.cityName.toLowerCase())
-    }));
+    const visitedCities = pastTrips.reduce((acc, trip) => {
+      const sightNames = trip.sights.map(sight => sight.sightName);
+      return [...acc, ...sightNames];
+    }, []);
+
     setVisitedCities(visitedCities);
 
 
@@ -108,8 +109,8 @@ const Account = ({ user, signout }) => {
     getCities();
   }, [visitedCities])
 
-  const futureTripList = futureTrips.map((trip) => (
-    <li>   <Link to={'/trip'}>  {trip.tripName} </Link> </li>
+  const futureTripList = futureTrips.map((trip,index) => (
+    <li key={trip.tripName+index}>   <Link to={'/trip'}>  {trip.tripName} </Link> </li>
   ))
 
 
