@@ -1,9 +1,8 @@
 import React from "react";
 import { useRef } from "react";
 import { db} from "../FireBaseInit";
-import { addDoc,setDoc, collection, getDocs ,doc} from "@firebase/firestore";
+import { addDoc, collection, getDocs } from "@firebase/firestore";
 import FormCss from './form.module.css'
-import AdminMenu from "./AdminMenu";
 
 const NewCity = () => {
   // const msgRef = useRef();
@@ -11,11 +10,10 @@ const NewCity = () => {
   const cityName = useRef();
   const ratings = useRef(); const googleid = useRef();
   const ref = collection(db, 'cities')
-  // console.log(ref);
+
 
   const getCities = async () => {
     const data = await getDocs(ref);
-    console.log(data);
 
   };
 
@@ -25,7 +23,6 @@ const NewCity = () => {
   }
   const handleSend = async (e) => {
     e.preventDefault();
-    console.log(cityName.current.value);
 
     let data = {
       [cityName.current.value]:
@@ -38,7 +35,6 @@ const NewCity = () => {
     };
     try {
       await addDoc(ref, data,'12345rU8A3axQNTNlFAvnHhsG6en5qVJ3');
-      console.log(ref.id)
     }
     catch (e) {
       console.log(e);

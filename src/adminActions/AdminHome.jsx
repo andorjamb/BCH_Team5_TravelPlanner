@@ -1,13 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import {Spinner} from 'react-bootstrap';
-import { Outlet } from 'react-router-dom';
+import React, { useState } from 'react';
 import { UserAuth } from '../components/Context/Context';
-import { db } from '../FireBaseInit';
-import {
-    addDoc,
-    serverTimestamp, collection, getDocs, onSnapshot, where,
-    doc, query, orderBy, limit, deleteDoc, setDoc, updateDoc
-} from "@firebase/firestore";
 
 import AdminMenu from './AdminMenu';
 import Error403 from './Error403';
